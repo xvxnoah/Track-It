@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Track It!</string>
+    <string name="track_it">Track It!</string>
+    <string name="todo">TODO</string>
 </resources>

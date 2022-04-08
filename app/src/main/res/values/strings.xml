@@ -2,4 +2,8 @@
     <string name="app_name">Track It!</string>
     <string name="track_it">Track It!</string>
     <string name="todo">TODO</string>
+    <string name="email">Email</string>
+    <string name="contrassenya">Contrassenya</string>
+    <string name="inicia_sessio">Inicia sessió</string>
+    <string name="registra_t">Registra\'t</string>
 </resources>

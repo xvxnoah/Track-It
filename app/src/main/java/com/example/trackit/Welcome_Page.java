@@ -8,6 +8,7 @@ public class Welcome_Page extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("HOME TRACK IT!");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
     }

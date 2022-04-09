@@ -15,4 +15,8 @@
     <string name="introdueix_el_teu_email_i_t_enviarem_un_enlla_per_restablir_la_contrassenya">Introdueix el teu email i t\'enviarem un enllaç per restablir la contrassenya.</string>
     <string name="ja_tens_un_compte">Ja tens un compte?</string>
     <string name="encara_no_tens_un_compte">Encara no tens un compte?</string>
+    <string name="continua">Continua</string>
+    <string name="email_en_cam">Email en camí!</string>
+    <string name="tornar_a_l_inici_de_sessi">Tornar a l\'inici de sessió</string>
+    <string name="image_reset_email">TODO</string>
 </resources>

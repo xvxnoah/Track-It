@@ -57,7 +57,7 @@
 
             <Button
                 android:id="@+id/loginButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/mainBlue"
@@ -66,6 +66,7 @@
                 android:textColor="#FFFFFF"
                 app:cornerRadius="10dp"
                 tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
         </LinearLayout>
 
         <Space
@@ -139,16 +140,18 @@
 
             <TextView
                 android:id="@+id/registerInit"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:clickable="true"
                 android:layout_weight="1"
+                android:clickable="true"
                 android:text="@string/registra_t"
                 android:textColor="@color/lila"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </LinearLayout>
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -121,6 +121,7 @@ public class AuthActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AuthActivity.this, ForgotPassword.class);
                 startActivity(intent);
+                finish();
             }
         });
 

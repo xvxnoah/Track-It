@@ -13,10 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -28,7 +27,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class AuthActivity extends AppCompatActivity {
@@ -75,40 +73,13 @@ public class AuthActivity extends AppCompatActivity {
     private void setup(){
         setTitle("Sign in");
 
-        Button singUp = (Button) findViewById(R.id.signUpButton);
-
-        // CHECK IF DATA IS CORRECT
-        singUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText email = (EditText) findViewById(R.id.emailEditText);
-                EditText pass = (EditText) findViewById(R.id.passwordEditText);
-
-                if(!email.getText().toString().isEmpty() && !pass.getText().toString().isEmpty()){
-                    mAuth.createUserWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
-                            .addOnCompleteListener(AuthActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        updateUI(user);
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-                                        updateUI(null);
-                                    }
-                                }
-                            });
-                }
-            }
-        });
-
         Button singIn = (Button) findViewById(R.id.loginButton);
 
         singIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText email = (EditText) findViewById(R.id.emailEditText);
-                EditText pass = (EditText) findViewById(R.id.passwordEditText);
+                EditText pass = (EditText) findViewById(R.id.passEditText);
 
                 if(!email.getText().toString().isEmpty() && !pass.getText().toString().isEmpty()){
                     mAuth.signInWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
@@ -140,6 +111,27 @@ public class AuthActivity extends AppCompatActivity {
                 googleClient.signOut();
 
                 startActivityForResult(googleClient.getSignInIntent(), GOOGLE_SIGN_IN);
+            }
+        });
+
+        TextView forgotClick = findViewById(R.id.forgotTextView);
+
+        forgotClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AuthActivity.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView registerClick = findViewById(R.id.registerInit);
+
+        registerClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AuthActivity.this, RegisterPage.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -195,16 +187,4 @@ public class AuthActivity extends AppCompatActivity {
         startActivity(intent);
         //finish();
     }
-
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask){
-        try{
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            Log.d("frag", "Email of account is " + account.getEmail());
-
-        } catch (ApiException e){
-            Log.w("ytsignin", "signInResult:failed code=" + e.getStatusCode());
-        }
-    }
-
 }

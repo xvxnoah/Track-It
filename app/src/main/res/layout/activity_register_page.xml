@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f0f0f0"
-    tools:context=".AuthActivity">
+    tools:context=".RegisterPage">
 
     <LinearLayout
         android:id="@+id/authLayout"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.39">
 
         <EditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/emailRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints=""
@@ -33,10 +33,10 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="8dp" />
+            android:layout_height="12dp" />
 
         <EditText
-            android:id="@+id/passEditText"
+            android:id="@+id/passwordRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints=""
@@ -56,74 +56,22 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/loginButton"
-                android:layout_width="wrap_content"
+                android:id="@+id/signUpBtn"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/mainBlue"
-                android:text="@string/inicia_sessio"
+                android:text="@string/registra_t"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 app:cornerRadius="10dp"
                 tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/loginGoogle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:text="@string/entra_amb_google"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:cornerRadius="10dp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/initText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/iniciar_sessio"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="464dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/forgotTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="18dp"
-            android:clickable="true"
-            android:minHeight="48dp"
-            android:text="@string/has_oblidat_la_contrassenya"
-            android:textColor="@color/lila"
-            android:textStyle="bold"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="14dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -131,24 +79,37 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/notYetAnAccount"
-                android:layout_width="183dp"
-                android:layout_height="match_parent"
-                android:text="@string/encara_no_tens_un_compte"
-                android:textColor="#616161" />
+                android:id="@+id/existingAccountText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/ja_tens_un_compte" />
 
             <TextView
-                android:id="@+id/registerInit"
+                android:id="@+id/initSessionRegister"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clickable="true"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/registra_t"
+                android:text="@string/inicia_sessio"
                 android:textColor="@color/lila"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/registerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/registra_t"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

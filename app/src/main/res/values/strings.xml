@@ -6,4 +6,7 @@
     <string name="contrassenya">Contrassenya</string>
     <string name="inicia_sessio">Inicia sessió</string>
     <string name="registra_t">Registra\'t</string>
+    <string name="entra_amb_google">Entra amb Google</string>
+    <string name="prefs_file">com.pis.trackit.PREFERENCE_FILE_KEY</string>
+    <string name="tanca_sessi">Tanca sessió</string>
 </resources>

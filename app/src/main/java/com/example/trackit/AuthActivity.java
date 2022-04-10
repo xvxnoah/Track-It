@@ -35,7 +35,8 @@ public class AuthActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private final int GOOGLE_SIGN_IN = 100;
 
-    public static final String EMAIL = "com.example.trackit.MESSAGE";
+    public static final String CREDENTIALS = "credentials";
+    public static final String USER = "user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +48,6 @@ public class AuthActivity extends AppCompatActivity {
         // Setup
         mAuth = FirebaseAuth.getInstance();
         setup();
-
-        // Check if there's active session
-        session();
     }
 
     @Override
@@ -57,18 +55,6 @@ public class AuthActivity extends AppCompatActivity {
         super.onStart();
         LinearLayout auth = (LinearLayout) findViewById(R.id.authLayout);
         auth.setVisibility(View.VISIBLE);
-    }
-
-    private void session() {
-        SharedPreferences saveSession = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        String email = saveSession.getString(EMAIL, null);
-
-        if (email != null){
-            LinearLayout auth = (LinearLayout) findViewById(R.id.authLayout);
-            auth.setVisibility(View.INVISIBLE);
-
-            showHome(email);
-        }
     }
 
     private void setup(){
@@ -100,7 +86,7 @@ public class AuthActivity extends AppCompatActivity {
             }
         });
 
-        Button google = (Button) findViewById(R.id.loginGoogle);
+        ImageButton google = findViewById(R.id.loginGoogle);
 
         google.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,11 +165,15 @@ public class AuthActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
         if(user != null){
             EditText email = (EditText) findViewById(R.id.emailEditText);
-            String message = email.getText().toString();
+
+            String emailUser = email.getText().toString();
 
             Toast.makeText(this,"Signed In successfully",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, Welcome_Page.class);
-            intent.putExtra(EMAIL, message);
+
+            // Save log in status
+            saveSession(emailUser);
+
             startActivity(intent);
             finish();
         } else{
@@ -194,8 +184,18 @@ public class AuthActivity extends AppCompatActivity {
     private void showHome(String user){
         Toast.makeText(this,"Signed In successfully",Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, Welcome_Page.class);
-        intent.putExtra(EMAIL, user);
+        saveSession(user);
         startActivity(intent);
-        //finish();
+        finish();
+    }
+
+    // Save log in status
+    private void saveSession(String user){
+        SharedPreferences saveSession = getSharedPreferences(CREDENTIALS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = saveSession.edit();
+
+        editor.putString(USER, user);
+
+        editor.commit();
     }
 }

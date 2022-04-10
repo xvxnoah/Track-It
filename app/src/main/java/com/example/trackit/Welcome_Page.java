@@ -26,27 +26,21 @@ public class Welcome_Page extends AppCompatActivity {
         setContentView(R.layout.activity_welcome_page);
         getSupportActionBar().hide();
 
-        // Save log in status
-        SharedPreferences saveSession = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = saveSession.edit();
-
-        Intent intent = getIntent();
-        String email = intent.getStringExtra(AuthActivity.EMAIL);
-        editor.putString("email", email);
-        editor.apply();
-
         // test log-out
-        logout(editor);
+        logout();
     }
 
-    private void logout(SharedPreferences.Editor editor) {
+    private void logout() {
+        SharedPreferences saveSession = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = saveSession.edit();
+
         Button logOut = (Button) findViewById(R.id.logOut);
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editor.clear();
-                editor.apply();
+                editor.commit();
 
                 FirebaseAuth.getInstance().signOut();
 

@@ -22,9 +22,9 @@ public class Welcome_Page extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("HOME TRACK IT!");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
+        getSupportActionBar().hide();
 
         // Save log in status
         SharedPreferences saveSession = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);

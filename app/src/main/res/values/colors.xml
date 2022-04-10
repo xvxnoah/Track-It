@@ -21,5 +21,7 @@
     <color name="red">#FF0000</color>
 
     <color name="mainBlue">#57A5FF</color>
+    <color name="softBlue">#B6DCFF</color>
     <color name="lila">#7F3DFF</color>
+    <color name="softGrey">#F0F0F0</color>
 </resources>

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -133,6 +134,15 @@ public class AuthActivity extends AppCompatActivity {
                 Intent intent = new Intent(AuthActivity.this, RegisterPage.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        ImageButton back = findViewById(R.id.back_signin);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
     }

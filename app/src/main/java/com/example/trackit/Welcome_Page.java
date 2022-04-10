@@ -28,13 +28,27 @@ public class Welcome_Page extends AppCompatActivity {
 
         // test log-out
         logout();
+
+        // som-hi
+        letsgo();
+    }
+
+    private void letsgo() {
+        Button lets = findViewById(R.id.somhi);
+
+        lets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Welcome_Page.this, HomePage.class));
+            }
+        });
     }
 
     private void logout() {
         SharedPreferences saveSession = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = saveSession.edit();
 
-        Button logOut = (Button) findViewById(R.id.logOut);
+        Button logOut = findViewById(R.id.logOut);
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override

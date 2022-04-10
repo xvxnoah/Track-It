@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrackIt">
         <activity
+            android:name=".HomePage"
+            android:exported="false" />
+        <activity
             android:name=".Info_Welcome_Page"
             android:exported="false" />
         <activity

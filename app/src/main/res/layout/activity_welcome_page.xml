@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/somhi"
         android:layout_width="293dp"
         android:layout_height="55dp"
         android:layout_marginBottom="32dp"

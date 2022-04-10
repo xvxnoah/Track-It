@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Principal"
+        android:icon="@drawable/home"
+        android:enabled="true"
+        android:id="@+id/principal_menu"/>
+
+    <item android:title="Moviments"
+        android:icon="@drawable/transaction"
+        android:enabled="true"
+        android:id="@+id/transactions_menu"/>
+
+    <item
+        android:id="@+id/placeholder"
+        android:title=""/>
+
+    <item android:title="Pressupost"
+        android:icon="@drawable/budget"
+        android:enabled="true"
+        android:id="@+id/budget_menu"/>
+
+    <item android:title="Perfil"
+        android:icon="@drawable/person"
+        android:enabled="true"
+        android:id="@+id/profile_menu"/>
+</menu>

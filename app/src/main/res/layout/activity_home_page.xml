@@ -44,4 +44,48 @@
         app:maxImageSize="36dp"
         app:srcCompat="@drawable/add_fab"
         app:tint="@color/white" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginEnd="122dp"
+        android:layout_marginBottom="70dp"
+        android:backgroundTint="@color/green"
+        android:contentDescription="@string/app_name"
+        app:backgroundTint="@android:color/transparent"
+        app:maxImageSize="36dp"
+        app:srcCompat="@drawable/money_in"
+        app:tint="@color/white"
+        android:visibility="invisible"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="70dp"
+        android:backgroundTint="@color/red"
+        android:contentDescription="@string/app_name"
+        app:backgroundTint="@android:color/transparent"
+        app:maxImageSize="36dp"
+        app:srcCompat="@drawable/money_out"
+        app:tint="@color/white"
+        android:layout_gravity="bottom|end"
+        android:visibility="invisible"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="120dp"
+        android:backgroundTint="@color/blue"
+        android:contentDescription="@string/app_name"
+        android:visibility="invisible"
+        app:backgroundTint="@android:color/transparent"
+        app:maxImageSize="36dp"
+        app:srcCompat="@drawable/news"
+        app:tint="@color/white" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -2,12 +2,15 @@ package com.example.trackit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +34,9 @@ public class Welcome_Page extends AppCompatActivity {
 
         // som-hi
         letsgo();
+
+        Window window = Welcome_Page.this.getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(Welcome_Page.this, R.color.softGrey));
     }
 
     private void letsgo() {

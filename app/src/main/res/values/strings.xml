@@ -35,4 +35,8 @@
     <string name="descripci">     Descripció</string>
     <string name="repeteix_el_moviment">Repeteix el moviment</string>
     <string name="repeteix">Repeteix</string>
+    <string name="fitxer_adjunt">Fitxer adjunt</string>
+    <string name="camera">Càmera</string>
+    <string name="imatge">Imatge</string>
+    <string name="document">Document</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.trackit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -8,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
@@ -29,6 +31,9 @@ public class HomePage extends AppCompatActivity {
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
         getSupportActionBar().hide();
+
+        Window window = HomePage.this.getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(HomePage.this, R.color.white));
 
         // Floating Action Buttons
         fab = findViewById(R.id.fab);
@@ -66,7 +71,6 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateFab();
-                Toast.makeText(HomePage.this, "MONEY OUT", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(HomePage.this, ExpensePage.class));
             }
         });

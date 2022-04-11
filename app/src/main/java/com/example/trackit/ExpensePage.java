@@ -3,6 +3,7 @@ package com.example.trackit;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -29,6 +31,9 @@ public class ExpensePage extends AppCompatActivity {
         setListeners();
 
         setSpinner();
+
+        Window window = ExpensePage.this.getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(ExpensePage.this, R.color.redExpense));
     }
 
     private void setSpinner() {

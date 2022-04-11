@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/redExpense"
-    tools:context=".ExpensePage">
-
+    android:background="@color/greenIncome"
+    tools:context=".IncomePage">
 
     <TextView
-        android:id="@+id/textExpense"
+        android:id="@+id/textIncome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="@string/despesa"
+        android:text="@string/ingr_s"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -23,17 +22,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/back_expense"
+        android:id="@+id/back_income"
         android:layout_width="75dp"
         android:layout_height="54dp"
         android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
-        android:backgroundTint="@color/redExpense"
+        android:backgroundTint="@color/greenIncome"
         android:contentDescription="@string/back_expense"
         android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/arrow"
-        app:layout_constraintEnd_toStartOf="@+id/textExpense"
+        app:layout_constraintEnd_toStartOf="@+id/textIncome"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -56,13 +55,13 @@
             android:layout_gravity="bottom"
             android:layout_marginStart="95dp"
             android:layout_marginBottom="22dp"
-            android:backgroundTint="@color/redExpense"
+            android:backgroundTint="@color/greenIncome"
             android:text="@string/continua"
             android:textAllCaps="false"
             tools:ignore="TextContrastCheck" />
 
         <Spinner
-            android:id="@+id/spinnerExpenseCategory"
+            android:id="@+id/spinnerIncomeCategory"
             android:layout_width="341dp"
             android:layout_height="48dp"
             android:layout_gravity="top"
@@ -71,7 +70,7 @@
             android:contentDescription="@string/app_name" />
 
         <EditText
-            android:id="@+id/expenseDescription"
+            android:id="@+id/incomeDescription"
             android:layout_width="341dp"
             android:layout_height="48dp"
             android:layout_gravity="top"
@@ -88,7 +87,7 @@
             android:autofillHints="" />
 
         <TextView
-            android:id="@+id/repeatExpense"
+            android:id="@+id/repeatIncome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -100,7 +99,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/repeatTextExpense"
+            android:id="@+id/repeatTextIncome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -111,7 +110,7 @@
             android:textSize="14sp" />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switchExpense"
+            android:id="@+id/switchIncome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -120,11 +119,11 @@
             android:backgroundTintMode="multiply"
             android:buttonTintMode="add"
             android:minHeight="48dp"
-            android:theme="@style/SwitchRed"
-            app:trackTint="@color/redExpense" />
+            android:theme="@style/SwitchGreen"
+            app:trackTint="@color/greenIncome" />
 
         <TextView
-            android:id="@+id/adjuntTextExpense"
+            android:id="@+id/adjuntTextIncome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fitxer_adjunt"
@@ -136,13 +135,13 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/cameraExpense"
+            android:id="@+id/cameraIncome"
             android:layout_width="108dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginStart="34dp"
             android:layout_marginBottom="190dp"
-            android:backgroundTint="@color/redExpense"
+            android:backgroundTint="@color/greenIncome"
             android:drawableTop="@drawable/camera"
             android:text="@string/camera"
             android:textAllCaps="false"
@@ -152,12 +151,12 @@
             app:cornerRadius="10dp" />
 
         <Button
-            android:id="@+id/imageExpense"
+            android:id="@+id/imageIncome"
             android:layout_width="108dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="190dp"
-            android:backgroundTint="@color/redExpense"
+            android:backgroundTint="@color/greenIncome"
             android:drawableTop="@drawable/imageicon"
             android:text="@string/imatge"
             android:textAllCaps="false"
@@ -167,13 +166,13 @@
             app:cornerRadius="10dp" />
 
         <Button
-            android:id="@+id/documentExpense"
+            android:id="@+id/documentIncome"
             android:layout_width="108dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="34dp"
             android:layout_marginBottom="190dp"
-            android:backgroundTint="@color/redExpense"
+            android:backgroundTint="@color/greenIncome"
             android:drawableTop="@drawable/document"
             android:text="@string/document"
             android:textAllCaps="false"
@@ -195,11 +194,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_expense"
+        app:layout_constraintTop_toBottomOf="@+id/back_income"
         tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/enterExpense"
+        android:id="@+id/enterIncome"
         android:layout_width="372dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"

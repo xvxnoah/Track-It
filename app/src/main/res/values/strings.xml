@@ -39,4 +39,5 @@
     <string name="camera">Càmera</string>
     <string name="imatge">Imatge</string>
     <string name="document">Document</string>
+    <string name="ingr_s">Ingrés</string>
 </resources>

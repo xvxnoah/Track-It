@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="SwitchPurple" parent="Theme.AppCompat">
-        <item name="colorAccent">@color/purple_500</item>
+    <style name="SwitchRed" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/redExpense</item>
+    </style>
+
+    <style name="SwitchGreen" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/greenIncome</item>
     </style>
 
 </resources>

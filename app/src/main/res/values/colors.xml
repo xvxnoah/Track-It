@@ -24,6 +24,8 @@
     <color name="lila">#7F3DFF</color>
     <color name="softGrey">#F0F0F0</color>
     <color name="redExpense">#FD3C4A</color>
+    <color name="greenIncome">#00A86B</color>
+    <color name="expenseFiles">#FF3333</color>
     <color name="greyLetters">#FCFCFC</color>
     <color name="softBlack">#3B444B</color>
     <color name="violet">#F4DAF4</color>

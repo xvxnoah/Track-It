@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="income_categories">
+        <item>Categoria</item>
+        <item>Nòmina</item>
+        <item>Criptomonedes</item>
+        <item>Accions</item>
+        <item>Robatoris</item>
+    </string-array>
+
+</resources>

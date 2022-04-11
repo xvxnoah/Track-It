@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.example.trackit.databinding.ActivityHomePageBinding;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomePage extends AppCompatActivity {
@@ -63,7 +64,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateFab();
-                Toast.makeText(HomePage.this, "MONEY IN", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(HomePage.this, IncomePage.class));
             }
         });
 

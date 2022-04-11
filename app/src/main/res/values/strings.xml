@@ -21,4 +21,10 @@
     <string name="image_reset_email">TODO</string>
     <string name="o_entra_amb">O entra amb:</string>
     <string name="back">TODO</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_fragment">Home Fragment</string>
+    <string name="transactions_fragment">Transactions Fragment</string>
+    <string name="budget_fragment">Budget Fragment</string>
+    <string name="profile_fragment">Profile Fragment</string>
 </resources>

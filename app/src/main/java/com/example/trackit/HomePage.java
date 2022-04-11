@@ -1,6 +1,9 @@
 package com.example.trackit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,18 +11,22 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
+import com.example.trackit.databinding.ActivityHomePageBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomePage extends AppCompatActivity {
 
     FloatingActionButton fab, fab_in, fab_out, fab_news;
-    Animation fabOpen, fabClose, rotateForward, rotateBackward;
+    Animation fabOpen, fabClose;
+    ActivityHomePageBinding binding;
 
     boolean isOpen = false; // per defecte es fals
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        binding = ActivityHomePageBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        replaceFragment(new HomeFragment());
         getSupportActionBar().hide();
 
         // Floating Action Buttons
@@ -69,6 +76,35 @@ public class HomePage extends AppCompatActivity {
                 Toast.makeText(HomePage.this, "NEWS", Toast.LENGTH_SHORT).show();
             }
         });
+
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()){
+                case R.id.principal_menu:
+                    replaceFragment(new HomeFragment());
+                    break;
+
+                case R.id.transactions_menu:
+                    replaceFragment(new TransactionsFragment());
+                    break;
+
+                case R.id.budget_menu:
+                    replaceFragment(new BudgetFragment());
+                    break;
+
+                case R.id.profile_menu:
+                    replaceFragment(new ProfileFragment());
+                    break;
+            }
+
+            return true;
+        });
+    }
+
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayoutHome, fragment);
+        fragmentTransaction.commit();
     }
 
     private void animateFab(){

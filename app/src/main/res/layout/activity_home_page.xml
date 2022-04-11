@@ -1,91 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".HomePage">
+    android:layout_height="match_parent">
 
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorHome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/softGrey"
-        android:backgroundTint="@color/softGrey"
-        app:backgroundTint="@android:color/white"
-        app:fabAlignmentMode="center"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="20dp"
-        app:fabCradleVerticalOffset="10dp">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".HomePage">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
+        <FrameLayout
+            android:id="@+id/frameLayoutHome"
+            android:layout_width="match_parent"
+            android:layout_height="675dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </FrameLayout>
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="12dp"
-            android:background="@drawable/transparent_background"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_nav_menu" />
-    </com.google.android.material.bottomappbar.BottomAppBar>
+            android:layout_gravity="bottom"
+            android:background="@color/softGrey"
+            android:backgroundTint="@color/softGrey"
+            app:backgroundTint="@android:color/white"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp"
+            app:elevation="0dp"
+            app:fabAlignmentMode="center"
+            app:fabAnimationMode="scale"
+            app:fabCradleMargin="10dp"
+            app:fabCradleRoundedCornerRadius="20dp"
+            app:fabCradleVerticalOffset="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/lila"
-        android:contentDescription="@string/app_name"
-        app:backgroundTint="@android:color/transparent"
-        app:elevation="0dp"
-        app:layout_anchor="@id/bottomAppBar"
-        app:maxImageSize="36dp"
-        app:srcCompat="@drawable/add_fab"
-        app:tint="@color/white" />
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/transparent_background"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/bottom_nav_menu" />
+        </com.google.android.material.bottomappbar.BottomAppBar>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_marginEnd="122dp"
-        android:layout_marginBottom="70dp"
-        android:backgroundTint="@color/green"
-        android:contentDescription="@string/app_name"
-        app:backgroundTint="@android:color/transparent"
-        app:maxImageSize="36dp"
-        app:srcCompat="@drawable/money_in"
-        app:tint="@color/white"
-        android:visibility="invisible"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/lila"
+            android:contentDescription="@string/app_name"
+            app:backgroundTint="@android:color/transparent"
+            app:elevation="0dp"
+            app:layout_anchor="@id/bottomAppBar"
+            app:maxImageSize="36dp"
+            app:srcCompat="@drawable/add_fab"
+            app:tint="@color/white" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="110dp"
-        android:layout_marginBottom="70dp"
-        android:backgroundTint="@color/red"
-        android:contentDescription="@string/app_name"
-        app:backgroundTint="@android:color/transparent"
-        app:maxImageSize="36dp"
-        app:srcCompat="@drawable/money_out"
-        app:tint="@color/white"
-        android:layout_gravity="bottom|end"
-        android:visibility="invisible"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginEnd="122dp"
+            android:layout_marginBottom="70dp"
+            android:backgroundTint="@color/green"
+            android:contentDescription="@string/app_name"
+            android:visibility="invisible"
+            app:backgroundTint="@android:color/transparent"
+            app:maxImageSize="36dp"
+            app:srcCompat="@drawable/money_in"
+            app:tint="@color/white" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_news"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="120dp"
-        android:backgroundTint="@color/blue"
-        android:contentDescription="@string/app_name"
-        android:visibility="invisible"
-        app:backgroundTint="@android:color/transparent"
-        app:maxImageSize="36dp"
-        app:srcCompat="@drawable/news"
-        app:tint="@color/white" />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="110dp"
+            android:layout_marginBottom="70dp"
+            android:backgroundTint="@color/red"
+            android:contentDescription="@string/app_name"
+            android:visibility="invisible"
+            app:backgroundTint="@android:color/transparent"
+            app:maxImageSize="36dp"
+            app:srcCompat="@drawable/money_out"
+            app:tint="@color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="120dp"
+            android:backgroundTint="@color/blue"
+            android:contentDescription="@string/app_name"
+            android:visibility="invisible"
+            app:backgroundTint="@android:color/transparent"
+            app:maxImageSize="36dp"
+            app:srcCompat="@drawable/news"
+            app:tint="@color/white" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

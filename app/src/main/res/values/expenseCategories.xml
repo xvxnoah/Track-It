@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="expense_categories">
+        <item>Categoria</item>
+        <item>Alimentació</item>
+        <item>Rebuts/Subscripcions</item>
+        <item>Casa</item>
+        <item>Transport</item>
+        <item>Roba</item>
+        <item>Salut/Higiene</item>
+        <item>Oci</item>
+        <item>Altres despeses</item>
+    </string-array>
+
+</resources>

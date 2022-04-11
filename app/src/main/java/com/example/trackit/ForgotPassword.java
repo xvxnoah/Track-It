@@ -51,7 +51,7 @@ public class ForgotPassword extends AppCompatActivity {
             }
         });
 
-        ImageButton back = findViewById(R.id.back_signin);
+        ImageButton back = findViewById(R.id.back_forgot);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

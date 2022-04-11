@@ -27,4 +27,12 @@
     <string name="transactions_fragment">Transactions Fragment</string>
     <string name="budget_fragment">Budget Fragment</string>
     <string name="profile_fragment">Profile Fragment</string>
+    <string name="back_register">TODO</string>
+    <string name="despesa">Despesa</string>
+    <string name="back_expense">TODO</string>
+    <string name="quant">Quant?</string>
+    <string name="euro">€</string>
+    <string name="descripci">     Descripció</string>
+    <string name="repeteix_el_moviment">Repeteix el moviment</string>
+    <string name="repeteix">Repeteix</string>
 </resources>

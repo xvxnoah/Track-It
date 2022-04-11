@@ -78,7 +78,7 @@ public class RegisterPage extends AppCompatActivity {
             }
         });
 
-        ImageButton back = findViewById(R.id.back_signin);
+        ImageButton back = findViewById(R.id.back_register);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/redExpense"
+    tools:context=".ExpensePage">
+
+
+    <TextView
+        android:id="@+id/textExpense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/despesa"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/back_expense"
+        android:layout_width="75dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:backgroundTint="@color/redExpense"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/arrow"
+        app:layout_constraintEnd_toStartOf="@+id/textExpense"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:contentDescription="@string/back_expense" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="495dp"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="210dp"
+            android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="95dp"
+            android:layout_marginBottom="22dp"
+            android:backgroundTint="@color/mainBlue"
+            android:text="@string/continua"
+            android:textAllCaps="false"
+            tools:ignore="TextContrastCheck" />
+
+        <Spinner
+            android:id="@+id/spinnerExpenseCategory"
+            android:layout_width="341dp"
+            android:layout_height="48dp"
+            android:layout_gravity="top"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="40dp"
+            android:contentDescription="@string/app_name" />
+
+        <EditText
+            android:id="@+id/expenseDescription"
+            android:layout_width="341dp"
+            android:layout_height="48dp"
+            android:layout_gravity="top"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="120dp"
+
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:hint="@string/descripci"
+            android:inputType="textPersonName"
+            android:textColor="@color/softBlack"
+            android:textSize="16sp"
+            tools:ignore="TextContrastCheck"
+            android:autofillHints="" />
+
+        <TextView
+            android:id="@+id/repeatExpense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="120dp"
+            android:text="@string/repeteix"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/repeatText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="95dp"
+            android:text="@string/repeteix_el_moviment"
+            android:textColor="@color/softBlack"
+            android:textSize="14sp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="95dp"
+            android:backgroundTintMode="multiply"
+            android:buttonTintMode="add"
+            android:checked="false"
+            android:minHeight="48dp"
+            android:theme="@style/SwitchPurple"
+            app:trackTint="@color/violet" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/howmuchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/quant"
+        android:textColor="@color/softGrey"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back_expense"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/enterExpense"
+        android:layout_width="372dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="@string/euro"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textSize="54sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.641"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/howmuchText"
+        tools:ignore="TextContrastCheck"
+        android:autofillHints="" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

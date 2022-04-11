@@ -12,7 +12,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="black">#000</color>
-    <color name="violet">#9400D3</color>
     <color name="indigo">#4B0082</color>
     <color name="blue">#0000FF</color>
     <color name="green">#00FF00</color>
@@ -24,4 +23,8 @@
     <color name="softBlue">#B6DCFF</color>
     <color name="lila">#7F3DFF</color>
     <color name="softGrey">#F0F0F0</color>
+    <color name="redExpense">#FD3C4A</color>
+    <color name="greyLetters">#FCFCFC</color>
+    <color name="softBlack">#3B444B</color>
+    <color name="violet">#F4DAF4</color>
 </resources>

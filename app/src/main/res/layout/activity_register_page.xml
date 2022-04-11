@@ -83,7 +83,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/ja_tens_un_compte" />
+                android:text="@string/ja_tens_un_compte"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/initSessionRegister"
@@ -113,7 +114,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/back_signin"
+        android:id="@+id/back_register"
         android:layout_width="75dp"
         android:layout_height="54dp"
         android:layout_marginTop="16dp"
@@ -125,6 +126,8 @@
         app:layout_constraintEnd_toStartOf="@+id/registerText"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:contentDescription="@string/back_register" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,15 @@
 package com.example.trackit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -23,6 +26,9 @@ public class Info_Welcome_Page extends AppCompatActivity {
         setContentView(R.layout.activity_info_welcome_page);
 
         getSupportActionBar().hide();
+
+        Window window = Info_Welcome_Page.this.getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(Info_Welcome_Page.this, R.color.softGrey));
 
         checkClick();
     }
@@ -56,6 +62,11 @@ public class Info_Welcome_Page extends AppCompatActivity {
                 startActivity(new Intent(Info_Welcome_Page.this, RegisterPage.class));
             }
         });
+    }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        ActivityCompat.finishAffinity(this);
     }
 }

@@ -40,4 +40,6 @@
     <string name="imatge">Imatge</string>
     <string name="document">Document</string>
     <string name="ingr_s">Ingrés</string>
+    <string name="noticies">Notícies</string>
+    <string name="back_news">back_news</string>
 </resources>

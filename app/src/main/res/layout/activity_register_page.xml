@@ -117,9 +117,10 @@
         android:id="@+id/back_register"
         android:layout_width="75dp"
         android:layout_height="54dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
         android:backgroundTint="#f0f0f0"
+        android:contentDescription="@string/back_register"
         android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/arrow"
@@ -127,7 +128,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:contentDescription="@string/back_register" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

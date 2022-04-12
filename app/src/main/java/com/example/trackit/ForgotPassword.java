@@ -2,10 +2,12 @@ package com.example.trackit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -32,6 +34,13 @@ public class ForgotPassword extends AppCompatActivity {
         email = findViewById(R.id.emailForgot);
         auth = FirebaseAuth.getInstance();
 
+        Window window = ForgotPassword.this.getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(ForgotPassword.this, R.color.softGrey));
+
+        setListeners();
+    }
+
+    private void setListeners() {
         Button forgot = findViewById(R.id.continueForgot);
 
         forgot.setOnClickListener(new View.OnClickListener() {

@@ -2,10 +2,12 @@ package com.example.trackit;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -30,6 +32,9 @@ public class RegisterPage extends AppCompatActivity {
         getSupportActionBar().hide();
 
         mAuth = FirebaseAuth.getInstance();
+
+        Window window = RegisterPage.this.getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(RegisterPage.this, R.color.softGrey));
 
         setup();
     }

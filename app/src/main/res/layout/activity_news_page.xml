@@ -1,40 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/whiteNews"
     android:layout_height="match_parent"
-    android:background="@color/softGrey"
     tools:context=".NewsPage">
 
     <TextView
-        android:id="@+id/newsText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:text="@string/noticies"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/back_news"
-        android:layout_width="75dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="14dp"
-        android:adjustViewBounds="true"
-        android:backgroundTint="#f0f0f0"
-        android:contentDescription="@string/back_news"
+        android:fontFamily="@font/g_bold"
+        android:textColor="@color/blackNews"
+        android:textSize="20sp"
+        android:background="@color/whiteNews"
         android:padding="10dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/arrow"
-        app:layout_constraintEnd_toStartOf="@+id/newsText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textAlignment="center"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:columnCount="2"
+        android:background="@drawable/black_background"
+        android:rowCount="2">
+
+        <EditText
+            android:id="@+id/editTextNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/buscar"
+            android:fontFamily="@font/g_bold"
+            android:textColorHint="@color/greyNews"
+            android:textColor="@color/greyNews"
+            android:padding="10dp"
+            android:background="@drawable/black_background"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_row="0"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/buttonNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:backgroundTint="@color/blackNews"
+            android:drawableEnd="@drawable/ic_baseline_search_24"
+            android:paddingEnd="20dp" />
+
+    </GridLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewNews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>

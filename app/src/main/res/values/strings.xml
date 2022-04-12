@@ -42,4 +42,5 @@
     <string name="ingr_s">Ingrés</string>
     <string name="noticies">Notícies</string>
     <string name="back_news">back_news</string>
+    <string name="buscar">Buscar</string>
 </resources>

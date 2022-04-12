@@ -80,7 +80,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateFab();
-                Toast.makeText(HomePage.this, "NEWS", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(HomePage.this, NewsPage.class));
             }
         });
 

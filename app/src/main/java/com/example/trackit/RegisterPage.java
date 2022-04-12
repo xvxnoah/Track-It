@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -22,7 +24,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegisterPage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    public static final String EMAIL = "com.example.trackit.MESSAGE";
+    public static final String CREDENTIALS = "credentials";
+    public static final String USER = "user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +68,10 @@ public class RegisterPage extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        String message = email.getText().toString();
+                                        String userEmail = email.getText().toString();
 
-                                        //Toast.makeText(RegisterPage.this,"Signed In successfully",Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(RegisterPage.this, Welcome_Page.class);
-                                        intent.putExtra(EMAIL, message);
+                                        saveSession(userEmail);
                                         startActivity(intent);
                                         finish();
 
@@ -91,5 +93,15 @@ public class RegisterPage extends AppCompatActivity {
                 onBackPressed();
             }
         });
+    }
+
+    // Save log in status
+    private void saveSession(String user){
+        SharedPreferences saveSession = getSharedPreferences(CREDENTIALS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = saveSession.edit();
+
+        editor.putString(USER, user);
+
+        editor.commit();
     }
 }

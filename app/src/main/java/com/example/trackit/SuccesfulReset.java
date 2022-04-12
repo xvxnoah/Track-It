@@ -35,4 +35,11 @@ public class SuccesfulReset extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        startActivity(new Intent(SuccesfulReset.this, AuthActivity.class));
+        finish();
+    }
 }

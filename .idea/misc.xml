@@ -3,17 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/black_background.xml" value="0.3765" />
         <entry key="app/src/main/res/drawable/custom_button.xml" value="0.3765" />
+        <entry key="app/src/main/res/drawable/gradient.xml" value="0.3765" />
         <entry key="app/src/main/res/drawable/rounded_shape.xml" value="0.3765" />
         <entry key="app/src/main/res/drawable/transaction.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/transparent_background.xml" value="0.328" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.3903244018554688" />
+        <entry key="app/src/main/res/layout/activity_detailed.xml" value="0.30867892261650276" />
         <entry key="app/src/main/res/layout/activity_expense_page.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.3740942028985507" />
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_income_page.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/activity_info_welcome_page.xml" value="0.3111413043478261" />
-        <entry key="app/src/main/res/layout/activity_news_page.xml" value="0.30867892261650276" />
+        <entry key="app/src/main/res/layout/activity_news_page.xml" value="0.3642995729036858" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_register_page.xml" value="0.3161908135897872" />
         <entry key="app/src/main/res/layout/activity_reset_password.xml" value="0.36875" />
@@ -24,6 +27,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_transactions.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/items.xml" value="0.30867892261650276" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.37604166666666666" />
       </map>

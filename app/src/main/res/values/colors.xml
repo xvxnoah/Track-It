@@ -35,4 +35,12 @@
     <color name="blackNews">#191819</color>
     <color name="whiteNews">#F7F6F9</color>
     <color name="blackGradient">#B5191819</color>
+    <color name="backgroundTransaction">#F6F6F7</color>
+    <color name="textPrimary">#44475B</color>
+    <color name="textSecondary">#575A6C</color>
+    <color name="background_deep">#EFEFEF</color>
+    <color name="button">#3F51B5</color>
+    <color name="transparent">#0000FFFF</color>
+    <color name="background">#F6F6F7</color>
+    <color name="lightBlue">#1DA1F2</color>
 </resources>

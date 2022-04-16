@@ -32,6 +32,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+// ADD POSSIBILITY TO SEE PASSWORD
 public class AuthActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;

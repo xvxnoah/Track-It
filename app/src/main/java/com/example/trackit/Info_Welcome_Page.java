@@ -3,6 +3,7 @@ package com.example.trackit;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,11 @@ import android.widget.Toast;
 
 public class Info_Welcome_Page extends AppCompatActivity {
 
+    private ViewPager mSlideViewPager;
+    private LinearLayout mDotLayout;
+
+    private SliderAdapter sliderAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +30,13 @@ public class Info_Welcome_Page extends AppCompatActivity {
         session();
 
         setContentView(R.layout.activity_info_welcome_page);
+
+        mSlideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
+        mDotLayout = (LinearLayout) findViewById(R.id.dotsLayout);
+
+        sliderAdapter = new SliderAdapter(this);
+
+        mSlideViewPager.setAdapter(sliderAdapter);
 
         getSupportActionBar().hide();
 

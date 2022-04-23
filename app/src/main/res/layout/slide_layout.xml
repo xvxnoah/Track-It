@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/slide_image"
+        android:layout_width="189dp"
+        android:layout_height="234dp"
+        android:translationX="120dp"
+        android:translationY="100dp"
+        app:srcCompat="@drawable/image1" />
+
+    <TextView
+        android:id="@+id/slide_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HEADING"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:translationX="20dp"
+        android:translationY="350dp" />
+
+    <TextView
+        android:id="@+id/slide_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Esto es una descripción que sirve como plantilla para cualquier SlideAdapter que se vaya a utilizar posteriormente en la implementación de esta funcionalidad de la aplicación."
+        android:translationY="400dp" />
+</RelativeLayout>

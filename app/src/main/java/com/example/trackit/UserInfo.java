@@ -3,10 +3,21 @@ package com.example.trackit;
 import java.util.ArrayList;
 
 public class UserInfo {
+    private String name;
+    private float quantity;
     private float moneySaved;
     private float moneyWasted;
     private ArrayList<Transaction> transactions;
     private boolean DriveLogin;
+
+    public void UserInfo(){
+        this.name = null;
+        this.quantity = 0;
+        this.moneySaved = 0;
+        this.moneyWasted = 0;
+        this.transactions = new ArrayList<Transaction>();
+        this.DriveLogin = false;
+    }
 
     public void UserInfo(float moneySaved, float moneyWasted, ArrayList<Transaction> transactions, boolean DriveLogin){
         this.moneySaved = moneySaved;
@@ -16,6 +27,14 @@ public class UserInfo {
     }
 
     //Getters
+    public String getName(){
+        return this.name;
+    }
+
+    public float getQuantity(){
+        return this.quantity;
+    }
+
     public float getMoneySaved(){
         return this.moneySaved;
     }
@@ -33,6 +52,14 @@ public class UserInfo {
     }
 
     //Setters
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setQuantity(float quantity){
+        this.quantity = quantity;
+    }
+
     public void setMoneySaved(float moneySaved){
         this.moneySaved = moneySaved;
     }

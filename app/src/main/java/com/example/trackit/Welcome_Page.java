@@ -45,7 +45,7 @@ public class Welcome_Page extends AppCompatActivity {
         lets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Welcome_Page.this, HomePage.class));
+                startActivity(new Intent(Welcome_Page.this, NewAccount.class));
             }
         });
     }

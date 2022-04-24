@@ -11,13 +11,12 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
         android:layout_marginBottom="224dp"
         android:text="€"
         android:textColor="@color/white"
         android:textSize="54sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3" />
+        tools:layout_editor_absoluteX="141dp" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -31,12 +30,12 @@
         app:tint="#FFFFFF" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/configuraTitle"
         android:layout_width="201dp"
         android:layout_height="34dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="28dp"
-        android:text="Afegeix un nou compte"
+        android:text="Configura el teu compte"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -55,18 +54,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="224dp"
-        android:text="00.0"
-        android:textColor="@color/white"
-        android:textSize="54sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="413dp"
@@ -76,7 +63,7 @@
         app:srcCompat="@drawable/rounded_shape" />
 
     <Button
-        android:id="@+id/continueExpense2"
+        android:id="@+id/continueBtn"
         android:layout_width="210dp"
         android:layout_height="48dp"
         android:layout_gravity="bottom"
@@ -89,23 +76,29 @@
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         tools:ignore="TextContrastCheck" />
 
-    <EditText
-        android:id="@+id/expenseDescription2"
-        android:layout_width="341dp"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/userName"
+        android:layout_width="310dp"
         android:layout_height="48dp"
-        android:layout_gravity="top"
-
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="116dp"
-        android:autofillHints=""
-        android:background="@android:color/transparent"
-        android:ems="10"
+        android:layout_marginStart="48dp"
         android:hint="Nom"
-        android:inputType="textPersonName"
-        android:textColor="@color/softBlack"
-        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.802" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/userQuantity"
+        android:layout_width="117dp"
+        android:layout_height="70dp"
+        android:hint="0.00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.659" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

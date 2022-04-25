@@ -12,13 +12,15 @@
         android:id="@+id/gifImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/gears"/>
+        android:background="#00B73A3A"
+        android:src="@drawable/gears" />
 
     <Button
         android:id="@+id/logOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/mainBlue"
+        android:fontFamily="@font/g_bold"
         android:text="@string/tanca_sessi"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,6 +35,7 @@
         android:layout_width="258dp"
         android:layout_height="125dp"
         android:layout_marginTop="60dp"
+        android:fontFamily="@font/g_bold"
         android:text="Anem a configurar el teu compte!"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -49,6 +52,7 @@
         android:layout_height="55dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/mainBlue"
+        android:fontFamily="@font/g_bold"
         android:text="Som-hi!"
         android:textAllCaps="false"
         android:textSize="16sp"

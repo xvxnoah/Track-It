@@ -12,15 +12,17 @@
         android:id="@+id/textExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:fontFamily="@font/g_bold"
         android:text="@string/despesa"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
 
     <ImageButton
         android:id="@+id/back_expense"
@@ -41,6 +43,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <FrameLayout
+        android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="495dp"
         android:background="@drawable/rounded_shape"
@@ -57,6 +60,7 @@
             android:layout_marginStart="95dp"
             android:layout_marginBottom="22dp"
             android:backgroundTint="@color/redExpense"
+            android:fontFamily="@font/g_bold"
             android:text="@string/continua"
             android:textAllCaps="false"
             tools:ignore="TextContrastCheck" />
@@ -78,14 +82,15 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="120dp"
 
+            android:autofillHints=""
             android:background="@android:color/transparent"
             android:ems="10"
+            android:fontFamily="@font/g_bold"
             android:hint="@string/descripci"
             android:inputType="textPersonName"
             android:textColor="@color/softBlack"
             android:textSize="16sp"
-            tools:ignore="TextContrastCheck"
-            android:autofillHints="" />
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/repeatExpense"
@@ -94,6 +99,7 @@
             android:layout_gravity="bottom"
             android:layout_marginStart="40dp"
             android:layout_marginBottom="120dp"
+            android:fontFamily="@font/g_bold"
             android:text="@string/repeteix"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -106,6 +112,7 @@
             android:layout_gravity="bottom"
             android:layout_marginStart="40dp"
             android:layout_marginBottom="95dp"
+            android:fontFamily="@font/g_bold"
             android:text="@string/repeteix_el_moviment"
             android:textColor="@color/softBlack"
             android:textSize="14sp" />
@@ -127,10 +134,11 @@
             android:id="@+id/adjuntTextExpense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fitxer_adjunt"
             android:layout_gravity="bottom"
             android:layout_marginStart="40dp"
             android:layout_marginBottom="280dp"
+            android:fontFamily="@font/g_bold"
+            android:text="@string/fitxer_adjunt"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -144,6 +152,7 @@
             android:layout_marginBottom="190dp"
             android:backgroundTint="@color/redExpense"
             android:drawableTop="@drawable/camera"
+            android:fontFamily="@font/g_bold"
             android:text="@string/camera"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -159,6 +168,7 @@
             android:layout_marginBottom="190dp"
             android:backgroundTint="@color/redExpense"
             android:drawableTop="@drawable/imageicon"
+            android:fontFamily="@font/g_bold"
             android:text="@string/imatge"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -168,13 +178,14 @@
 
         <Button
             android:id="@+id/documentExpense"
-            android:layout_width="108dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="34dp"
             android:layout_marginBottom="190dp"
             android:backgroundTint="@color/redExpense"
             android:drawableTop="@drawable/document"
+            android:fontFamily="@font/g_bold"
             android:text="@string/document"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -189,9 +200,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
+        android:fontFamily="@font/g_bold"
         android:text="@string/quant"
         android:textColor="@color/softGrey"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
@@ -203,8 +215,10 @@
         android:layout_width="372dp"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
+        android:autofillHints=""
         android:background="@android:color/transparent"
         android:ems="10"
+        android:fontFamily="@font/g_bold"
         android:hint="@string/euro"
         android:inputType="textPersonName"
         android:textColor="@color/white"
@@ -214,7 +228,6 @@
         app:layout_constraintHorizontal_bias="0.641"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/howmuchText"
-        tools:ignore="TextContrastCheck"
-        android:autofillHints="" />
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

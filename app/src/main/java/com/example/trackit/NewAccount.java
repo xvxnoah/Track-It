@@ -30,6 +30,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class NewAccount extends AppCompatActivity {
 
+    public static final String SETUP_USER = "";
+    public static final String SETUP_EMAIL = "";
+
     private Spinner expenseCategories;
 
     FirebaseDatabase firebaseDatabase;
@@ -57,12 +60,8 @@ public class NewAccount extends AppCompatActivity {
         // Below line is used to get the instance of our Firebase database.
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
-        SharedPreferences preferences = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
-
-        String email = preferences.getString(AuthActivity.USER, null);
-
         sendDatabtn = findViewById(R.id.continueBtn);
-        //databaseReference.setValue("HOLA");
+
         // adding on click listener for our button.
         sendDatabtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,11 +69,12 @@ public class NewAccount extends AppCompatActivity {
                 // Getting text from our edittext fields.
                 String name = userName.getText().toString();
                 String quantity = userQuantity.getText().toString();
+
                 if(!comprovacioUserName(name)){
-                    Toast.makeText(NewAccount.this, "El nom d'usuari no pot contenir ni punts ni caràcters especials.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewAccount.this, "El nom d'usuari no pot contenir ni punts ni: #, $, [ o ].", Toast.LENGTH_SHORT).show();
                 }else{
                     // Below line is used to get reference for our database.
-                    databaseReference = firebaseDatabase.getReference(name);
+                    databaseReference = firebaseDatabase.getReference("users/"+name);
 
                     // initializing our object class variable.
                     UserInfo = new UserInfo();
@@ -86,7 +86,7 @@ public class NewAccount extends AppCompatActivity {
                         Toast.makeText(NewAccount.this, "Afegeix les dades.", Toast.LENGTH_SHORT).show();
                     } else {
                         // else call the method to add data to our database.
-                        addDatatoFirebase(name, 2.2);
+                        addDatatoFirebase(name, Double.valueOf(quantity));
                     }
                 }
                 }
@@ -97,7 +97,7 @@ public class NewAccount extends AppCompatActivity {
     }
 
     private boolean comprovacioUserName(String name) {
-        if(name.contains(".") && name.contains("$")){
+        if(name.contains(".") || name.contains("$") || name.contains("#") || name.contains("[") || name.contains("]")){
             return false;
         }else{
             return true;
@@ -106,6 +106,16 @@ public class NewAccount extends AppCompatActivity {
 
     public void addDatatoFirebase(String name, Double quantity) {
         //  Below this lines of code are used to set data in our object class.
+        SharedPreferences preferences = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
+
+        String type = preferences.getString(AuthActivity.TYPE, null);
+
+        if(type.equals("NORMAL")){
+            UserInfo.setDriveLogin(false);
+        } else{
+            UserInfo.setDriveLogin(true);
+        }
+
         UserInfo.setName(name);
         UserInfo.setQuantity(quantity);
 
@@ -123,6 +133,16 @@ public class NewAccount extends AppCompatActivity {
                 Toast.makeText(NewAccount.this, "La configuració s'ha realitzat correctament", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(NewAccount.this, HomePage.class);
                 startActivity(intent);
+
+                SharedPreferences saveUser = getSharedPreferences(SETUP_USER, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = saveUser.edit();
+
+                SharedPreferences preferences = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
+                String email = preferences.getString(AuthActivity.USER, null);
+
+                editor.putString(SETUP_EMAIL, email);
+                editor.commit();
+
                 finish();
             }
 

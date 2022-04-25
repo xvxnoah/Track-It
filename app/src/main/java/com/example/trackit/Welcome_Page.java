@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,14 +30,27 @@ public class Welcome_Page extends AppCompatActivity {
         setContentView(R.layout.activity_welcome_page);
         getSupportActionBar().hide();
 
-        // test log-out
-        logout();
+        // check if account already set up
+        alreadySetUp();
 
         // som-hi
         letsgo();
 
         Window window = Welcome_Page.this.getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(Welcome_Page.this, R.color.softGrey));
+        window.setStatusBarColor(ContextCompat.getColor(Welcome_Page.this, R.color.white));
+    }
+
+    private void alreadySetUp() {
+        SharedPreferences preferencesUser = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
+        String email = preferencesUser.getString(AuthActivity.USER, null);
+
+        SharedPreferences preferencesSetUp = getSharedPreferences(NewAccount.SETUP_USER, Context.MODE_PRIVATE);
+        String user = preferencesSetUp.getString(NewAccount.SETUP_EMAIL, null);
+
+        if(email.equals(user)){
+            startActivity(new Intent(Welcome_Page.this, HomePage.class));
+            finish();
+        }
     }
 
     private void letsgo() {
@@ -46,27 +60,6 @@ public class Welcome_Page extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Welcome_Page.this, NewAccount.class));
-            }
-        });
-    }
-
-    private void logout() {
-        SharedPreferences saveSession = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = saveSession.edit();
-
-        Button logOut = findViewById(R.id.logOut);
-
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editor.clear();
-                editor.commit();
-
-                FirebaseAuth.getInstance().signOut();
-
-                Intent intent = new Intent(Welcome_Page.this, AuthActivity.class);
-                startActivity(intent);
-                finish();
             }
         });
     }

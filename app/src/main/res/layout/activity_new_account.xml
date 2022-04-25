@@ -13,11 +13,12 @@
         android:layout_height="54dp"
         android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
-        android:backgroundTint="#673AB7"
+        android:backgroundTint="@color/lila"
         android:contentDescription="@string/back_register"
         android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/arrow"
+        android:tint="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +29,7 @@
         android:id="@+id/textView"
         android:layout_width="284dp"
         android:layout_height="52dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="64dp"
         android:background="@color/lila"
         android:fontFamily="@font/g_bold"
         android:padding="10dp"
@@ -39,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02" />
+        app:layout_constraintVertical_bias="0.019" />
 
     <ImageView
         android:id="@+id/imageView4"

@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
             android:id="@+id/profile"
             android:layout_width="match_parent"
@@ -228,7 +227,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="16dp" />
+                        android:layout_margin="28dp" />
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -301,6 +300,56 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/log_out"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
+                android:layout_marginTop="1dp"
+                app:cardBackgroundColor="@color/white">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:src="@drawable/ic_baseline_close_24"
+                        app:tint="@color/blackNews"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/g_bold"
+                        android:text="Tanca sessió"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="16sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/logOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/mainBlue"
+                android:fontFamily="@font/g_bold"
+                android:text="@string/tanca_sessi"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.853" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

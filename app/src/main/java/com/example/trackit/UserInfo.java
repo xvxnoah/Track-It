@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public class UserInfo {
     private String name;
-    private float quantity;
-    private float moneySaved;
-    private float moneyWasted;
+    private String email;
+    private double quantity;
+    private double moneySaved;
+    private double moneyWasted;
     private ArrayList<Transaction> transactions;
     private boolean DriveLogin;
 
     public void UserInfo(){
         this.name = null;
+        this.email = null;
         this.quantity = 0;
         this.moneySaved = 0;
         this.moneyWasted = 0;
@@ -26,20 +28,29 @@ public class UserInfo {
         this.DriveLogin = DriveLogin;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
     //Getters
     public String getName(){
         return this.name;
     }
 
-    public float getQuantity(){
+    public double getQuantity(){
         return this.quantity;
     }
 
-    public float getMoneySaved(){
+    public double getMoneySaved(){
         return this.moneySaved;
     }
 
-    public float getMoneyWasted(){
+    public double getMoneyWasted(){
         return this.moneyWasted;
     }
 
@@ -56,7 +67,7 @@ public class UserInfo {
         this.name = name;
     }
 
-    public void setQuantity(float quantity){
+    public void setQuantity(double quantity){
         this.quantity = quantity;
     }
 

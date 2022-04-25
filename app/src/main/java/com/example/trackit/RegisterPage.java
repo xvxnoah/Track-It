@@ -24,8 +24,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegisterPage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    public static final String CREDENTIALS = "credentials";
-    public static final String USER = "user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,10 +95,11 @@ public class RegisterPage extends AppCompatActivity {
 
     // Save log in status
     private void saveSession(String user){
-        SharedPreferences saveSession = getSharedPreferences(CREDENTIALS, Context.MODE_PRIVATE);
+        SharedPreferences saveSession = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = saveSession.edit();
 
-        editor.putString(USER, user);
+        editor.putString(AuthActivity.USER, user);
+        editor.putString(AuthActivity.TYPE, "NORMAL");
 
         editor.commit();
     }

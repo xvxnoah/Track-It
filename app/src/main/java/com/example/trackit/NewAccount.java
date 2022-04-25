@@ -1,6 +1,8 @@
 package com.example.trackit;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -55,15 +57,25 @@ public class NewAccount extends AppCompatActivity {
         // Below line is used to get the instance of our Firebase database.
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
+        SharedPreferences preferences = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
+
+        String email = preferences.getString(AuthActivity.USER, null);
+
         // Below line is used to get reference for our database.
-        databaseReference = firebaseDatabase.getReference("UserInfo");
+        databaseReference = firebaseDatabase.getReference("peter");
 
         // initializing our object class variable.
         UserInfo = new UserInfo();
 
+        if (preferences.getString(AuthActivity.TYPE, null).equals("NORMAL")){
+            UserInfo.setDriveLogin(false);
+        } else{
+            UserInfo.setDriveLogin(true);
+        }
+
         sendDatabtn = findViewById(R.id.continueBtn);
 
-        databaseReference.setValue("HOLA");
+        //databaseReference.setValue("HOLA");
         // adding on click listener for our button.
         sendDatabtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +92,7 @@ public class NewAccount extends AppCompatActivity {
                     Toast.makeText(NewAccount.this, "Afegeix les dades.", Toast.LENGTH_SHORT).show();
                 } else {
                     // else call the method to add data to our database.
-                    addDatatoFirebase(name, quantity);
+                    addDatatoFirebase(name, 2.2);
                 }
             }
         });
@@ -89,10 +101,11 @@ public class NewAccount extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(NewAccount.this, R.color.lila));
     }
 
-    public void addDatatoFirebase(String name, String quantity) {
+    public void addDatatoFirebase(String name, Double quantity) {
         //  Below this lines of code are used to set data in our object class.
         UserInfo.setName(name);
-        UserInfo.setQuantity(50);
+        UserInfo.setQuantity(quantity);
+
         databaseReference.setValue(UserInfo);
         // We are use add value event listener method which is called with database reference.
         databaseReference.addValueEventListener(new ValueEventListener() {

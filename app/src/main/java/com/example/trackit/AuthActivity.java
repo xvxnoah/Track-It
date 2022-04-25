@@ -40,6 +40,7 @@ public class AuthActivity extends AppCompatActivity {
 
     public static final String CREDENTIALS = "credentials";
     public static final String USER = "user";
+    public static final String TYPE = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,7 +187,7 @@ public class AuthActivity extends AppCompatActivity {
             Intent intent = new Intent(this, Welcome_Page.class);
 
             // Save log in status
-            saveSession(emailUser);
+            saveSession(emailUser, false);
 
             startActivity(intent);
             finish();
@@ -198,17 +199,23 @@ public class AuthActivity extends AppCompatActivity {
     private void showHome(String user){
         Toast.makeText(this,"Signed In successfully",Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, Welcome_Page.class);
-        saveSession(user);
+        saveSession(user, true);
         startActivity(intent);
         finish();
     }
 
     // Save log in status
-    private void saveSession(String user){
+    private void saveSession(String user, boolean drive){
         SharedPreferences saveSession = getSharedPreferences(CREDENTIALS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = saveSession.edit();
 
         editor.putString(USER, user);
+
+        if(drive){
+            editor.putString(TYPE, "DRIVE");
+        }else{
+            editor.putString(TYPE, "NORMAL");
+        }
 
         editor.commit();
     }

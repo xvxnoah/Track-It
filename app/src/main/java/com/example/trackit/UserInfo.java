@@ -58,9 +58,7 @@ public class UserInfo {
         return this.transactions;
     }
 
-    public boolean getDriveLogin(){
-        return this.DriveLogin;
-    }
+
 
     //Setters
     public void setName(String name){

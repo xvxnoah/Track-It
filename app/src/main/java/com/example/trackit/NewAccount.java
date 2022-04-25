@@ -61,44 +61,47 @@ public class NewAccount extends AppCompatActivity {
 
         String email = preferences.getString(AuthActivity.USER, null);
 
-        // Below line is used to get reference for our database.
-        databaseReference = firebaseDatabase.getReference("peter");
-
-        // initializing our object class variable.
-        UserInfo = new UserInfo();
-
-        if (preferences.getString(AuthActivity.TYPE, null).equals("NORMAL")){
-            UserInfo.setDriveLogin(false);
-        } else{
-            UserInfo.setDriveLogin(true);
-        }
-
         sendDatabtn = findViewById(R.id.continueBtn);
-
         //databaseReference.setValue("HOLA");
         // adding on click listener for our button.
         sendDatabtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // getting text from our edittext fields.
+                // Getting text from our edittext fields.
                 String name = userName.getText().toString();
                 String quantity = userQuantity.getText().toString();
+                if(!comprovacioUserName(name)){
+                    Toast.makeText(NewAccount.this, "El nom d'usuari no pot contenir ni punts ni caràcters especials.", Toast.LENGTH_SHORT).show();
+                }else{
+                    // Below line is used to get reference for our database.
+                    databaseReference = firebaseDatabase.getReference(name);
 
-                // below line is for checking weather the edittext fields are empty or not.
-                if (TextUtils.isEmpty(name)) {
-                    // if the text fields are empty
-                    // then show the below message.
-                    Toast.makeText(NewAccount.this, "Afegeix les dades.", Toast.LENGTH_SHORT).show();
-                } else {
-                    // else call the method to add data to our database.
-                    addDatatoFirebase(name, 2.2);
+                    // initializing our object class variable.
+                    UserInfo = new UserInfo();
+
+                    // below line is for checking weather the edittext fields are empty or not.
+                    if (TextUtils.isEmpty(name)) {
+                        // if the text fields are empty
+                        // then show the below message.
+                        Toast.makeText(NewAccount.this, "Afegeix les dades.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // else call the method to add data to our database.
+                        addDatatoFirebase(name, 2.2);
+                    }
                 }
-            }
+                }
         });
 
         Window window = NewAccount.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(NewAccount.this, R.color.lila));
+    }
+
+    private boolean comprovacioUserName(String name) {
+        if(name.contains(".") && name.contains("$")){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public void addDatatoFirebase(String name, Double quantity) {

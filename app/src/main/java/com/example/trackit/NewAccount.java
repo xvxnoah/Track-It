@@ -52,8 +52,8 @@ public class NewAccount extends AppCompatActivity {
         userName = findViewById((R.id.userName));
         userQuantity = findViewById((R.id.userQuantity));
 
-        // Below line is used to get the instance of our FIrebase database.
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        // Below line is used to get the instance of our Firebase database.
+        firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
         // Below line is used to get reference for our database.
         databaseReference = firebaseDatabase.getReference("UserInfo");
@@ -92,6 +92,7 @@ public class NewAccount extends AppCompatActivity {
     public void addDatatoFirebase(String name, String quantity) {
         //  Below this lines of code are used to set data in our object class.
         UserInfo.setName(name);
+        UserInfo.setQuantity(50);
         databaseReference.setValue(UserInfo);
         // We are use add value event listener method which is called with database reference.
         databaseReference.addValueEventListener(new ValueEventListener() {

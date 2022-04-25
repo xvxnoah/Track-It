@@ -7,73 +7,76 @@
     android:background="@color/lila">
 
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="224dp"
-        android:text="€"
-        android:textColor="@color/white"
-        android:textSize="54sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="141dp" />
-
-    <ImageView
-        android:id="@+id/imageView3"
+    <ImageButton
+        android:id="@+id/back_register2"
         android:layout_width="75dp"
         android:layout_height="54dp"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="14dp"
+        android:adjustViewBounds="true"
+        android:backgroundTint="#673AB7"
+        android:contentDescription="@string/back_register"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/arrow"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow"
-        app:tint="#FFFFFF" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/configuraTitle"
-        android:layout_width="201dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="28dp"
+        android:id="@+id/textView"
+        android:layout_width="284dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="36dp"
+        android:background="@color/lila"
+        android:fontFamily="@font/g_bold"
+        android:padding="10dp"
         android:text="Configura el teu compte"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="87dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="296dp"
-        android:alpha="0.5"
-        android:text="Balanç"
-        android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="@color/background"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="413dp"
-        android:layout_height="216dp"
+        android:layout_width="418dp"
+        android:layout_height="362dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/rounded_shape" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/continueBtn"
         android:layout_width="210dp"
         android:layout_height="48dp"
         android:layout_gravity="bottom"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/lila"
         android:text="@string/continua"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
         tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -81,24 +84,93 @@
         android:layout_width="310dp"
         android:layout_height="48dp"
         android:layout_marginStart="48dp"
+        android:fontFamily="@font/g_bold"
         android:hint="Nom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.802" />
+        app:layout_constraintVertical_bias="0.578" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/userQuantity"
         android:layout_width="117dp"
         android:layout_height="70dp"
+        android:fontFamily="@font/g_bold"
         android:hint="0.00"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.659" />
+        app:layout_constraintVertical_bias="0.413" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/g_bold"
+        android:text="€"
+        android:textColor="@color/white"
+        android:textSize="54sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.414" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="87dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="452dp"
+        android:alpha="0.5"
+        android:fontFamily="@font/g_bold"
+        android:text="Balanç"
+        android:textColor="@color/background"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="333dp"
+        android:layout_height="67dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.692">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_baseline_fingerprint_24"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/g_bold"
+            android:text="Protecció amb emprempta"
+            android:textColor="@color/textPrimary"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/password_switch_compact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

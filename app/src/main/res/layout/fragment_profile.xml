@@ -39,26 +39,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="12dp"
-                android:textStyle="bold"
-                android:textSize="18sp"
+                android:fontFamily="@font/g_bold"
                 android:textColor="@color/textPrimary"
-                />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/mail_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round"
-                android:backgroundTint="@color/background"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="22dp"
-                android:textColor="@color/lightBlue"
-                android:textSize="14sp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
+                android:background="@drawable/round"
+                android:backgroundTint="@color/background"
+                android:fontFamily="@font/g_bold"
                 android:paddingStart="16dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="16dp"
-                />
+                android:paddingBottom="8dp"
+                android:textColor="@color/lightBlue"
+                android:textSize="14sp" />
         </LinearLayout>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/edit"
@@ -95,13 +95,14 @@
                     android:id="@+id/text3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Pressupost mensual"
-                    android:textColor="@color/textPrimary"
-                    android:textAlignment="center"
-                    android:textSize="14sp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/g_bold"
+                    android:text="Pressupost mensual"
+                    android:textAlignment="center"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toStartOf="@+id/text4"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread"
@@ -140,11 +141,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
-                    android:text="Pressupost anual"
-                    android:textColor="@color/textPrimary"
-                    android:textAlignment="center"
-                    android:textSize="14sp"
                     android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/g_bold"
+                    android:text="Pressupost anual"
+                    android:textAlignment="center"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/text3"
@@ -154,8 +156,9 @@
                     android:id="@+id/yearly_budget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
                     android:layout_marginTop="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/g_bold"
                     android:textColor="@color/green"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -183,11 +186,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:fontFamily="@font/g_bold"
                 android:text="Configuració"
-                android:textStyle="bold"
                 android:textColor="@color/textPrimary"
-                />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/password_toggle"
@@ -197,8 +200,9 @@
                 app:cardElevation="0dp"
                 android:layout_marginTop="1dp"
                 app:cardBackgroundColor="@color/white">
+
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
+                    android:layout_width="395dp"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
@@ -207,24 +211,24 @@
                         android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:layout_margin="16dp"
-                        app:layout_constraintStart_toStartOf="parent"
                         android:src="@drawable/ic_baseline_fingerprint_24"
-                        />
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Protecció amb emprempta"
-                        android:textSize="16sp"
                         android:layout_gravity="center"
-                        android:textColor="@color/textPrimary"/>
+                        android:fontFamily="@font/g_bold"
+                        android:text="Protecció amb emprempta"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="16sp" />
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/password_switch_compact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="16dp"/>
+                        android:layout_margin="16dp" />
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -254,10 +258,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Còpia de seguretat"
-                        android:textSize="16sp"
                         android:layout_gravity="center"
-                        android:textColor="@color/textPrimary"/>
+                        android:fontFamily="@font/g_bold"
+                        android:text="Còpia de seguretat"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="16sp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.cardview.widget.CardView>
@@ -287,10 +292,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sobre nosaltres"
-                        android:textSize="16sp"
                         android:layout_gravity="center"
-                        android:textColor="@color/textPrimary"/>
+                        android:fontFamily="@font/g_bold"
+                        android:text="Sobre nosaltres"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="16sp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.cardview.widget.CardView>

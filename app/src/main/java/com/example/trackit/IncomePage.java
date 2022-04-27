@@ -126,6 +126,8 @@ public class IncomePage extends AppCompatActivity {
                     Transaction transaction = new Transaction(description, category, quantity, avui);
                     userInfo.addTransaction(transaction);
                     ref.setValue(userInfo);
+                    Intent intent = new Intent(IncomePage.this, Transaction_Done.class);
+                    startActivity(intent);
                     finish();
 
                 }else{

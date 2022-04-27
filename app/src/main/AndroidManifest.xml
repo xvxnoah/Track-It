@@ -48,6 +48,9 @@
             android:name=".NewAccount"
             android:exported="false" />
         <activity
+            android:name=".Transaction_Done"
+            android:exported="false" />
+        <activity
             android:name=".Splash_Screen"
             android:exported="true"
             android:theme="@style/Theme.TrackIt.TracIt">

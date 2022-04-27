@@ -118,6 +118,7 @@ public class NewAccount extends AppCompatActivity {
 
         UserInfo.setName(name);
         UserInfo.setQuantity(quantity);
+        UserInfo.setEmail(preferences.getString(AuthActivity.USER, null));
 
         databaseReference.setValue(UserInfo);
         // We are use add value event listener method which is called with database reference.

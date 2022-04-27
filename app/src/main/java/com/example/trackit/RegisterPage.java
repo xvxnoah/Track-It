@@ -100,7 +100,7 @@ public class RegisterPage extends AppCompatActivity {
 
         editor.putString(AuthActivity.USER, user);
         editor.putString(AuthActivity.TYPE, "NORMAL");
-
+        
         editor.commit();
     }
 }

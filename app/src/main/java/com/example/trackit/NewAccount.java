@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 public class NewAccount extends AppCompatActivity {
 
@@ -152,5 +153,13 @@ public class NewAccount extends AppCompatActivity {
                 Toast.makeText(NewAccount.this, "Error en configurar el compte " + error, Toast.LENGTH_SHORT).show();
             }
         });
+
+        // Save to sharedPreferences
+        SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(UserInfo);
+        prefsEditor.putString("UserInfo", json);
+        prefsEditor.commit();
     }
 }

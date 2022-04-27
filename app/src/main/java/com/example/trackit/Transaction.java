@@ -4,15 +4,22 @@ import java.util.Date;
 public class Transaction {
     private String name;
     private String type;
-    private float quantity;
+    private double quantity;
     private Date date;
 
     //Constructor
-    public void Transaction(String name, String type, float quantity, Date date){
+    public Transaction(String name, String type, double quantity, Date date){
         this.name = name;
         this.type = type;
         this.quantity = quantity;
         this.date = date;
+    }
+
+    public Transaction(){
+        this.name = null;
+        this.type = null;
+        this.quantity = 0;
+        this.date = null;
     }
 
     //Getters
@@ -24,7 +31,7 @@ public class Transaction {
         return this.type;
     }
 
-    public float getQuantity(){
+    public double getQuantity(){
         return this.quantity;
     }
 
@@ -41,7 +48,7 @@ public class Transaction {
         this.type = type;
     }
 
-    public void setQuantity(float quantity){
+    public void setQuantity(double quantity){
         this.quantity = quantity;
     }
 

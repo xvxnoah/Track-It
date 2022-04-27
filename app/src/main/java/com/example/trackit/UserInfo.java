@@ -85,4 +85,10 @@ public class UserInfo {
         this.DriveLogin = DriveLogin;
     }
 
+    public void addTransaction(Transaction transaction){
+        if(this.transactions==null){
+            this.transactions = new ArrayList<Transaction>();
+        }
+        this.transactions.add(transaction);
+    }
 }

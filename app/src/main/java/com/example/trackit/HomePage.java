@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -17,12 +18,19 @@ import android.widget.Toast;
 import com.example.trackit.databinding.ActivityHomePageBinding;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 public class HomePage extends AppCompatActivity {
 
     FloatingActionButton fab, fab_in, fab_out, fab_news;
     Animation fabOpen, fabClose;
     ActivityHomePageBinding binding;
+    UserInfo userInfo;
 
     boolean isOpen = false; // per defecte es fals
     @Override
@@ -36,6 +44,22 @@ public class HomePage extends AppCompatActivity {
         Window window = HomePage.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(HomePage.this, R.color.white));
 
+        // Get a reference to our posts
+        final FirebaseDatabase database = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference ref = database.getReference("users/Pedrito__");
+
+        // Attach a listener to read the data at our posts reference
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userInfo = dataSnapshot.getValue(UserInfo.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
         // Floating Action Buttons
         fab = findViewById(R.id.fab);
         fab_in = findViewById(R.id.fab_in);

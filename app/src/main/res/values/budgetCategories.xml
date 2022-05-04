@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="budget_categories">
+        <item>Categoria</item>
+        <item>Compres</item>
+    </string-array>
+
+</resources>

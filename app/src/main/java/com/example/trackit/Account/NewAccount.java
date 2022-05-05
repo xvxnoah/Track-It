@@ -67,7 +67,7 @@ public class NewAccount extends AppCompatActivity {
                 // Getting text from our edittext fields.
                 SharedPreferences preferences = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
                 String email = preferences.getString(AuthActivity.USER, null);
-                email.replace('.', ',');
+                email = email.replace('.', ',');
 
                 String name = userName.getText().toString();
                 String quantity = userQuantity.getText().toString();
@@ -79,7 +79,7 @@ public class NewAccount extends AppCompatActivity {
                 UserInfo = new UserInfo();
 
                 // below line is for checking weather the edittext fields are empty or not.
-                addDatatoFirebase(email, Double.valueOf(quantity));
+                addDatatoFirebase(name, email, Double.valueOf(quantity));
             }
         });
 
@@ -87,7 +87,7 @@ public class NewAccount extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(NewAccount.this, R.color.lila));
     }
 
-    public void addDatatoFirebase(String name, Double quantity) {
+    public void addDatatoFirebase(String name, String email, Double quantity) {
         //  Below this lines of code are used to set data in our object class.
         SharedPreferences preferences = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
 

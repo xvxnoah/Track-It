@@ -65,41 +65,26 @@ public class NewAccount extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Getting text from our edittext fields.
+                SharedPreferences preferences = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
+                String email = preferences.getString(AuthActivity.USER, null);
+                email.replace('.', ',');
+
                 String name = userName.getText().toString();
                 String quantity = userQuantity.getText().toString();
 
-                if(!comprovacioUserName(name)){
-                    Toast.makeText(NewAccount.this, "El nom d'usuari no pot contenir ni punts ni: #, $, [ o ].", Toast.LENGTH_SHORT).show();
-                }else{
-                    // Below line is used to get reference for our database.
-                    databaseReference = firebaseDatabase.getReference("users/"+name);
+                // Below line is used to get reference for our database.
+                databaseReference = firebaseDatabase.getReference("users/"+email);
 
-                    // initializing our object class variable.
-                    UserInfo = new UserInfo();
+                // initializing our object class variable.
+                UserInfo = new UserInfo();
 
-                    // below line is for checking weather the edittext fields are empty or not.
-                    if (TextUtils.isEmpty(name)) {
-                        // if the text fields are empty
-                        // then show the below message.
-                        Toast.makeText(NewAccount.this, "Afegeix les dades.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        // else call the method to add data to our database.
-                        addDatatoFirebase(name, Double.valueOf(quantity));
-                    }
-                }
-                }
+                // below line is for checking weather the edittext fields are empty or not.
+                addDatatoFirebase(email, Double.valueOf(quantity));
+            }
         });
 
         Window window = NewAccount.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(NewAccount.this, R.color.lila));
-    }
-
-    private boolean comprovacioUserName(String name) {
-        if(name.contains(".") || name.contains("$") || name.contains("#") || name.contains("[") || name.contains("]")){
-            return false;
-        }else{
-            return true;
-        }
     }
 
     public void addDatatoFirebase(String name, Double quantity) {

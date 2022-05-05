@@ -1,6 +1,8 @@
 package com.example.trackit.Adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +32,9 @@ public class SliderAdapter extends PagerAdapter {
     };
 
     public String[] slide_headings = {
-            "Guanya control total dels teus diners",
-            "Coneix on van els teus diners",
-            "Sigues previsor"
+            "CONTROL",
+            "CONEIXEMENT",
+            "PREVISIÓ"
     };
 
     public String[] slide_descs = {
@@ -57,11 +59,11 @@ public class SliderAdapter extends PagerAdapter {
 
         ImageView slideImageView = (ImageView) view.findViewById(R.id.slide_image);
         TextView slideHeading = (TextView) view.findViewById(R.id.slide_heading);
-        TextView slideDesription = (TextView) view.findViewById(R.id.slide_desc);
+        TextView slideDescription = (TextView) view.findViewById(R.id.slide_desc);
 
         slideImageView.setImageResource(slide_images[position]);
         slideHeading.setText(slide_headings[position]);
-        slideDesription.setText(slide_descs[position]);
+        slideDescription.setText(slide_descs[position]);
 
         container.addView(view);
 

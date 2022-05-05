@@ -1,4 +1,4 @@
-package com.example.trackit;
+package com.example.trackit.Transactions;
 import java.util.Date;
 
 public class Transaction {

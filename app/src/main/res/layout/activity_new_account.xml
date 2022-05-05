@@ -8,170 +8,154 @@
 
 
     <ImageButton
-        android:id="@+id/back_register2"
+        android:id="@+id/back_setup"
         android:layout_width="75dp"
         android:layout_height="54dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
         android:adjustViewBounds="true"
         android:backgroundTint="@color/lila"
         android:contentDescription="@string/back_register"
         android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/arrow"
-        android:tint="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/setUpText"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="284dp"
-        android:layout_height="52dp"
-        android:layout_marginEnd="64dp"
+        android:id="@+id/setUpText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:background="@color/lila"
         android:fontFamily="@font/g_bold"
         android:padding="10dp"
         android:text="Configura el teu compte"
         android:textAlignment="center"
         android:textColor="@color/background"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.019" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="418dp"
-        android:layout_height="362dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/rounded_shape" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/continueBtn"
-        android:layout_width="210dp"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@color/lila"
-        android:text="@string/continua"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976"
-        tools:ignore="TextContrastCheck" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/userName"
-        android:layout_width="310dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="48dp"
-        android:fontFamily="@font/g_bold"
-        android:hint="Nom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.578" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/userQuantity"
-        android:layout_width="117dp"
-        android:layout_height="70dp"
-        android:fontFamily="@font/g_bold"
-        android:hint="0.00"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.413" />
+        app:layout_constraintVertical_bias="0.009" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/balanceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/g_bold"
-        android:text="€"
-        android:textColor="@color/white"
-        android:textSize="54sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.37"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.414" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="87dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="452dp"
-        android:alpha="0.5"
+        android:layout_marginTop="180dp"
         android:fontFamily="@font/g_bold"
         android:text="Balanç"
-        android:textColor="@color/background"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="333dp"
-        android:layout_height="67dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/softGrey"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.692">
+        app:layout_constraintTop_toBottomOf="@+id/back_setup"
+        tools:ignore="TextContrastCheck" />
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_baseline_fingerprint_24"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/g_bold"
-            android:text="Protecció amb emprempta"
-            android:textColor="@color/textPrimary"
-            android:textSize="16sp" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/password_switch_compact"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="16dp" />
+    <EditText
+        android:id="@+id/userQuantity"
+        android:layout_width="372dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints=""
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="@string/euro"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textSize="54sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.641"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/balanceText"
+        tools:ignore="TextContrastCheck" />
 
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+   <FrameLayout
+       android:id="@+id/frameSetUp"
+       android:layout_width="match_parent"
+       android:layout_height="350dp"
+       android:background="@drawable/rounded_shape"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.666"
+       app:layout_constraintStart_toStartOf="parent">
+
+       <Button
+           android:id="@+id/continueBtn"
+           android:layout_width="210dp"
+           android:layout_height="48dp"
+           android:layout_gravity="bottom"
+           android:layout_marginStart="95dp"
+           android:layout_marginBottom="22dp"
+           android:backgroundTint="@color/lila"
+           android:fontFamily="@font/g_bold"
+           android:text="@string/continua"
+           android:textAllCaps="false"
+           tools:ignore="TextContrastCheck" />
+
+       <EditText
+           android:id="@+id/userName"
+           android:layout_width="341dp"
+           android:layout_height="48dp"
+           android:layout_gravity="top"
+           android:layout_marginStart="40dp"
+           android:layout_marginTop="40dp"
+
+           android:autofillHints=""
+           android:background="@android:color/transparent"
+           android:ems="10"
+           android:fontFamily="@font/g_bold"
+           android:hint="Nom"
+           android:inputType="textPersonName"
+           android:textColor="@color/softBlack"
+           android:textSize="16sp"
+           tools:ignore="TextContrastCheck" />
+
+       <androidx.appcompat.widget.LinearLayoutCompat
+           android:layout_width="333dp"
+           android:layout_height="67dp"
+           android:orientation="horizontal"
+           android:layout_gravity="top|center"
+           android:layout_marginTop="120dp"
+           app:layout_constraintVertical_bias="0.692">
+
+           <ImageView
+               android:layout_width="24dp"
+               android:layout_height="24dp"
+               android:layout_gravity="center"
+               android:layout_margin="16dp"
+               android:src="@drawable/ic_baseline_fingerprint_24"
+               app:layout_constraintStart_toStartOf="parent" />
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:fontFamily="@font/g_bold"
+               android:text="Protecció amb emprempta"
+               android:textColor="@color/textPrimary"
+               android:textSize="16sp" />
+
+           <androidx.appcompat.widget.SwitchCompat
+               android:id="@+id/password_switch_compact"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:layout_margin="16dp" />
+
+
+       </androidx.appcompat.widget.LinearLayoutCompat>
+   </FrameLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

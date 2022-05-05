@@ -1,4 +1,4 @@
-package com.example.trackit;
+package com.example.trackit.Account;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+
+import com.example.trackit.R;
 
 public class SuccesfulReset extends AppCompatActivity {
 

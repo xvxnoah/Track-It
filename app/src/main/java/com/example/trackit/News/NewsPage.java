@@ -1,4 +1,4 @@
-package com.example.trackit;
+package com.example.trackit.News;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -14,8 +14,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.trackit.Adapters.AdapterNews;
+import com.example.trackit.Data.ApiClient;
 import com.example.trackit.Model.Articles;
 import com.example.trackit.Model.Headlines;
+import com.example.trackit.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,7 @@ public class NewsPage extends AppCompatActivity {
     EditText etQuery;
     Button btnSearch;
     final String API_KEY = "9ce36b4727ec42e9a5e21ad47eac4b1f";
-    Adapter adapter;
+    AdapterNews adapterNews;
     List<Articles> articles = new ArrayList<>();
 
     @Override
@@ -103,8 +106,8 @@ public class NewsPage extends AppCompatActivity {
                     swipeRefreshLayout.setRefreshing(false);
                     articles.clear();
                     articles = response.body().getArticles();
-                    adapter = new Adapter(NewsPage.this, articles);
-                    recyclerView.setAdapter(adapter);
+                    adapterNews = new AdapterNews(NewsPage.this, articles);
+                    recyclerView.setAdapter(adapterNews);
                 }
             }
 

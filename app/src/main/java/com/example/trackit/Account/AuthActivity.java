@@ -1,4 +1,4 @@
-package com.example.trackit;
+package com.example.trackit.Account;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +19,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.trackit.initActivities.Info_Welcome_Page;
+import com.example.trackit.R;
+import com.example.trackit.initActivities.Welcome_Page;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -41,6 +44,7 @@ public class AuthActivity extends AppCompatActivity {
     public static final String CREDENTIALS = "credentials";
     public static final String USER = "user";
     public static final String TYPE = "";
+    public static final String USERNAME = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

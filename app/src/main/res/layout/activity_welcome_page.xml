@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/softGrey"
     android:fitsSystemWindows="true"
-    tools:context=".Welcome_Page">
+    tools:context=".initActivities.Welcome_Page">
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView"

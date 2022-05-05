@@ -1,4 +1,4 @@
-package com.example.trackit;
+package com.example.trackit.News;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.trackit.R;
 import com.squareup.picasso.Picasso;
 
 public class Detailed extends AppCompatActivity {

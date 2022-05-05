@@ -1,4 +1,4 @@
-package com.example.trackit;
+package com.example.trackit.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trackit.News.Detailed;
 import com.example.trackit.Model.Articles;
+import com.example.trackit.R;
 import com.squareup.picasso.Picasso;
 
 import org.ocpsoft.prettytime.PrettyTime;
@@ -23,25 +25,25 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class AdapterNews extends RecyclerView.Adapter<AdapterNews.ViewHolder> {
 
     Context context;
     List<Articles> articles;
 
-    public Adapter(Context context, List<Articles> articles) {
+    public AdapterNews(Context context, List<Articles> articles) {
         this.context = context;
         this.articles = articles;
     }
 
     @NonNull
     @Override
-    public Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.items, parent, false);
+    public AdapterNews.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_items, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterNews.ViewHolder holder, int position) {
         final Articles a = articles.get(position);
 
         String imageUrl = a.getUrlToImage();

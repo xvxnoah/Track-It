@@ -1,4 +1,4 @@
-package com.example.trackit;
+package com.example.trackit.Data;
 
 import com.example.trackit.Model.Headlines;
 

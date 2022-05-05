@@ -43,4 +43,5 @@
     <string name="noticies">Notícies</string>
     <string name="back_news">back_news</string>
     <string name="buscar">Buscar</string>
+    <string name="selecciona_la_data">Selecciona la data</string>
 </resources>

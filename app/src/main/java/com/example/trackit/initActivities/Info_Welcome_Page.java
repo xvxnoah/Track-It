@@ -1,4 +1,4 @@
-package com.example.trackit;
+package com.example.trackit.initActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -15,11 +15,16 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.trackit.Account.AuthActivity;
+import com.example.trackit.Account.RegisterPage;
+import com.example.trackit.Adapters.SliderAdapter;
+import com.example.trackit.R;
+
 public class Info_Welcome_Page extends AppCompatActivity {
 
     private ViewPager mSlideViewPager;
     private LinearLayout mDotLayout;
-
+    private Welcome_Page welcome_page;
     private SliderAdapter sliderAdapter;
 
     @Override

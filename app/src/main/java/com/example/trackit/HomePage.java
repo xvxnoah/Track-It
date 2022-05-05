@@ -7,14 +7,20 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
+import com.example.trackit.Data.UserInfo;
+import com.example.trackit.Fragments.BudgetFragment;
+import com.example.trackit.Fragments.HomeFragment;
+import com.example.trackit.Fragments.ProfileFragment;
+import com.example.trackit.Fragments.TransactionsFragment;
+import com.example.trackit.News.NewsPage;
+import com.example.trackit.Transactions.ExpensePage;
+import com.example.trackit.Transactions.IncomePage;
 import com.example.trackit.databinding.ActivityHomePageBinding;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,7 +29,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 public class HomePage extends AppCompatActivity {
 
@@ -31,6 +36,7 @@ public class HomePage extends AppCompatActivity {
     Animation fabOpen, fabClose;
     ActivityHomePageBinding binding;
     UserInfo userInfo;
+    private static HomePage instance;
 
     boolean isOpen = false; // per defecte es fals
     @Override
@@ -40,6 +46,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
         getSupportActionBar().hide();
+        instance = this;
 
         Window window = HomePage.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(HomePage.this, R.color.white));
@@ -74,6 +81,11 @@ public class HomePage extends AppCompatActivity {
         startListeners();
 
     }
+
+    public static HomePage getInstance(){
+        return instance;
+    }
+
 
     private void startListeners() {
         // Set the click listener on the main FAB

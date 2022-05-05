@@ -3,12 +3,10 @@
     <string-array name="expense_categories">
         <item>Categoria</item>
         <item>Alimentació</item>
-        <item>Rebuts/Subscripcions</item>
-        <item>Casa</item>
+        <item>Compres</item>
         <item>Transport</item>
-        <item>Roba</item>
         <item>Salut/Higiene</item>
-        <item>Oci</item>
+        <item>Educació</item>
         <item>Altres despeses</item>
     </string-array>
 

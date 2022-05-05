@@ -1,27 +1,24 @@
-package com.example.trackit;
+package com.example.trackit.Account;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.trackit.HomePage;
+import com.example.trackit.R;
+import com.example.trackit.Data.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,7 +39,7 @@ public class NewAccount extends AppCompatActivity {
     DatabaseReference databaseReference;
 
     // creating a variable for our object class
-    UserInfo UserInfo;
+    com.example.trackit.Data.UserInfo UserInfo;
 
     // EditText and buttons.
     private EditText userName, userQuantity;
@@ -116,6 +113,7 @@ public class NewAccount extends AppCompatActivity {
         } else{
             UserInfo.setDriveLogin(true);
         }
+
 
         UserInfo.setName(name);
         UserInfo.setQuantity(quantity);

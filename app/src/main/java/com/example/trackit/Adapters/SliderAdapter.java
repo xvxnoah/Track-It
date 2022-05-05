@@ -1,4 +1,4 @@
-package com.example.trackit;
+package com.example.trackit.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+
+import com.example.trackit.R;
 
 public class SliderAdapter extends PagerAdapter {
 

@@ -1,4 +1,4 @@
-package com.example.trackit;
+package com.example.trackit.Data;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

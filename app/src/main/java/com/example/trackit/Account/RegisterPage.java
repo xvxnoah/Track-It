@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackit.R;
+import com.example.trackit.initActivities.Info_Welcome_Page;
 import com.example.trackit.initActivities.Welcome_Page;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -93,6 +94,13 @@ public class RegisterPage extends AppCompatActivity {
                 onBackPressed();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        startActivity(new Intent(RegisterPage.this, Info_Welcome_Page.class));
+        finish();
     }
 
     // Save log in status

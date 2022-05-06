@@ -103,7 +103,8 @@
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="120dp"
             android:inputType="date"
-            android:textIsSelectable="false"/>
+            android:textIsSelectable="false"
+            android:focusableInTouchMode="false"/>
 
         <TextView
             android:id="@+id/adjuntTextExpense"
@@ -120,7 +121,7 @@
 
         <Button
             android:id="@+id/cameraExpense"
-            android:layout_width="108dp"
+            android:layout_width="102dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginStart="34dp"
@@ -137,7 +138,7 @@
 
         <Button
             android:id="@+id/imageExpense"
-            android:layout_width="108dp"
+            android:layout_width="102dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="190dp"
@@ -145,23 +146,6 @@
             android:drawableTop="@drawable/imageicon"
             android:fontFamily="@font/g_bold"
             android:text="@string/imatge"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:cornerRadius="10dp" />
-
-        <Button
-            android:id="@+id/documentExpense"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="34dp"
-            android:layout_marginBottom="190dp"
-            android:backgroundTint="@color/redExpense"
-            android:drawableTop="@drawable/document"
-            android:fontFamily="@font/g_bold"
-            android:text="@string/document"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp"

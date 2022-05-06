@@ -43,8 +43,7 @@ public class AuthActivity extends AppCompatActivity {
 
     public static final String CREDENTIALS = "credentials";
     public static final String USER = "user";
-    public static final String TYPE = "";
-    public static final String USERNAME = "";
+    public static final String TYPE = "type";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

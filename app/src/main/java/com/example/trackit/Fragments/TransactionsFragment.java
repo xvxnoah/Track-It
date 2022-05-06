@@ -9,11 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.trackit.Adapters.AdapterTransactions;
 import com.example.trackit.R;
-import com.example.trackit.Transactions.TransactionVo;
+import com.example.trackit.ViewModel.TransactionVo;
 
 import java.util.ArrayList;
 

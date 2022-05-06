@@ -16,8 +16,9 @@
 
     <Button
         android:id="@+id/login_welcome"
-        android:layout_width="match_parent"
+        android:layout_width="304dp"
         android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
         android:backgroundTint="@color/mainBlue"
         android:fontFamily="@font/g_bold"
         android:text="@string/iniciar_sessio"
@@ -29,8 +30,9 @@
 
     <Button
         android:id="@+id/register_welcome"
-        android:layout_width="match_parent"
+        android:layout_width="304dp"
         android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
         android:backgroundTint="@color/mainBlue"
         android:fontFamily="@font/g_bold"
         android:text="@string/registra_t"

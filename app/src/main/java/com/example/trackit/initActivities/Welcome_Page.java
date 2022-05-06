@@ -27,8 +27,24 @@ public class Welcome_Page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // check if account already set up
+
         if(!alreadySetUpLocal()){
-            alreadySetUpDatabase();
+            super.onCreate(savedInstanceState);
+            getSupportActionBar().hide();
+
+            setContentView(R.layout.activity_welcome_page);
+
+            Window window = Welcome_Page.this.getWindow();
+            window.setStatusBarColor(ContextCompat.getColor(Welcome_Page.this, R.color.white));
+
+            // som-hi
+            letsgo();
+        }
+
+
+        /*
+        if(!alreadySetUpLocal()){
+            //alreadySetUpDatabase();
 
             super.onCreate(savedInstanceState);
             getSupportActionBar().hide();
@@ -41,6 +57,9 @@ public class Welcome_Page extends AppCompatActivity {
             // som-hi
             letsgo();
         }
+
+        /*
+         */
     }
 
     private boolean alreadySetUpLocal() {

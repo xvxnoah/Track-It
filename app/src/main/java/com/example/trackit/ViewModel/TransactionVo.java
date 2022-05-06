@@ -1,4 +1,4 @@
-package com.example.trackit.Transactions;
+package com.example.trackit.ViewModel;
 
 public class TransactionVo {
     private String category;

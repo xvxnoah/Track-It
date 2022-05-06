@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trackit.R;
-import com.example.trackit.Transactions.TransactionVo;
+import com.example.trackit.ViewModel.TransactionVo;
 
 import java.util.ArrayList;
 

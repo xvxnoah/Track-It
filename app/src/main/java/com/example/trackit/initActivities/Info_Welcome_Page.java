@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.Account.RegisterPage;
 import com.example.trackit.Adapters.SliderAdapter;
+import com.example.trackit.HomePage;
 import com.example.trackit.R;
 
 public class Info_Welcome_Page extends AppCompatActivity {
@@ -145,7 +146,7 @@ public class Info_Welcome_Page extends AppCompatActivity {
 
         if(user != null){
             Toast.makeText(this,"Benvingut de nou!",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(Info_Welcome_Page.this, Welcome_Page.class));
+            startActivity(new Intent(Info_Welcome_Page.this, HomePage.class)); //CHECK FOR SETUP ACCOUNT
             finish();
         }
     }

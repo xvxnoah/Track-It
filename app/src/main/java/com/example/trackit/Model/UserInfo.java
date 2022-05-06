@@ -1,6 +1,4 @@
-package com.example.trackit.Data;
-
-import com.example.trackit.Transactions.Transaction;
+package com.example.trackit.Model;
 
 import java.util.ArrayList;
 

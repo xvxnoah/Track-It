@@ -108,7 +108,7 @@
 
         <Button
             android:id="@+id/cameraIncome"
-            android:layout_width="108dp"
+            android:layout_width="102dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginStart="34dp"
@@ -158,7 +158,8 @@
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="120dp"
             android:inputType="date"
-            android:textIsSelectable="false"/>
+            android:textIsSelectable="false"
+            android:focusableInTouchMode="false"/>
     </FrameLayout>
 
     <TextView

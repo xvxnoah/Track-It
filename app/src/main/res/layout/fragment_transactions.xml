@@ -304,7 +304,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="34dp"
                         android:text="Les teves despeses"
                         android:textColor="@color/textSecondary"
                         app:layout_constraintStart_toStartOf="parent"

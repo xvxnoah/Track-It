@@ -16,7 +16,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.example.trackit.Account.AuthActivity;
-import com.example.trackit.Data.UserInfo;
+import com.example.trackit.Model.UserInfo;
 import com.example.trackit.Fragments.BudgetFragment;
 import com.example.trackit.Fragments.HomeFragment;
 import com.example.trackit.Fragments.ProfileFragment;
@@ -46,7 +46,7 @@ public class HomePage extends AppCompatActivity {
     DatabaseReference databaseReference;
 
     // creating a variable for our object class
-    com.example.trackit.Data.UserInfo UserInfo;
+    com.example.trackit.Model.UserInfo UserInfo;
 
     boolean isOpen = false; // per defecte es fals
     @Override
@@ -54,8 +54,9 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityHomePageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new HomeFragment());
+
         getSupportActionBar().hide();
+        replaceFragment(new HomeFragment());
         instance = this;
 
         Window window = HomePage.this.getWindow();
@@ -119,10 +120,12 @@ public class HomePage extends AppCompatActivity {
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.principal_menu:
+                    setPage();
                     replaceFragment(new HomeFragment());
                     break;
 
                 case R.id.transactions_menu:
+                    setPage();
                     replaceFragment(new TransactionsFragment());
                     break;
 
@@ -131,6 +134,7 @@ public class HomePage extends AppCompatActivity {
                     break;
 
                 case R.id.profile_menu:
+                    setPage(); //CHECK THIS CALLS
                     replaceFragment(new ProfileFragment());
                     break;
             }
@@ -139,6 +143,11 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
+    private void setPage(){
+        getSupportActionBar().hide();
+        Window window = HomePage.this.getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(HomePage.this, R.color.white));
+    }
     private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

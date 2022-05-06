@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.trackit.Account.AuthActivity;
-import com.example.trackit.Data.UserInfo;
+import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,7 +49,7 @@ public class HomeFragment extends Fragment {
     DatabaseReference databaseReference;
 
     // creating a variable for our object class
-    com.example.trackit.Data.UserInfo UserInfo;
+    com.example.trackit.Model.UserInfo UserInfo;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -114,7 +115,7 @@ public class HomeFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                userInfo = dataSnapshot.getValue(com.example.trackit.Data.UserInfo.class);
+                userInfo = dataSnapshot.getValue(com.example.trackit.Model.UserInfo.class);
                 updateFragment();
             }
 

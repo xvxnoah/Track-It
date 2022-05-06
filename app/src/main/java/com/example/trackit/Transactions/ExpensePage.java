@@ -24,7 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
-import com.example.trackit.Data.UserInfo;
+import com.example.trackit.Model.Transaction;
+import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -136,10 +137,11 @@ public class ExpensePage extends AppCompatActivity {
                     // Atributes of the Transaction's class
                     String description = incomeDescription.getText().toString();
                     Date avui = new Date();
-                    double quantity = Double.valueOf(enterIncome.getText().toString());
+                    double expense = Double.valueOf(enterIncome.getText().toString());
+                    double quantity = 0 - expense;
                     Transaction transaction = new Transaction(description, category, quantity, avui);
                     userInfo.addTransaction(transaction);
-                    userInfo.updateWasted(quantity);
+                    userInfo.updateWasted(expense);
                     ref.setValue(userInfo);
                     Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
                     startActivity(intent);

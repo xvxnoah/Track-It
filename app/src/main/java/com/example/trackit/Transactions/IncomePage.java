@@ -24,8 +24,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
+import com.example.trackit.Model.Transaction;
 import com.example.trackit.R;
-import com.example.trackit.Data.UserInfo;
+import com.example.trackit.Model.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -159,9 +160,11 @@ public class IncomePage extends AppCompatActivity {
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+
         dateIncome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dateIncome.clearFocus();
                 DatePickerDialog datePickerDialog = new DatePickerDialog(IncomePage.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -171,6 +174,7 @@ public class IncomePage extends AppCompatActivity {
                     }
                 }, year, month, day);
                 datePickerDialog.show();
+                datePickerDialog.getDatePicker().setDescendantFocusability(DatePicker.FOCUS_BLOCK_DESCENDANTS);
             }
         });
     }

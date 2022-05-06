@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.R;
+import com.example.trackit.initActivities.Info_Welcome_Page;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
@@ -78,11 +79,11 @@ public class ProfileFragment extends Fragment {
 
                 String email = saveSession.getString(AuthActivity.USER, null);
 
-                saveSession.edit().remove(email).commit();
+                saveSession.edit().clear().commit();
 
                 FirebaseAuth.getInstance().signOut();
 
-                Intent intent = new Intent(getActivity(), AuthActivity.class);
+                Intent intent = new Intent(getActivity(), Info_Welcome_Page.class);
                 startActivity(intent);
                 getActivity().finish();
             }

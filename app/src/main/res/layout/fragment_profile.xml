@@ -172,15 +172,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/edit_card"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="32dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:orientation="vertical">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_card"
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -195,10 +197,10 @@
                 android:id="@+id/password_toggle"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                app:cardCornerRadius="0dp"
-                app:cardElevation="0dp"
                 android:layout_marginTop="1dp"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="395dp"
@@ -232,14 +234,16 @@
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/backup"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                app:cardCornerRadius="0dp"
-                app:cardElevation="0dp"
                 android:layout_marginTop="1dp"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -250,9 +254,8 @@
                         android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:layout_margin="16dp"
-                        app:layout_constraintStart_toStartOf="parent"
                         android:src="@drawable/ic_baseline_backup_24"
-                        />
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -270,10 +273,11 @@
                 android:id="@+id/about_us"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                app:cardCornerRadius="0dp"
-                app:cardElevation="0dp"
                 android:layout_marginTop="1dp"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -284,9 +288,8 @@
                         android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:layout_margin="16dp"
-                        app:layout_constraintStart_toStartOf="parent"
                         android:src="@drawable/ic_baseline_info_24"
-                        />
+                        app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -304,10 +307,11 @@
                 android:id="@+id/log_out"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                app:cardCornerRadius="0dp"
-                app:cardElevation="0dp"
                 android:layout_marginTop="1dp"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -318,10 +322,9 @@
                         android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:layout_margin="16dp"
-                        app:layout_constraintStart_toStartOf="parent"
                         android:src="@drawable/ic_baseline_close_24"
-                        app:tint="@color/blackNews"
-                        />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:tint="@color/blackNews" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -338,11 +341,11 @@
             <Button
                 android:id="@+id/logOut"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:backgroundTint="@color/mainBlue"
                 android:fontFamily="@font/g_bold"
                 android:text="@string/tanca_sessi"
-                android:layout_gravity="center"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

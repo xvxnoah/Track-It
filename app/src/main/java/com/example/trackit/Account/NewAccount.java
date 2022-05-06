@@ -18,7 +18,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.trackit.HomePage;
 import com.example.trackit.R;
-import com.example.trackit.Data.UserInfo;
+import com.example.trackit.Model.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,7 +39,7 @@ public class NewAccount extends AppCompatActivity {
     DatabaseReference databaseReference;
 
     // creating a variable for our object class
-    com.example.trackit.Data.UserInfo UserInfo;
+    com.example.trackit.Model.UserInfo UserInfo;
 
     // EditText and buttons.
     private EditText userName, userQuantity;

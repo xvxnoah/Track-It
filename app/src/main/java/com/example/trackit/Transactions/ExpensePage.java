@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.Data.UserInfo;
 import com.example.trackit.R;
 import com.google.firebase.database.DataSnapshot;
@@ -54,8 +57,11 @@ public class ExpensePage extends AppCompatActivity {
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
+        SharedPreferences preferences = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
+        String email = preferences.getString(AuthActivity.USER, null);
+        email = email.replace('.', ',');
 
-        ref = database.getReference("users/Pedrito__");
+        ref = database.getReference("users/"+email);
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -122,8 +128,8 @@ public class ExpensePage extends AppCompatActivity {
         continueExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText enterIncome = (EditText) findViewById(R.id.enterIncome);
-                EditText incomeDescription = (EditText) findViewById(R.id.incomeTitle);
+                EditText enterIncome = (EditText) findViewById(R.id.enterExpense);
+                EditText incomeDescription = (EditText) findViewById(R.id.expenseDescription);
                 String category = expenseCategories.getSelectedItem().toString();
 
                 if(!enterIncome.getText().toString().isEmpty() && !incomeDescription.getText().toString().isEmpty() && category!=null){
@@ -133,6 +139,7 @@ public class ExpensePage extends AppCompatActivity {
                     double quantity = Double.valueOf(enterIncome.getText().toString());
                     Transaction transaction = new Transaction(description, category, quantity, avui);
                     userInfo.addTransaction(transaction);
+                    userInfo.updateWasted(quantity);
                     ref.setValue(userInfo);
                     Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
                     startActivity(intent);

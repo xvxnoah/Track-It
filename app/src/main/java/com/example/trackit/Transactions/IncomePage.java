@@ -71,7 +71,7 @@ public class IncomePage extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
+                System.out.println("La lectura ha fallat: " + databaseError.getCode());
             }
         });
     }
@@ -132,13 +132,14 @@ public class IncomePage extends AppCompatActivity {
                 EditText incomeDescription = (EditText) findViewById(R.id.incomeTitle);
                 String category = incomeCategories.getSelectedItem().toString();
 
-                if(!enterIncome.getText().toString().isEmpty() && !incomeDescription.getText().toString().isEmpty() && category!=null){
+                if(!enterIncome.getText().toString().isEmpty() && category!=null){
                     // Atributes of the Transaction's class
                     String description = incomeDescription.getText().toString();
                     Date avui = new Date();
                     double quantity = Double.valueOf(enterIncome.getText().toString());
                     Transaction transaction = new Transaction(description, category, quantity, avui);
                     userInfo.addTransaction(transaction);
+                    userInfo.updateSave(quantity);
                     ref.setValue(userInfo);
                     Intent intent = new Intent(IncomePage.this, Transaction_Done.class);
                     startActivity(intent);

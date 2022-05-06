@@ -6,13 +6,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.Data.UserInfo;
 import com.example.trackit.Fragments.BudgetFragment;
 import com.example.trackit.Fragments.HomeFragment;
@@ -35,8 +38,15 @@ public class HomePage extends AppCompatActivity {
     FloatingActionButton fab, fab_in, fab_out, fab_news;
     Animation fabOpen, fabClose;
     ActivityHomePageBinding binding;
-    UserInfo userInfo;
     private static HomePage instance;
+
+    FirebaseDatabase firebaseDatabase;
+
+    // creating a variable for our Database Reference for Firebase.
+    DatabaseReference databaseReference;
+
+    // creating a variable for our object class
+    com.example.trackit.Data.UserInfo UserInfo;
 
     boolean isOpen = false; // per defecte es fals
     @Override
@@ -51,22 +61,8 @@ public class HomePage extends AppCompatActivity {
         Window window = HomePage.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(HomePage.this, R.color.white));
 
-        // Get a reference to our posts
-        final FirebaseDatabase database = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference ref = database.getReference("users/Pedrito__");
+        firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
-        // Attach a listener to read the data at our posts reference
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                userInfo = dataSnapshot.getValue(UserInfo.class);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-            }
-        });
         // Floating Action Buttons
         fab = findViewById(R.id.fab);
         fab_in = findViewById(R.id.fab_in);

@@ -93,4 +93,14 @@ public class UserInfo {
         }
         this.transactions.add(transaction);
     }
+
+    public void updateWasted(double quantity) {
+        this.quantity = this.quantity - quantity;
+        this.moneyWasted = this.moneyWasted + quantity;
+    }
+
+    public void updateSave(double quantity) {
+        this.quantity = this.quantity + quantity;
+        this.moneySaved = this.moneySaved + quantity;
+    }
 }

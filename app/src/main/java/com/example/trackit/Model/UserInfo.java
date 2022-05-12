@@ -3,6 +3,7 @@ package com.example.trackit.Model;
 import java.util.ArrayList;
 
 public class UserInfo {
+    private volatile static UserInfo uniqueInstance;
     private String name;
     private String email;
     private double quantity;
@@ -12,6 +13,16 @@ public class UserInfo {
     private ArrayList<Budget> budgets;
     private boolean DriveLogin;
 
+    public static UserInfo getInstance(){
+        if(uniqueInstance == null){
+            synchronized (UserInfo.class){
+                if(uniqueInstance == null){
+                    uniqueInstance = new UserInfo();
+                }
+            }
+        }
+        return uniqueInstance;
+    }
     public void UserInfo(){
         this.name = null;
         this.email = null;

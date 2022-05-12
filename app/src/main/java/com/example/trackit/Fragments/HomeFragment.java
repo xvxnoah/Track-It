@@ -24,6 +24,10 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import org.eazegraph.lib.charts.ValueLineChart;
+import org.eazegraph.lib.models.ValueLinePoint;
+import org.eazegraph.lib.models.ValueLineSeries;
+
 import java.util.ArrayList;
 
 /**
@@ -108,6 +112,8 @@ public class HomeFragment extends Fragment {
         String email = preferences.getString(AuthActivity.USER, null);
         email = email.replace('.', ',');
 
+        userInfo = com.example.trackit.Model.UserInfo.getInstance();
+
         // Below line is used to get reference for our database.
         databaseReference = firebaseDatabase.getReference("users/"+email);
 
@@ -115,6 +121,7 @@ public class HomeFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //userInfo = com.example.trackit.Model.UserInfo.getInstance();
                 userInfo = dataSnapshot.getValue(com.example.trackit.Model.UserInfo.class);
                 updateFragment();
             }
@@ -133,15 +140,25 @@ public class HomeFragment extends Fragment {
         QuantityIngressos.setText(Double.toString(userInfo.getMoneySaved()) + '€');
         QuantityDespeses.setText(Double.toString(userInfo.getMoneyWasted()) + '€');
 
-        double x, y;
-        x = -5.0;
+        ValueLineChart mCubicValueLineChart = (ValueLineChart) vista.findViewById(R.id.cubiclinechart);
 
-        GraphView graph = (GraphView) vista.findViewById(R.id.graphic);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3)
-        });
-        graph.addSeries(series);
+        ValueLineSeries series = new ValueLineSeries();
+        series.setColor(0xFF56B7F1);
+
+        series.addPoint(new ValueLinePoint("Jan", 2.4f));
+        series.addPoint(new ValueLinePoint("Feb", 3.4f));
+        series.addPoint(new ValueLinePoint("Mar", .4f));
+        series.addPoint(new ValueLinePoint("Apr", 1.2f));
+        series.addPoint(new ValueLinePoint("Mai", 2.6f));
+        series.addPoint(new ValueLinePoint("Jun", 1.0f));
+        series.addPoint(new ValueLinePoint("Jul", 3.5f));
+        series.addPoint(new ValueLinePoint("Aug", 2.4f));
+        series.addPoint(new ValueLinePoint("Sep", 2.4f));
+        series.addPoint(new ValueLinePoint("Oct", 3.4f));
+        series.addPoint(new ValueLinePoint("Nov", 15.4f));
+        series.addPoint(new ValueLinePoint("Dec", 1.3f));
+
+        mCubicValueLineChart.addSeries(series);
+        mCubicValueLineChart.startAnimation();
     }
 }

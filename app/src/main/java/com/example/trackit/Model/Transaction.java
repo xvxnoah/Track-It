@@ -1,14 +1,15 @@
 package com.example.trackit.Model;
-import java.util.Date;
 
 public class Transaction {
     private String name;
     private String type;
     private double quantity;
-    private Date date;
+    private String date;
+    private String category;
+    private int pic;
 
     //Constructor
-    public Transaction(String name, String type, double quantity, Date date){
+    public Transaction(String name, String type, double quantity, String date){
         this.name = name;
         this.type = type;
         this.quantity = quantity;
@@ -20,6 +21,8 @@ public class Transaction {
         this.type = null;
         this.quantity = 0;
         this.date = null;
+        this.category = null;
+        this.pic = -1;
     }
 
     //Getters
@@ -35,9 +38,13 @@ public class Transaction {
         return this.quantity;
     }
 
-    public Date getDate(){
+    public String getDate(){
         return this.date;
     }
+
+    public String getCategory() { return this.category; }
+
+    public int getPic() { return this.pic; }
 
     //Setters
     public void setName(String name){
@@ -52,7 +59,11 @@ public class Transaction {
         this.quantity = quantity;
     }
 
-    public void setDate(Date date){
+    public void setDate(String date){
         this.date = date;
     }
+
+    public void setCategory(String category) { this.category = category; }
+
+    public void setPic(int pic) { this.pic = pic; }
 }

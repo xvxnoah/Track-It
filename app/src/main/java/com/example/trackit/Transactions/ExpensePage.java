@@ -33,8 +33,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class ExpensePage extends AppCompatActivity {
 
@@ -42,6 +44,7 @@ public class ExpensePage extends AppCompatActivity {
     private UserInfo userInfo;
     private DatabaseReference ref;
     EditText dateExpense;
+    private String data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,8 @@ public class ExpensePage extends AppCompatActivity {
 
         Window window = ExpensePage.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(ExpensePage.this, R.color.redExpense));
+
+        userInfo = UserInfo.getInstance();
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
@@ -133,13 +138,23 @@ public class ExpensePage extends AppCompatActivity {
                 EditText incomeDescription = (EditText) findViewById(R.id.expenseDescription);
                 String category = expenseCategories.getSelectedItem().toString();
 
-                if(!enterIncome.getText().toString().isEmpty() && !incomeDescription.getText().toString().isEmpty() && category!=null){
+                if(!enterIncome.getText().toString().isEmpty() && !incomeDescription.getText().toString().isEmpty() && !category.equals("Categoria") && !dateExpense.getText().toString().isEmpty()){
                     // Atributes of the Transaction's class
                     String description = incomeDescription.getText().toString();
-                    Date avui = new Date();
                     double expense = Double.valueOf(enterIncome.getText().toString());
                     double quantity = 0 - expense;
-                    Transaction transaction = new Transaction(description, category, quantity, avui);
+
+                    Transaction transaction;
+
+                    if(data == null){
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+                        Date date = new Date();
+                        data = formatter.format(date);
+                        transaction = new Transaction(description, category, quantity, data);
+                    } else{
+                        transaction = new Transaction(description, category, quantity, dateExpense.getText().toString());
+                    }
+
                     userInfo.addTransaction(transaction);
                     userInfo.updateWasted(expense);
                     ref.setValue(userInfo);
@@ -149,7 +164,7 @@ public class ExpensePage extends AppCompatActivity {
 
                 }else{
                     // If something is empty, display a message to the user.
-                    Toast.makeText(ExpensePage.this,"Tots els camps s'han d'omplir!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ExpensePage.this,"S'han d'omplir tots els camps!",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -170,6 +185,7 @@ public class ExpensePage extends AppCompatActivity {
                         month = month+1;
                         String date = day+"/"+month+"/"+year;
                         dateExpense.setText(date);
+                        data = date;
                     }
                 }, year, month, day);
                 datePickerDialog.show();

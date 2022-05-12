@@ -85,15 +85,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.018" />
 
-    <com.jjoe64.graphview.GraphView
-        android:id="@+id/graphic"
-        android:layout_width="345dp"
-        android:layout_height="302dp"
+    <org.eazegraph.lib.charts.ValueLineChart
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cubiclinechart"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:egUseCubic="true"
+        app:egUseOverlapFill="true"
+        app:egCurveSmoothness="0.4"
+        app:egIndicatorLineColor="@color/green"
+        app:egLegendHeight="40dp"
+        app:egShowStandardValue="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.741"></com.jjoe64.graphview.GraphView>
+        app:layout_constraintVertical_bias="0.741"/>
 
     <TextView
         android:id="@+id/balance"
@@ -112,7 +119,7 @@
 
     <FrameLayout
         android:layout_width="160dp"
-        android:layout_height="71dp"
+        android:layout_height="73dp"
         android:background="@drawable/ic_launcher_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

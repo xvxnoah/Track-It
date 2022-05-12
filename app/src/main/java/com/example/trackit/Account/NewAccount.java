@@ -70,16 +70,22 @@ public class NewAccount extends AppCompatActivity {
                 email = email.replace('.', ',');
 
                 String name = userName.getText().toString();
+
+
                 String quantity = userQuantity.getText().toString();
 
-                // Below line is used to get reference for our database.
-                databaseReference = firebaseDatabase.getReference("users/"+email);
+                if(!quantity.isEmpty()){
+                    // Below line is used to get reference for our database.
+                    databaseReference = firebaseDatabase.getReference("users/"+email);
 
-                // initializing our object class variable.
-                User = UserInfo.getInstance();
+                    // initializing our object class variable.
+                    User = UserInfo.getInstance();
 
-                // below line is for checking weather the edittext fields are empty or not.
-                addDatatoFirebase(name, email, Double.valueOf(quantity));
+                    // below line is for checking weather the edittext fields are empty or not.
+                    addDatatoFirebase(name, email, Double.valueOf(quantity));
+                } else{
+                    Toast.makeText(NewAccount.this, "Has d'introduir una quantitat!", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -98,7 +104,6 @@ public class NewAccount extends AppCompatActivity {
         } else{
             User.setDriveLogin(true);
         }
-
 
         User.setName(name);
         User.setQuantity(quantity);

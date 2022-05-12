@@ -32,9 +32,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.auth.User;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class IncomePage extends AppCompatActivity {
 
@@ -42,6 +45,7 @@ public class IncomePage extends AppCompatActivity {
     private UserInfo userInfo;
     private DatabaseReference ref;
     EditText dateIncome;
+    private String data = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class IncomePage extends AppCompatActivity {
         Window window = IncomePage.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(IncomePage.this, R.color.greenIncome));
 
+        userInfo = UserInfo.getInstance();
         final FirebaseDatabase database = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
         SharedPreferences preferences = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
@@ -111,7 +116,6 @@ public class IncomePage extends AppCompatActivity {
 
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         incomeCategories.setAdapter(spinnerAdapter);
-
     }
 
     private void setListeners() {
@@ -133,12 +137,21 @@ public class IncomePage extends AppCompatActivity {
                 EditText incomeDescription = (EditText) findViewById(R.id.incomeTitle);
                 String category = incomeCategories.getSelectedItem().toString();
 
-                if(!enterIncome.getText().toString().isEmpty() && category!=null){
+                if(!enterIncome.getText().toString().isEmpty() && !category.equals("Categoria") && !dateIncome.getText().toString().isEmpty() && !incomeDescription.getText().toString().isEmpty()){
                     // Atributes of the Transaction's class
                     String description = incomeDescription.getText().toString();
-                    Date avui = new Date();
                     double quantity = Double.valueOf(enterIncome.getText().toString());
-                    Transaction transaction = new Transaction(description, category, quantity, avui);
+
+                    Transaction transaction;
+
+                    if(data == null){
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+                        Date date = new Date();
+                        data = formatter.format(date);
+                        transaction = new Transaction(description, category, quantity, data);
+                    } else{
+                        transaction = new Transaction(description, category, quantity, dateIncome.getText().toString());
+                    }
                     userInfo.addTransaction(transaction);
                     userInfo.updateSave(quantity);
                     ref.setValue(userInfo);
@@ -148,7 +161,7 @@ public class IncomePage extends AppCompatActivity {
 
                 }else{
                     // If something is empty, display a message to the user.
-                    Toast.makeText(IncomePage.this,"Tots els camps s'han d'omplir!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(IncomePage.this,"S'han d'omplir tots els camps!",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -171,10 +184,10 @@ public class IncomePage extends AppCompatActivity {
                         month = month+1;
                         String date = day+"/"+month+"/"+year;
                         dateIncome.setText(date);
+                        data = date;
                     }
                 }, year, month, day);
                 datePickerDialog.show();
-                datePickerDialog.getDatePicker().setDescendantFocusability(DatePicker.FOCUS_BLOCK_DESCENDANTS);
             }
         });
     }

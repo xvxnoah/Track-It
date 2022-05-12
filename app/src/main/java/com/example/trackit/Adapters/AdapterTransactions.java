@@ -10,15 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trackit.Model.Transaction;
 import com.example.trackit.R;
 import com.example.trackit.ViewModel.TransactionVo;
 
 import java.util.ArrayList;
 
 public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransactions.ViewHolder> {
-    ArrayList<TransactionVo> transactionVos;
+    ArrayList<Transaction> transactionVos;
 
-    public AdapterTransactions(ArrayList<TransactionVo> transactionVos) {
+    public AdapterTransactions(ArrayList<Transaction> transactionVos) {
         this.transactionVos = transactionVos;
     }
 
@@ -31,9 +32,10 @@ public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransaction
 
     @Override
     public void onBindViewHolder(@NonNull AdapterTransactions.ViewHolder holder, int position) {
-        holder.title.setText(transactionVos.get(position).getTitle());
+        holder.title.setText(transactionVos.get(position).getName());
         holder.category.setText(transactionVos.get(position).getCategory());
-        holder.amount.setText(transactionVos.get(position).getAmount().toString());
+        String quantity = String.valueOf(transactionVos.get(position).getQuantity());
+        holder.amount.setText(quantity);
         holder.date.setText(transactionVos.get(position).getDate());
         holder.picCategory.setImageResource(transactionVos.get(position).getPic());
 

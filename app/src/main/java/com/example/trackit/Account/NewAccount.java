@@ -39,7 +39,7 @@ public class NewAccount extends AppCompatActivity {
     DatabaseReference databaseReference;
 
     // creating a variable for our object class
-    com.example.trackit.Model.UserInfo UserInfo;
+    com.example.trackit.Model.UserInfo User;
 
     // EditText and buttons.
     private EditText userName, userQuantity;
@@ -70,16 +70,22 @@ public class NewAccount extends AppCompatActivity {
                 email = email.replace('.', ',');
 
                 String name = userName.getText().toString();
+
+
                 String quantity = userQuantity.getText().toString();
 
-                // Below line is used to get reference for our database.
-                databaseReference = firebaseDatabase.getReference("users/"+email);
+                if(!quantity.isEmpty()){
+                    // Below line is used to get reference for our database.
+                    databaseReference = firebaseDatabase.getReference("users/"+email);
 
-                // initializing our object class variable.
-                UserInfo = new UserInfo();
+                    // initializing our object class variable.
+                    User = UserInfo.getInstance();
 
-                // below line is for checking weather the edittext fields are empty or not.
-                addDatatoFirebase(name, email, Double.valueOf(quantity));
+                    // below line is for checking weather the edittext fields are empty or not.
+                    addDatatoFirebase(name, email, Double.valueOf(quantity));
+                } else{
+                    Toast.makeText(NewAccount.this, "Has d'introduir una quantitat!", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -94,17 +100,16 @@ public class NewAccount extends AppCompatActivity {
         String type = preferences.getString(AuthActivity.TYPE, null);
 
         if(type.equals("NORMAL")){
-            UserInfo.setDriveLogin(false);
+            User.setDriveLogin(false);
         } else{
-            UserInfo.setDriveLogin(true);
+            User.setDriveLogin(true);
         }
 
+        User.setName(name);
+        User.setQuantity(quantity);
+        User.setEmail(preferences.getString(AuthActivity.USER, null));
 
-        UserInfo.setName(name);
-        UserInfo.setQuantity(quantity);
-        UserInfo.setEmail(preferences.getString(AuthActivity.USER, null));
-
-        databaseReference.setValue(UserInfo);
+        databaseReference.setValue(User);
         // We are use add value event listener method which is called with database reference.
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -112,7 +117,7 @@ public class NewAccount extends AppCompatActivity {
                 // inside the method of on Data change we are setting
                 // our object class to our database reference.
                 // data base reference will sends data to firebase.
-                databaseReference.setValue(UserInfo);
+                databaseReference.setValue(User);
 
                 // After adding this data we are showing toast message.
                 Toast.makeText(NewAccount.this, "La configuració s'ha realitzat correctament", Toast.LENGTH_SHORT).show();
@@ -142,7 +147,7 @@ public class NewAccount extends AppCompatActivity {
         SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(UserInfo);
+        String json = gson.toJson(User);
         prefsEditor.putString("UserInfo", json);
         prefsEditor.commit();
     }

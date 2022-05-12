@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.trackit.Adapters.AdapterTransactions;
+import com.example.trackit.Model.Transaction;
+import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
 import com.example.trackit.ViewModel.TransactionVo;
 
@@ -33,7 +35,7 @@ public class TransactionsFragment extends Fragment {
     private String mParam2;
 
     RecyclerView recyclerViewTransaction;
-    ArrayList<TransactionVo> transactionVos;
+    ArrayList<Transaction> transactionVos;
 
     public TransactionsFragment() {
         // Required empty public constructor
@@ -88,20 +90,36 @@ public class TransactionsFragment extends Fragment {
     }
 
     private void fillUpList() {
-        transactionVos.add(new TransactionVo("Accions", "Ingrés", 50.0, "28/04/2022", R.drawable.ic_baseline_fastfood_24));
+        UserInfo user = UserInfo.getInstance();
 
-        transactionVos.add(new TransactionVo("Robatori", "Compres", 150.0, "28/04/2022", R.drawable.ic_baseline_shopping_cart_24));
+        ArrayList<Transaction> transactions = user.getTransactions();
+        Transaction transaction;
 
-        transactionVos.add(new TransactionVo("Accions", "Ingrés", 50.0, "28/04/2022", R.drawable.ic_baseline_fastfood_24));
+        if(!transactions.isEmpty()){
+            for(int i = 0; i < transactions.size(); i++){
+                transaction = transactions.get(i);
+                String category = transaction.getCategory();
 
-        transactionVos.add(new TransactionVo("Robatori", "Compres", 150.0, "28/04/2022", R.drawable.ic_baseline_shopping_cart_24));
-
-        transactionVos.add(new TransactionVo("Accions", "Ingrés", 50.0, "28/04/2022", R.drawable.ic_baseline_fastfood_24));
-
-        transactionVos.add(new TransactionVo("Robatori", "Compres", 150.0, "28/04/2022", R.drawable.ic_baseline_shopping_cart_24));
-
-        transactionVos.add(new TransactionVo("Accions", "Ingrés", 50.0, "28/04/2022", R.drawable.ic_baseline_fastfood_24));
-
-        transactionVos.add(new TransactionVo("Robatori", "Compres", 150.0, "28/04/2022", R.drawable.ic_baseline_shopping_cart_24));
+                if(category.equals("Alimentació")){
+                    transaction.setPic(R.drawable.ic_baseline_fastfood_24);
+                    transactionVos.add(transaction);
+                } else if(category.equals("Compres")){
+                    transaction.setPic(R.drawable.ic_baseline_shopping_cart_24);
+                    transactionVos.add(transaction);
+                } else if(category.equals("Transport")){
+                    transaction.setPic(R.drawable.ic_baseline_directions_transit_24);
+                    transactionVos.add(transaction);
+                } else if(category.equals("Salut/Higiene")){
+                    transaction.setPic(R.drawable.person);
+                    transactionVos.add(transaction);
+                } else if(category.equals("Educació")){
+                    transaction.setPic(R.drawable.ic_baseline_auto_stories_24);
+                    transactionVos.add(transaction);
+                } else if(category.equals("Altres despeses")){
+                    transaction.setPic(R.drawable.transaction);
+                    transactionVos.add(transaction);
+                }
+            }
+        }
     }
 }

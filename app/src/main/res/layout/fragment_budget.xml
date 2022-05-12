@@ -24,7 +24,7 @@
             android:layout_height="48dp"
             android:layout_gravity="bottom"
             android:layout_marginStart="70dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="100dp"
             android:backgroundTint="@color/lila"
             android:fontFamily="@font/g_bold"
             android:text="Crear un pressupost"

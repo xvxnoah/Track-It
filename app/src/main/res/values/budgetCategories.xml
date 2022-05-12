@@ -3,6 +3,8 @@
     <string-array name="budget_categories">
         <item>Categoria</item>
         <item>Compres</item>
+        <item>Viatges</item>
+        <item>Altres</item>
     </string-array>
 
 </resources>

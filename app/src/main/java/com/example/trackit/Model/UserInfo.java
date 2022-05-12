@@ -9,6 +9,7 @@ public class UserInfo {
     private double moneySaved;
     private double moneyWasted;
     private ArrayList<Transaction> transactions;
+    private ArrayList<Budget> budgets;
     private boolean DriveLogin;
 
     public void UserInfo(){
@@ -18,13 +19,15 @@ public class UserInfo {
         this.moneySaved = 0;
         this.moneyWasted = 0;
         this.transactions = new ArrayList<Transaction>();
+        this.budgets = new ArrayList<Budget>();
         this.DriveLogin = false;
     }
 
-    public void UserInfo(float moneySaved, float moneyWasted, ArrayList<Transaction> transactions, boolean DriveLogin){
+    public void UserInfo(float moneySaved, float moneyWasted, ArrayList<Transaction> transactions, ArrayList<Budget> budgets ,boolean DriveLogin){
         this.moneySaved = moneySaved;
         this.moneyWasted = moneyWasted;
         this.transactions = transactions;
+        this.budgets = budgets;
         this.DriveLogin = DriveLogin;
     }
 
@@ -58,7 +61,9 @@ public class UserInfo {
         return this.transactions;
     }
 
-
+    public ArrayList<Budget> getBudgets() {
+        return budgets;
+    }
 
     //Setters
     public void setName(String name){
@@ -79,6 +84,10 @@ public class UserInfo {
 
     public void setTransactions(ArrayList<Transaction> transactions){
         this.transactions = transactions;
+    }
+
+    public void setBudgets(ArrayList<Budget> budgets) {
+        this.budgets = budgets;
     }
 
     public void setDriveLogin(boolean DriveLogin){

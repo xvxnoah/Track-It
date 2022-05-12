@@ -54,6 +54,10 @@
             android:name=".Transactions.Transaction_Done"
             android:exported="false" />
         <activity
+            android:name=".initActivities.Splash_Screen2"
+            android:exported="false"
+            android:theme="@style/Theme.TrackIt.TracIt"/>
+        <activity
             android:name=".initActivities.Splash_Screen"
             android:exported="true"
             android:theme="@style/Theme.TrackIt.TracIt">

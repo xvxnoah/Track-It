@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -77,8 +78,9 @@ public class RegisterPage extends AppCompatActivity {
                                         finish();
 
                                     } else {
+                                        Log.e("===>", task.getException().toString());
                                         // If sign in fails, display a message to the user.
-                                        Toast.makeText(RegisterPage.this,"Hi ha hagut un error!",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(RegisterPage.this,"Hi ha hagut un error!", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });

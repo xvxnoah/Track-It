@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Track It!</string>
     <string name="track_it">Track It!</string>
+    <string name="splash_text">Fent unes comprovasions...</string>
     <string name="todo">TODO</string>
     <string name="email">Email</string>
     <string name="contrassenya">Contrassenya</string>

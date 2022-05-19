@@ -40,6 +40,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_transactions.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/loading_page.xml" value="0.18297101449275363" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.37604166666666666" />
       </map>

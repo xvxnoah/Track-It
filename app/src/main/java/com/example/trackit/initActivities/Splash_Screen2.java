@@ -30,12 +30,12 @@ public class Splash_Screen2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.loading_page);
 
         getSupportActionBar().hide();
 
         Window window = Splash_Screen2.this.getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(Splash_Screen2.this, R.color.black));
+        window.setStatusBarColor(ContextCompat.getColor(Splash_Screen2.this, R.color.softBlue));
 
 
         new Handler().postDelayed(new Runnable() {
@@ -57,13 +57,10 @@ public class Splash_Screen2 extends AppCompatActivity {
         SharedPreferences preferencesSetUp = getSharedPreferences(NewAccount.SETUP_USER, Context.MODE_PRIVATE);
         String user = preferencesSetUp.getString(NewAccount.SETUP_EMAIL, null);
 
-        /*
         if(email.equals(user)){
             startActivity(new Intent(Splash_Screen2.this, HomePage.class));
             finish();
         }
-
-         */
 
         return false;
     }

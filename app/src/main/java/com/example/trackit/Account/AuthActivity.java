@@ -200,10 +200,14 @@ public class AuthActivity extends AppCompatActivity {
         }
     }
 
+    // CEHCK FOR DRIVE ALREADY SETUP
     private void showHome(String user){
         Toast.makeText(this,"Signed In successfully",Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, Welcome_Page.class);
+        Intent intent = new Intent(this, Splash_Screen2.class);
+
+        // Save log in status
         saveSession(user, true);
+
         startActivity(intent);
         finish();
     }

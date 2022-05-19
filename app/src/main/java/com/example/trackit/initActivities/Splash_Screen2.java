@@ -45,7 +45,7 @@ public class Splash_Screen2 extends AppCompatActivity {
                     alreadySetUpDatabase();
                 }
             }
-        }, 1500);
+        }, 1000);
 
     }
 

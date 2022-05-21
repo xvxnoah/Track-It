@@ -2,17 +2,25 @@ package com.example.trackit.Fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.trackit.Account.AuthActivity;
+import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +36,11 @@ import org.eazegraph.lib.charts.ValueLineChart;
 import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +49,10 @@ import java.util.ArrayList;
  */
 public class HomeFragment extends Fragment {
 
-    LineGraphSeries<DataPoint> series;
+    ValueLineSeries serie;
+    ValueLineChart mCubicValueLineChart;
+    SimpleDateFormat sdf;
+    ArrayList Transactions;
 
     UserInfo userInfo;
 
@@ -46,6 +61,7 @@ public class HomeFragment extends Fragment {
     TextView balance;
     TextView QuantityDespeses;
     TextView QuantityIngressos;
+    Spinner tendencia;
 
     FirebaseDatabase firebaseDatabase;
 
@@ -105,6 +121,8 @@ public class HomeFragment extends Fragment {
         QuantityDespeses = vista.findViewById(R.id.QuantityDespeses);
         QuantityIngressos = vista.findViewById(R.id.QuantityIngressos);
 
+        setSpinner();
+
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
         // Getting text from our edittext fields.
@@ -115,7 +133,7 @@ public class HomeFragment extends Fragment {
         userInfo = com.example.trackit.Model.UserInfo.getInstance();
 
         // Below line is used to get reference for our database.
-        databaseReference = firebaseDatabase.getReference("users/"+email);
+        databaseReference = firebaseDatabase.getReference("users/" + email);
 
         // Attach a listener to read the data at our posts reference
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -123,7 +141,11 @@ public class HomeFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //userInfo = com.example.trackit.Model.UserInfo.getInstance();
                 userInfo = dataSnapshot.getValue(com.example.trackit.Model.UserInfo.class);
-                updateFragment();
+                try {
+                    updateFragment();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -131,34 +153,216 @@ public class HomeFragment extends Fragment {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+
+        tendencia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                try {
+                    updateFragment();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
         return vista;
     }
 
-    public void updateFragment(){
-        ArrayList Transactions = userInfo.getTransactions();
+    public void updateFragment() throws ParseException {
+        sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Transactions = userInfo.getTransactions();
         balance.setText(Double.toString(userInfo.getQuantity()) + '€');
         QuantityIngressos.setText(Double.toString(userInfo.getMoneySaved()) + '€');
         QuantityDespeses.setText(Double.toString(userInfo.getMoneyWasted()) + '€');
 
-        ValueLineChart mCubicValueLineChart = (ValueLineChart) vista.findViewById(R.id.cubiclinechart);
+        mCubicValueLineChart = (ValueLineChart) vista.findViewById(R.id.cubiclinechart);
 
-        ValueLineSeries series = new ValueLineSeries();
-        series.setColor(0xFF56B7F1);
+        serie = new ValueLineSeries();
+        serie.setColor(0xFF56B7F1);
 
-        series.addPoint(new ValueLinePoint("Jan", 2.4f));
-        series.addPoint(new ValueLinePoint("Feb", 3.4f));
-        series.addPoint(new ValueLinePoint("Mar", .4f));
-        series.addPoint(new ValueLinePoint("Apr", 1.2f));
-        series.addPoint(new ValueLinePoint("Mai", 2.6f));
-        series.addPoint(new ValueLinePoint("Jun", 1.0f));
-        series.addPoint(new ValueLinePoint("Jul", 3.5f));
-        series.addPoint(new ValueLinePoint("Aug", 2.4f));
-        series.addPoint(new ValueLinePoint("Sep", 2.4f));
-        series.addPoint(new ValueLinePoint("Oct", 3.4f));
-        series.addPoint(new ValueLinePoint("Nov", 15.4f));
-        series.addPoint(new ValueLinePoint("Dec", 1.3f));
+        String seleccio = tendencia.getSelectedItem().toString();
 
-        mCubicValueLineChart.addSeries(series);
+        if(seleccio.equals("últim any")){
+            chartYear();
+        } else if(seleccio.equals("Últims 6 mesos")){
+            chartHalfYear();
+        }
+    }
+
+    private void chartYear() throws ParseException {
+        Iterator<Transaction> iter = null;
+        Transaction actual;
+        Integer monthActual;
+        if (Transactions != null) {
+            iter = Transactions.iterator();
+        }
+        ArrayList<String> Months = new ArrayList<>();
+
+        Months.add("Jan");
+        Months.add("Feb");
+        Months.add("Mar");
+        Months.add("Apr");
+        Months.add("May");
+        Months.add("Jun");
+        Months.add("Jul");
+        Months.add("Aug");
+        Months.add("Sep");
+        Months.add("Oct");
+        Months.add("Nov");
+        Months.add("Dec");
+
+        ArrayList<Integer> TransMonth = new ArrayList<>();
+        for (int y = 0; y < 12; y++) {
+            TransMonth.add(0);
+        }
+
+        Integer NumAnterior;
+        String lastMonth = "null";
+        if (Transactions != null) {
+            while (iter.hasNext()) {
+                actual = iter.next();
+                String da = actual.getDate();
+                monthActual = sdf.parse(actual.getDate()).getMonth();
+                NumAnterior = TransMonth.get(monthActual) + 1;
+                TransMonth.set(monthActual, NumAnterior);
+            }
+        }
+
+        Date actualDate = new Date();
+        int actualMonth = actualDate.getMonth();
+
+        for (int i = 0; i < 12; i++) {
+            if (actualMonth < 0) {
+                actualMonth = 11;
+            } else {
+                actualMonth--;
+            }
+        }
+
+        for (int j = 0; j < 12; j++) {
+            if (actualMonth == 12) {
+                actualMonth = 0;
+            }
+            String s = Months.get(0);
+            serie.addPoint(new ValueLinePoint(Months.get(actualMonth), TransMonth.get(actualMonth)));
+            actualMonth++;
+        }
+
+        mCubicValueLineChart.clearChart();
+        mCubicValueLineChart.addSeries(serie);
         mCubicValueLineChart.startAnimation();
+    }
+
+    private void chartHalfYear() throws ParseException {
+        Iterator<Transaction> iter = null;
+        Transaction actual;
+        Integer monthActual;
+        if (Transactions != null) {
+            iter = Transactions.iterator();
+        }
+        ArrayList<String> Months = new ArrayList<>();
+
+        Months.add("Jan");
+        Months.add("Feb");
+        Months.add("Mar");
+        Months.add("Apr");
+        Months.add("May");
+        Months.add("Jun");
+        Months.add("Jul");
+        Months.add("Aug");
+        Months.add("Sep");
+        Months.add("Oct");
+        Months.add("Nov");
+        Months.add("Dec");
+
+        ArrayList<Integer> TransMonth = new ArrayList<>();
+        for (int y = 0; y < 12; y++) {
+            TransMonth.add(0);
+        }
+
+        Integer NumAnterior;
+        String lastMonth = "null";
+        if (Transactions != null) {
+            while (iter.hasNext()) {
+                actual = iter.next();
+                String da = actual.getDate();
+                monthActual = sdf.parse(actual.getDate()).getMonth();
+                NumAnterior = TransMonth.get(monthActual) + 1;
+                TransMonth.set(monthActual, NumAnterior);
+            }
+        }
+
+        Date actualDate = new Date();
+        int actualMonth = actualDate.getMonth();
+
+        for (int i = 0; i <= 6; i++) {
+            if (actualMonth < 0) {
+                actualMonth = 11;
+            } else {
+                actualMonth--;
+            }
+        }
+
+        for (int j = 0; j <= 6; j++) {
+            if (actualMonth == 12) {
+                actualMonth = 0;
+            }
+            String s = Months.get(0);
+            serie.addPoint(new ValueLinePoint(Months.get(actualMonth), TransMonth.get(actualMonth)));
+            actualMonth++;
+        }
+
+        mCubicValueLineChart.clearChart();
+        mCubicValueLineChart.addSeries(serie);
+        mCubicValueLineChart.startAnimation();
+    }
+
+    private void chartMonth() {
+
+    }
+
+    private void chartWeek() {
+
+    }
+
+    private void setSpinner() {
+        tendencia = vista.findViewById(R.id.spinnerTendencia);
+
+        String arrayName = "tendencia";
+        int arrayName_ID = getResources().getIdentifier(arrayName, "array", getContext().getPackageName());
+        String[] categories = getResources().getStringArray(arrayName_ID);
+
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, categories) {
+            @Override
+            public boolean isEnabled(int position) {
+                if (position == 0) {
+                    // Desactivem el primer item
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+
+                if (position == 0) {
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tendencia.setAdapter(spinnerAdapter);
     }
 }

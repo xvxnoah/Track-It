@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tendencia">
+        <item>Selecciona</item>
+        <item>últim any</item>
+        <item>Últims 6 mesos</item>
+        <item>Darrer mes</item>
+        <item>Darrera setmana</item>
+    </string-array>
+
+</resources>

@@ -7,6 +7,18 @@
     android:background="@color/white"
     tools:context=".Fragments.HomeFragment">
 
+    <Spinner
+        android:id="@+id/spinnerTendencia"
+        android:layout_width="341dp"
+        android:layout_height="48dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="68dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/setUpText2" />
+
     <FrameLayout
         android:layout_width="160dp"
         android:layout_height="73dp"
@@ -86,21 +98,20 @@
         app:layout_constraintVertical_bias="0.018" />
 
     <org.eazegraph.lib.charts.ValueLineChart
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cubiclinechart"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:egUseCubic="true"
-        app:egUseOverlapFill="true"
+        android:layout_width="345dp"
+        android:layout_height="193dp"
         app:egCurveSmoothness="0.4"
         app:egIndicatorLineColor="@color/green"
         app:egLegendHeight="40dp"
         app:egShowStandardValue="true"
+        app:egUseCubic="true"
+        app:egUseOverlapFill="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.741"/>
+        app:layout_constraintVertical_bias="0.741" />
 
     <TextView
         android:id="@+id/balance"

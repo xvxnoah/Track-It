@@ -1,5 +1,7 @@
 package com.example.trackit.Model;
 
+import java.util.Date;
+
 public class Transaction {
     private String name;
     private String type;

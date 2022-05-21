@@ -1,5 +1,7 @@
 package com.example.trackit.Model;
 
+import android.net.Uri;
+
 import java.util.Date;
 
 public class Transaction {
@@ -9,22 +11,25 @@ public class Transaction {
     private String date;
     private String category;
     private int pic;
+    private Uri selectedImageUri;
 
     //Constructor
-    public Transaction(String name, String type, double quantity, String date){
+    public Transaction(String name, String type, double quantity, String date, Uri SelectedImageUri){
         this.name = name;
         this.type = type;
         this.quantity = quantity;
         this.date = date;
+        this.selectedImageUri = selectedImageUri;
     }
 
     public Transaction(){
         this.name = null;
         this.type = null;
-        this.quantity = 0;
+        this.quantity = 0f;
         this.date = null;
         this.category = null;
         this.pic = -1;
+        this.selectedImageUri = null;
     }
 
     //Getters

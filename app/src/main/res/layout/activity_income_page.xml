@@ -143,7 +143,7 @@
             android:id="@+id/image"
             android:layout_width="183dp"
             android:layout_height="100dp"
-            android:layout_marginStart="150dp"
+            android:layout_marginStart="230dp"
             android:layout_marginTop="215dp"
             tools:srcCompat="@tools:sample/avatars" />
 

@@ -216,20 +216,20 @@ public class HomeFragment extends Fragment {
         Months.add("Nov");
         Months.add("Dec");
 
-        ArrayList<Integer> TransMonth = new ArrayList<>();
+        ArrayList<Float> TransMonth = new ArrayList<>();
         for (int y = 0; y < 12; y++) {
-            TransMonth.add(0);
+            TransMonth.add((float) 0);
         }
 
-        Integer NumAnterior;
+        double NumAnterior;
         String lastMonth = "null";
         if (Transactions != null) {
             while (iter.hasNext()) {
                 actual = iter.next();
                 String da = actual.getDate();
                 monthActual = sdf.parse(actual.getDate()).getMonth();
-                NumAnterior = TransMonth.get(monthActual) + 1;
-                TransMonth.set(monthActual, NumAnterior);
+                NumAnterior = TransMonth.get(monthActual) + actual.getQuantity();
+                TransMonth.set(monthActual, (float) NumAnterior);
             }
         }
 
@@ -280,20 +280,20 @@ public class HomeFragment extends Fragment {
         Months.add("Nov");
         Months.add("Dec");
 
-        ArrayList<Integer> TransMonth = new ArrayList<>();
+        ArrayList<Float> TransMonth = new ArrayList<>();
         for (int y = 0; y < 12; y++) {
-            TransMonth.add(0);
+            TransMonth.add((float) 0);
         }
 
-        Integer NumAnterior;
+        double NumAnterior;
         String lastMonth = "null";
         if (Transactions != null) {
             while (iter.hasNext()) {
                 actual = iter.next();
                 String da = actual.getDate();
                 monthActual = sdf.parse(actual.getDate()).getMonth();
-                NumAnterior = TransMonth.get(monthActual) + 1;
-                TransMonth.set(monthActual, NumAnterior);
+                NumAnterior = TransMonth.get(monthActual) + actual.getQuantity();
+                TransMonth.set(monthActual, (float) NumAnterior);
             }
         }
 

@@ -282,7 +282,7 @@
                         android:layout_marginTop="4dp"
                         android:text=""
                         android:textColor="@color/textPrimary"
-                        android:textSize="18sp"
+                        android:textSize="28sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textIngres" />
@@ -304,8 +304,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="34dp"
-                        android:text="Les teves despeses"
+                        android:layout_marginTop="20dp"
+                        android:text="Despeses mensuals"
                         android:textColor="@color/textSecondary"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/ingressos" />

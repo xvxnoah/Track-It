@@ -2,7 +2,7 @@
 <resources>
     <string-array name="tendencia">
         <item>Selecciona</item>
-        <item>últim any</item>
+        <item>Últim any</item>
         <item>Últims 6 mesos</item>
         <item>Darrer mes</item>
         <item>Darrera setmana</item>

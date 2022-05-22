@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.auth.User;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -139,8 +140,8 @@ public class HomeFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //userInfo = com.example.trackit.Model.UserInfo.getInstance();
                 userInfo = dataSnapshot.getValue(com.example.trackit.Model.UserInfo.class);
+                com.example.trackit.Model.UserInfo.setUniqueInstance(userInfo);
                 try {
                     updateFragment();
                 } catch (ParseException e) {
@@ -181,6 +182,7 @@ public class HomeFragment extends Fragment {
         QuantityDespeses.setText(Double.toString(userInfo.getMoneyWasted()) + '€');
 
         mCubicValueLineChart = (ValueLineChart) vista.findViewById(R.id.cubiclinechart);
+        mCubicValueLineChart.setEmptyDataText("");
 
         serie = new ValueLineSeries();
         serie.setColor(0xFF56B7F1);

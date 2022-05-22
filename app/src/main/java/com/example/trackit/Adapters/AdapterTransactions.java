@@ -33,7 +33,7 @@ public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransaction
     @Override
     public void onBindViewHolder(@NonNull AdapterTransactions.ViewHolder holder, int position) {
         holder.title.setText(transactionVos.get(position).getName());
-        holder.category.setText(transactionVos.get(position).getCategory());
+        holder.category.setText(transactionVos.get(position).getType());
         String quantity = String.valueOf(transactionVos.get(position).getQuantity());
         holder.amount.setText(quantity);
         holder.date.setText(transactionVos.get(position).getDate());

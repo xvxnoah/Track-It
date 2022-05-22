@@ -7,7 +7,6 @@ public class Transaction {
     private String type;
     private double quantity;
     private String date;
-    private String category;
     private int pic;
 
     //Constructor
@@ -23,7 +22,6 @@ public class Transaction {
         this.type = null;
         this.quantity = 0;
         this.date = null;
-        this.category = null;
         this.pic = -1;
     }
 
@@ -44,8 +42,6 @@ public class Transaction {
         return this.date;
     }
 
-    public String getCategory() { return this.category; }
-
     public int getPic() { return this.pic; }
 
     //Setters
@@ -65,7 +61,6 @@ public class Transaction {
         this.date = date;
     }
 
-    public void setCategory(String category) { this.category = category; }
 
     public void setPic(int pic) { this.pic = pic; }
 }

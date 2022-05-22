@@ -1,8 +1,9 @@
 package com.example.trackit.Model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class UserInfo {
+public class UserInfo extends Observable {
     private volatile static UserInfo uniqueInstance;
     private String name;
     private String email;
@@ -23,6 +24,11 @@ public class UserInfo {
         }
         return uniqueInstance;
     }
+
+    public static void setUniqueInstance(UserInfo user){
+        uniqueInstance = user;
+    }
+
     public void UserInfo(){
         this.name = null;
         this.email = null;
@@ -110,6 +116,9 @@ public class UserInfo {
             this.transactions = new ArrayList<Transaction>();
         }
         this.transactions.add(transaction);
+
+        setChanged();
+        notifyObservers(transaction);
     }
 
     public void updateWasted(double quantity) {

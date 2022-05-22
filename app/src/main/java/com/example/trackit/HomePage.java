@@ -102,6 +102,7 @@ public class HomePage extends AppCompatActivity {
         });
 
         fab_out.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 animateFab();

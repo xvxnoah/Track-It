@@ -1,5 +1,7 @@
 package com.example.trackit.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -12,16 +14,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.Adapters.AdapterTransactions;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.auth.User;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.communication.IOnItemFocusChangedListener;
 import org.eazegraph.lib.models.PieModel;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -31,7 +40,7 @@ import java.util.Observer;
  * Use the {@link TransactionsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TransactionsFragment extends Fragment implements Observer {
+public class TransactionsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,6 +49,13 @@ public class TransactionsFragment extends Fragment implements Observer {
     private ArrayList<Transaction> transactionVos;
     private TextView expense, income;
     private PieChart mPieChart;
+
+    private UserInfo userInfo;
+
+    FirebaseDatabase firebaseDatabase;
+
+    // creating a variable for our Database Reference for Firebase.
+    DatabaseReference databaseReference;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -83,36 +99,54 @@ public class TransactionsFragment extends Fragment implements Observer {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View vista = inflater.inflate(R.layout.fragment_transactions, container, false);
-        UserInfo user = UserInfo.getInstance();
+        userInfo = UserInfo.getInstance();
 
-        user.addObserver(this);
-
-        transactionVos = new ArrayList<>();
         recyclerViewTransaction = vista.findViewById(R.id.transactionRecyclerView);
         recyclerViewTransaction.setLayoutManager(new LinearLayoutManager(getContext()));
         expense = vista.findViewById(R.id.expense);
         income = vista.findViewById(R.id.ingressos);
         mPieChart = (PieChart) vista.findViewById(R.id.piechart);
 
-        fillUpList();
+        firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
-        AdapterTransactions adapter = new AdapterTransactions(transactionVos);
-        recyclerViewTransaction.setAdapter(adapter);
+        // Getting text from our edittext fields.
+        SharedPreferences preferences = getActivity().getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
+        String email = preferences.getString(AuthActivity.USER, null);
+        email = email.replace('.', ',');
+
+        // Below line is used to get reference for our database.
+        databaseReference = firebaseDatabase.getReference("users/" + email);
+
+        // Attach a listener to read the data at our posts reference
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userInfo = dataSnapshot.getValue(com.example.trackit.Model.UserInfo.class);
+                com.example.trackit.Model.UserInfo.setUniqueInstance(userInfo);
+                transactionVos = new ArrayList<>();
+                fillUpList();
+                    AdapterTransactions adapter = new AdapterTransactions(transactionVos);
+                    recyclerViewTransaction.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
 
         return vista;
     }
 
     public void fillUpList() {
-        UserInfo user = com.example.trackit.Model.UserInfo.getInstance();
-
-        ArrayList<Transaction> transactions = user.getTransactions();
+        ArrayList<Transaction> transactions = userInfo.getTransactions();
         Transaction transaction;
         Double despeses = .0;
         Double ingressos = .0;
 
         if(transactions != null){
             for(int i = 0; i < transactions.size(); i++){
-                transaction = transactions.get(i);
+                transaction = transactions.get(transactions.size() - i - 1);
                 String type = transaction.getType();
 
                 if(type.equals("Alimentació")){
@@ -168,9 +202,5 @@ public class TransactionsFragment extends Fragment implements Observer {
 
         expense.setText(despeses.toString());
         income.setText(ingressos.toString());
-    }
-
-    @Override
-    public void update(Observable observable, Object o) {
     }
 }

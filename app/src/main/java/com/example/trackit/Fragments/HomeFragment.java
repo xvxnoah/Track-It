@@ -50,7 +50,9 @@ import java.util.Iterator;
  */
 public class HomeFragment extends Fragment {
 
-    ValueLineSeries serie;
+    ValueLineSeries serieIncome;
+    ValueLineSeries serieExpenses;
+
     ValueLineChart mCubicValueLineChart;
     SimpleDateFormat sdf;
     ArrayList Transactions;
@@ -184,12 +186,15 @@ public class HomeFragment extends Fragment {
         mCubicValueLineChart = (ValueLineChart) vista.findViewById(R.id.cubiclinechart);
         mCubicValueLineChart.setEmptyDataText("");
 
-        serie = new ValueLineSeries();
-        serie.setColor(0xFF56B7F1);
+        serieIncome = new ValueLineSeries();
+        serieIncome.setColor(Color.GREEN);
+
+        serieExpenses = new ValueLineSeries();
+        serieExpenses.setColor(Color.RED);
 
         String seleccio = tendencia.getSelectedItem().toString();
 
-        if(seleccio.equals("últim any")){
+        if(seleccio.equals("Últim any")){
             chartYear();
         } else if(seleccio.equals("Últims 6 mesos")){
             chartHalfYear();
@@ -251,12 +256,12 @@ public class HomeFragment extends Fragment {
                 actualMonth = 0;
             }
             String s = Months.get(0);
-            serie.addPoint(new ValueLinePoint(Months.get(actualMonth), TransMonth.get(actualMonth)));
+            serieIncome.addPoint(new ValueLinePoint(Months.get(actualMonth), TransMonth.get(actualMonth)));
             actualMonth++;
         }
 
         mCubicValueLineChart.clearChart();
-        mCubicValueLineChart.addSeries(serie);
+        mCubicValueLineChart.addSeries(serieIncome);
         mCubicValueLineChart.startAnimation();
     }
 
@@ -315,12 +320,12 @@ public class HomeFragment extends Fragment {
                 actualMonth = 0;
             }
             String s = Months.get(0);
-            serie.addPoint(new ValueLinePoint(Months.get(actualMonth), TransMonth.get(actualMonth)));
+            serieIncome.addPoint(new ValueLinePoint(Months.get(actualMonth), TransMonth.get(actualMonth)));
             actualMonth++;
         }
 
         mCubicValueLineChart.clearChart();
-        mCubicValueLineChart.addSeries(serie);
+        mCubicValueLineChart.addSeries(serieIncome);
         mCubicValueLineChart.startAnimation();
     }
 

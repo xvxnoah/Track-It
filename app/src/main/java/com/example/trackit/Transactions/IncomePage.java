@@ -5,11 +5,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +23,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +39,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.auth.User;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -46,6 +53,7 @@ public class IncomePage extends AppCompatActivity {
     private DatabaseReference ref;
     EditText dateIncome;
     private String data = null;
+    Uri selectedImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +128,8 @@ public class IncomePage extends AppCompatActivity {
 
     private void setListeners() {
         ImageButton back = findViewById(R.id.back_income);
+        Button imageIncome = findViewById(R.id.imageIncome);
+        Button cameraIncome = findViewById(R.id.cameraIncome);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,9 +158,9 @@ public class IncomePage extends AppCompatActivity {
                         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
                         Date date = new Date();
                         data = formatter.format(date);
-                        transaction = new Transaction(description, category, quantity, data);
+                        transaction = new Transaction(description, category, quantity, data, selectedImageUri);
                     } else{
-                        transaction = new Transaction(description, category, quantity, dateIncome.getText().toString());
+                        transaction = new Transaction(description, category, quantity, dateIncome.getText().toString(), selectedImageUri);
                     }
                     userInfo.addTransaction(transaction);
                     userInfo.updateSave(quantity);
@@ -190,6 +200,14 @@ public class IncomePage extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
+        imageIncome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openGalley();
+            }
+        });
+
     }
 
 
@@ -197,5 +215,51 @@ public class IncomePage extends AppCompatActivity {
     public void onBackPressed(){
         super.onBackPressed();
         finish();
+    }
+
+    public void openGalley(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(
+                Intent.createChooser(intent, "Seleccione una imagen"),
+                1);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        selectedImageUri = null;
+        Uri selectedImage;
+
+        String filePath = null;
+        switch (requestCode) {
+            case 1:
+                if (resultCode == Activity.RESULT_OK) {
+                    selectedImage = imageReturnedIntent.getData();
+                    String selectedPath=selectedImage.getPath();
+                    if (requestCode == 1) {
+
+                        if (selectedPath != null) {
+                            InputStream imageStream = null;
+                            try {
+                                imageStream = getContentResolver().openInputStream(
+                                        selectedImage);
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+
+                            // Transformamos la URI de la imagen a inputStream y este a un Bitmap
+                            Bitmap bmp = BitmapFactory.decodeStream(imageStream);
+
+                            // Ponemos nuestro bitmap en un ImageView que tengamos en la vista
+                            ImageView mImg = (ImageView) findViewById(R.id.image);
+                            mImg.setImageBitmap(bmp);
+
+                        }
+                    }
+                }
+                break;
+        }
     }
 }

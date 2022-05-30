@@ -20,15 +20,16 @@
         app:layout_constraintTop_toTopOf="@+id/setUpText2" />
 
     <FrameLayout
-        android:layout_width="160dp"
-        android:layout_height="73dp"
-        android:background="@drawable/ic_launcher_background"
+        android:layout_width="175dp"
+        android:layout_height="80dp"
+        android:background="@drawable/round"
+        android:backgroundTint="@color/greenIncome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2">
+        app:layout_constraintVertical_bias="0.199">
 
         <TextView
             android:id="@+id/TextIngressos"
@@ -106,7 +107,7 @@
         app:egLegendHeight="40dp"
         app:egShowStandardValue="true"
         app:egUseCubic="true"
-        app:egUseOverlapFill="true"
+        app:egUseOverlapFill="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,15 +130,16 @@
         app:layout_constraintVertical_bias="0.082" />
 
     <FrameLayout
-        android:layout_width="160dp"
-        android:layout_height="73dp"
-        android:background="@drawable/ic_launcher_background"
+        android:layout_width="169dp"
+        android:layout_height="75dp"
+        android:background="@drawable/round"
+        android:backgroundTint="@color/expenseFiles"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintHorizontal_bias="0.933"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2">
+        app:layout_constraintVertical_bias="0.198">
 
         <TextView
             android:id="@+id/TextDespeses"
@@ -152,7 +154,7 @@
 
         <TextView
             android:id="@+id/QuantityDespeses"
-            android:layout_width="103dp"
+            android:layout_width="102dp"
             android:layout_height="40dp"
             android:layout_marginHorizontal="65dp"
             android:layout_marginVertical="40dp"

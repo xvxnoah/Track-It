@@ -1,5 +1,7 @@
 package com.example.trackit.Fragments;
 
+import static java.lang.Math.abs;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -192,9 +194,12 @@ public class HomeFragment extends Fragment {
         serieExpenses = new ValueLineSeries();
         serieExpenses.setColor(Color.RED);
 
+        serieExpenses = new ValueLineSeries();
+        serieExpenses.setColor(Color.RED);
+
         String seleccio = tendencia.getSelectedItem().toString();
 
-        if(seleccio.equals("Últim any")){
+        if(seleccio.equals("Últim any") || seleccio.equals("Selecciona")){
             chartYear();
         } else if(seleccio.equals("Últims 6 mesos")){
             chartHalfYear();
@@ -223,9 +228,12 @@ public class HomeFragment extends Fragment {
         Months.add("Nov");
         Months.add("Dec");
 
-        ArrayList<Float> TransMonth = new ArrayList<>();
+        ArrayList<Float> incomeMonth = new ArrayList<>();
+        ArrayList<Float> expenseMonth = new ArrayList<>();
+
         for (int y = 0; y < 12; y++) {
-            TransMonth.add((float) 0);
+            incomeMonth.add((float) 0);
+            expenseMonth.add((float) 0);
         }
 
         double NumAnterior;
@@ -235,8 +243,13 @@ public class HomeFragment extends Fragment {
                 actual = iter.next();
                 String da = actual.getDate();
                 monthActual = sdf.parse(actual.getDate()).getMonth();
-                NumAnterior = TransMonth.get(monthActual) + actual.getQuantity();
-                TransMonth.set(monthActual, (float) NumAnterior);
+                if(actual.getType().equals("Nòmina") || actual.getType().equals("Criptomonedes") || actual.getType().equals("Accions") || actual.getType().equals("Altres ingressos")){
+                    NumAnterior = incomeMonth.get(monthActual) + actual.getQuantity();
+                    incomeMonth.set(monthActual, (float) NumAnterior);
+                }else{
+                    NumAnterior = expenseMonth.get(monthActual) + abs(actual.getQuantity());
+                    expenseMonth.set(monthActual, (float) NumAnterior);
+                }
             }
         }
 
@@ -256,12 +269,14 @@ public class HomeFragment extends Fragment {
                 actualMonth = 0;
             }
             String s = Months.get(0);
-            serieIncome.addPoint(new ValueLinePoint(Months.get(actualMonth), TransMonth.get(actualMonth)));
+            serieIncome.addPoint(new ValueLinePoint(Months.get(actualMonth), incomeMonth.get(actualMonth)));
+            serieExpenses.addPoint(new ValueLinePoint(Months.get(actualMonth), expenseMonth.get(actualMonth)));
             actualMonth++;
         }
 
         mCubicValueLineChart.clearChart();
         mCubicValueLineChart.addSeries(serieIncome);
+        mCubicValueLineChart.addSeries((serieExpenses));
         mCubicValueLineChart.startAnimation();
     }
 
@@ -287,9 +302,12 @@ public class HomeFragment extends Fragment {
         Months.add("Nov");
         Months.add("Dec");
 
-        ArrayList<Float> TransMonth = new ArrayList<>();
+        ArrayList<Float> incomeMonth = new ArrayList<>();
+        ArrayList<Float> expenseMonth = new ArrayList<>();
+
         for (int y = 0; y < 12; y++) {
-            TransMonth.add((float) 0);
+            incomeMonth.add((float) 0);
+            expenseMonth.add((float) 0);
         }
 
         double NumAnterior;
@@ -299,8 +317,13 @@ public class HomeFragment extends Fragment {
                 actual = iter.next();
                 String da = actual.getDate();
                 monthActual = sdf.parse(actual.getDate()).getMonth();
-                NumAnterior = TransMonth.get(monthActual) + actual.getQuantity();
-                TransMonth.set(monthActual, (float) NumAnterior);
+                if(actual.getType().equals("Nòmina") || actual.getType().equals("Criptomonedes") || actual.getType().equals("Accions") || actual.getType().equals("Altres ingressos")){
+                    NumAnterior = incomeMonth.get(monthActual) + actual.getQuantity();
+                    incomeMonth.set(monthActual, (float) NumAnterior);
+                }else{
+                    NumAnterior = expenseMonth.get(monthActual) + abs(actual.getQuantity());
+                    expenseMonth.set(monthActual, (float) NumAnterior);
+                }
             }
         }
 
@@ -320,12 +343,15 @@ public class HomeFragment extends Fragment {
                 actualMonth = 0;
             }
             String s = Months.get(0);
-            serieIncome.addPoint(new ValueLinePoint(Months.get(actualMonth), TransMonth.get(actualMonth)));
+            serieIncome.addPoint(new ValueLinePoint(Months.get(actualMonth), incomeMonth.get(actualMonth)));
+            serieExpenses.addPoint(new ValueLinePoint(Months.get(actualMonth), expenseMonth.get(actualMonth)));
+
             actualMonth++;
         }
 
         mCubicValueLineChart.clearChart();
         mCubicValueLineChart.addSeries(serieIncome);
+        mCubicValueLineChart.addSeries(serieExpenses);
         mCubicValueLineChart.startAnimation();
     }
 

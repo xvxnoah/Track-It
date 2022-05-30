@@ -289,8 +289,8 @@
 
                     <ImageView
                         android:id="@+id/positive"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
                         android:layout_marginStart="10dp"
                         android:contentDescription="Icon"
                         android:rotation="180"

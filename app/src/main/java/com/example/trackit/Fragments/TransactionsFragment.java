@@ -152,48 +152,40 @@ public class TransactionsFragment extends Fragment {
                 if(type.equals("Alimentació")){
                     transaction.setPic(R.drawable.ic_baseline_fastfood_24);
                     despeses += transaction.getQuantity();
-                    transactionVos.add(transaction);
                 } else if(type.equals("Compres")){
                     transaction.setPic(R.drawable.ic_baseline_shopping_cart_24);
                     despeses += transaction.getQuantity();
-                    transactionVos.add(transaction);
                 } else if(type.equals("Transport")){
                     transaction.setPic(R.drawable.ic_baseline_directions_transit_24);
                     despeses += transaction.getQuantity();
-                    transactionVos.add(transaction);
                 } else if(type.equals("Salut/Higiene")){
                     transaction.setPic(R.drawable.person);
                     despeses += transaction.getQuantity();
-                    transactionVos.add(transaction);
                 } else if(type.equals("Educació")){
                     transaction.setPic(R.drawable.ic_baseline_auto_stories_24);
                     despeses += transaction.getQuantity();
-                    transactionVos.add(transaction);
                 } else if(type.equals("Altres despeses")){
                     transaction.setPic(R.drawable.transaction);
                     despeses += transaction.getQuantity();
-                    transactionVos.add(transaction);
                 } else if(type.equals("Nòmina")){
-                    transaction.setPic(R.drawable.transaction);
+                    transaction.setPic(R.drawable.ic_baseline_attach_money_24);
                     ingressos += transaction.getQuantity();
-                    transactionVos.add(transaction);
                 } else if(type.equals("Criptomonedes")){
-                    transaction.setPic(R.drawable.transaction);
+                    transaction.setPic(R.drawable.ic_currency_btc);
                     ingressos += transaction.getQuantity();
-                    transactionVos.add(transaction);
                 } else if(type.equals("Accions")){
-                    transaction.setPic(R.drawable.transaction);
+                    transaction.setPic(R.drawable.ic_cash_100);
                     ingressos += transaction.getQuantity();
-                    transactionVos.add(transaction);
                 } else if(type.equals("Altres ingressos")){
                     transaction.setPic(R.drawable.transaction);
                     ingressos += transaction.getQuantity();
-                    transactionVos.add(transaction);
                 }
+                transactionVos.add(transaction);
             }
         }
 
         despeses = Math.abs(despeses);
+        mPieChart.clearChart();
         mPieChart.addPieSlice(new PieModel("Ingressos", ingressos.floatValue(), Color.parseColor("#00A86B")));
         mPieChart.addPieSlice(new PieModel("Despeses", despeses.floatValue(), Color.parseColor("#FD3C4A")));
 

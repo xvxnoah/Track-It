@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.R;
+import com.example.trackit.ViewModel.AboutUs;
 import com.example.trackit.initActivities.Info_Welcome_Page;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -71,6 +72,7 @@ public class ProfileFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
 
         Button logOut = (Button)view.findViewById(R.id.logOut);
+        Button aboutUs = (Button)view.findViewById(R.id.about_us_btn);
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +88,15 @@ public class ProfileFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), Info_Welcome_Page.class);
                 startActivity(intent);
                 getActivity().finish();
+            }
+        });
+
+        aboutUs.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AboutUs.class);
+                startActivity(intent);
             }
         });
         return view;

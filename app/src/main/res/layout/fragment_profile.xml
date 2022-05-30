@@ -215,14 +215,15 @@
                         android:src="@drawable/ic_baseline_fingerprint_24"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
+                    <Button
+                        android:id="@+id/fingerprint_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:backgroundTint="@color/background"
                         android:fontFamily="@font/g_bold"
-                        android:text="Protecció amb emprempta"
-                        android:textColor="@color/textPrimary"
-                        android:textSize="16sp" />
+                        android:text="Protecció amb empremta"
+                        android:textColor="@color/black"
+                        app:rippleColor="@color/background" />
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/password_switch_compact"
@@ -236,7 +237,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/backup"
+                android:id="@+id/Backup"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="1dp"
@@ -257,14 +258,15 @@
                         android:src="@drawable/ic_baseline_backup_24"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
+                    <Button
+                        android:id="@+id/backup_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:backgroundTint="@color/background"
                         android:fontFamily="@font/g_bold"
                         android:text="Còpia de seguretat"
-                        android:textColor="@color/textPrimary"
-                        android:textSize="16sp" />
+                        android:textColor="@color/black"
+                        app:rippleColor="@color/background" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.cardview.widget.CardView>
@@ -279,8 +281,10 @@
                 app:cardElevation="0dp">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/LinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:backgroundTint="@color/background"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -291,14 +295,15 @@
                         android:src="@drawable/ic_baseline_info_24"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <TextView
+                    <Button
+                        android:id="@+id/about_us_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:backgroundTint="@color/background"
                         android:fontFamily="@font/g_bold"
                         android:text="Sobre nosaltres"
-                        android:textColor="@color/textPrimary"
-                        android:textSize="16sp" />
+                        android:textColor="@color/black"
+                        app:rippleColor="@color/background" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.cardview.widget.CardView>

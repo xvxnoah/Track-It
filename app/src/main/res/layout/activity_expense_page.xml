@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/textExpense"
+        android:id="@+id/textAboutUs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/g_bold"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.04" />
 
     <ImageButton
-        android:id="@+id/back_expense"
+        android:id="@+id/back_about_us"
         android:layout_width="75dp"
         android:layout_height="54dp"
         android:layout_marginTop="14dp"
@@ -35,7 +35,7 @@
         android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/arrow"
-        app:layout_constraintEnd_toStartOf="@+id/textExpense"
+        app:layout_constraintEnd_toStartOf="@+id/textAboutUs"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -53,7 +53,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/continueExpense"
+            android:id="@+id/continueToWeb"
             android:layout_width="210dp"
             android:layout_height="48dp"
             android:layout_gravity="bottom"
@@ -174,7 +174,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_expense"
+        app:layout_constraintTop_toBottomOf="@+id/back_about_us"
         tools:ignore="TextContrastCheck" />
 
     <EditText

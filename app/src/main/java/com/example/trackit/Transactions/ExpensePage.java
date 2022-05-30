@@ -29,7 +29,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
-import com.example.trackit.Fragments.TransactionsFragment;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
@@ -42,10 +41,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class ExpensePage extends AppCompatActivity{
@@ -131,7 +128,7 @@ public class ExpensePage extends AppCompatActivity{
     }
 
     private void setListeners() {
-        ImageButton back = findViewById(R.id.back_expense);
+        ImageButton back = findViewById(R.id.back_about_us);
         Button imageExpense = findViewById(R.id.imageExpense);
         Button cameraExpense = findViewById(R.id.cameraExpense);
 
@@ -142,7 +139,7 @@ public class ExpensePage extends AppCompatActivity{
             }
         });
 
-        Button continueExpense= findViewById(R.id.continueExpense);
+        Button continueExpense= findViewById(R.id.continueToWeb);
 
         continueExpense.setOnClickListener(new View.OnClickListener() {
             @Override

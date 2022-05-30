@@ -24,16 +24,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.auth.User;
 
 import org.eazegraph.lib.charts.PieChart;
-import org.eazegraph.lib.communication.IOnItemFocusChangedListener;
 import org.eazegraph.lib.models.PieModel;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -101,7 +96,7 @@ public class TransactionsFragment extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_transactions, container, false);
         userInfo = UserInfo.getInstance();
 
-        recyclerViewTransaction = vista.findViewById(R.id.transactionRecyclerView);
+        recyclerViewTransaction = vista.findViewById(R.id.recentRecyclerView);
         recyclerViewTransaction.setLayoutManager(new LinearLayoutManager(getContext()));
         expense = vista.findViewById(R.id.expense);
         income = vista.findViewById(R.id.ingressos);

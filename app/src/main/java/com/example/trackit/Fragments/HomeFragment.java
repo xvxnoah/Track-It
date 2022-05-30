@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.trackit.Account.AuthActivity;
+import com.example.trackit.Adapters.AdapterTransactions;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
@@ -36,6 +39,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import org.eazegraph.lib.charts.ValueLineChart;
+import org.eazegraph.lib.models.PieModel;
 import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
 
@@ -72,6 +76,9 @@ public class HomeFragment extends Fragment {
 
     // creating a variable for our Database Reference for Firebase.
     DatabaseReference databaseReference;
+
+    RecyclerView recyclerViewTransaction;
+    private ArrayList<Transaction> transactionVos;
 
     // creating a variable for our object class
     com.example.trackit.Model.UserInfo UserInfo;
@@ -126,6 +133,9 @@ public class HomeFragment extends Fragment {
         QuantityDespeses = vista.findViewById(R.id.QuantityDespeses);
         QuantityIngressos = vista.findViewById(R.id.QuantityIngressos);
 
+        recyclerViewTransaction = vista.findViewById(R.id.recentRecyclerView);
+        recyclerViewTransaction.setLayoutManager(new LinearLayoutManager(getContext()));
+
         setSpinner();
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
@@ -148,6 +158,10 @@ public class HomeFragment extends Fragment {
                 com.example.trackit.Model.UserInfo.setUniqueInstance(userInfo);
                 try {
                     updateFragment();
+                    transactionVos = new ArrayList<>();
+                    fillUpList();
+                    AdapterTransactions adapter = new AdapterTransactions(transactionVos);
+                    recyclerViewTransaction.setAdapter(adapter);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -397,5 +411,59 @@ public class HomeFragment extends Fragment {
 
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tendencia.setAdapter(spinnerAdapter);
+    }
+
+    public void fillUpList() {
+        ArrayList<Transaction> transactions = userInfo.getTransactions();
+        Transaction transaction;
+        Double despeses = .0;
+        Double ingressos = .0;
+
+        int size;
+        if(transactions.size() <= 4){
+            size = transactions.size();
+        }else{
+            size = 4;
+        }
+
+        if(transactions != null){
+            for(int i = 0; i < size; i++){
+                transaction = transactions.get(transactions.size() - i - 1);
+                String type = transaction.getType();
+
+                if(type.equals("Alimentació")){
+                    transaction.setPic(R.drawable.ic_baseline_fastfood_24);
+                    despeses += transaction.getQuantity();
+                } else if(type.equals("Compres")){
+                    transaction.setPic(R.drawable.ic_baseline_shopping_cart_24);
+                    despeses += transaction.getQuantity();
+                } else if(type.equals("Transport")){
+                    transaction.setPic(R.drawable.ic_baseline_directions_transit_24);
+                    despeses += transaction.getQuantity();
+                } else if(type.equals("Salut/Higiene")){
+                    transaction.setPic(R.drawable.person);
+                    despeses += transaction.getQuantity();
+                } else if(type.equals("Educació")){
+                    transaction.setPic(R.drawable.ic_baseline_auto_stories_24);
+                    despeses += transaction.getQuantity();
+                } else if(type.equals("Altres despeses")){
+                    transaction.setPic(R.drawable.transaction);
+                    despeses += transaction.getQuantity();
+                } else if(type.equals("Nòmina")){
+                    transaction.setPic(R.drawable.ic_baseline_attach_money_24);
+                    ingressos += transaction.getQuantity();
+                } else if(type.equals("Criptomonedes")){
+                    transaction.setPic(R.drawable.ic_currency_btc);
+                    ingressos += transaction.getQuantity();
+                } else if(type.equals("Accions")){
+                    transaction.setPic(R.drawable.ic_cash_100);
+                    ingressos += transaction.getQuantity();
+                } else if(type.equals("Altres ingressos")){
+                    transaction.setPic(R.drawable.transaction);
+                    ingressos += transaction.getQuantity();
+                }
+                transactionVos.add(transaction);
+            }
+        }
     }
 }

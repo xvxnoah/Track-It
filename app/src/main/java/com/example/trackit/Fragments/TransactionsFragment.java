@@ -98,7 +98,7 @@ public class TransactionsFragment extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_transactions, container, false);
         userInfo = UserInfo.getInstance();
 
-        recyclerViewTransaction = vista.findViewById(R.id.recentRecyclerView);
+        recyclerViewTransaction = vista.findViewById(R.id.recentRecyclerViewTransactions);
         recyclerViewTransaction.setLayoutManager(new LinearLayoutManager(getContext()));
         expense = vista.findViewById(R.id.expense);
         income = vista.findViewById(R.id.ingressos);

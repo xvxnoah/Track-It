@@ -9,8 +9,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,13 +31,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.auth.User;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 import org.eazegraph.lib.charts.ValueLineChart;
-import org.eazegraph.lib.models.PieModel;
 import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
 
@@ -133,7 +126,7 @@ public class HomeFragment extends Fragment {
         QuantityDespeses = vista.findViewById(R.id.QuantityDespeses);
         QuantityIngressos = vista.findViewById(R.id.QuantityIngressos);
 
-        recyclerViewTransaction = vista.findViewById(R.id.recentRecyclerView);
+        recyclerViewTransaction = vista.findViewById(R.id.recentRecyclerViewTransactions);
         recyclerViewTransaction.setLayoutManager(new LinearLayoutManager(getContext()));
 
         setSpinner();

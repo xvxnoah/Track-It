@@ -1,22 +1,41 @@
 package com.example.trackit.Fragments;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.trackit.Account.AuthActivity;
+import com.example.trackit.Adapters.AdapterTransactions;
 import com.example.trackit.R;
 import com.example.trackit.ViewModel.AboutUs;
 import com.example.trackit.initActivities.Info_Welcome_Page;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URI;
+import java.text.ParseException;
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +43,12 @@ import com.google.firebase.auth.FirebaseAuth;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+
+    View view;
+
+    com.example.trackit.Model.UserInfo userInfo;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,10 +94,37 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_profile, container, false);
+        view =  inflater.inflate(R.layout.fragment_profile, container, false);
 
         Button logOut = (Button)view.findViewById(R.id.logOut);
         Button aboutUs = (Button)view.findViewById(R.id.about_us_btn);
+
+        firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
+
+        // Getting text from our edittext fields.
+        SharedPreferences preferences = getActivity().getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
+        String email = preferences.getString(AuthActivity.USER, null);
+        email = email.replace('.', ',');
+
+        userInfo = com.example.trackit.Model.UserInfo.getInstance();
+
+        // Below line is used to get reference for our database.
+        databaseReference = firebaseDatabase.getReference("users/" + email);
+
+        // Attach a listener to read the data at our posts reference
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userInfo = dataSnapshot.getValue(com.example.trackit.Model.UserInfo.class);
+                com.example.trackit.Model.UserInfo.setUniqueInstance(userInfo);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override

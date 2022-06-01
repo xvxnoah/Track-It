@@ -229,21 +229,20 @@ public class ExpensePage extends AppCompatActivity{
                                     Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         selectedImageUri = null;
-        Uri selectedImage;
 
         String filePath = null;
         switch (requestCode) {
             case 1:
                 if (resultCode == Activity.RESULT_OK) {
-                    selectedImage = imageReturnedIntent.getData();
-                    String selectedPath=selectedImage.getPath();
+                    selectedImageUri = imageReturnedIntent.getData();
+                    String selectedPath=selectedImageUri.getPath();
                     if (requestCode == 1) {
 
                         if (selectedPath != null) {
                             InputStream imageStream = null;
                             try {
                                 imageStream = getContentResolver().openInputStream(
-                                        selectedImage);
+                                        selectedImageUri);
                             } catch (FileNotFoundException e) {
                                 e.printStackTrace();
                             }

@@ -2,8 +2,6 @@ package com.example.trackit.Model;
 
 import android.net.Uri;
 
-import java.util.Date;
-
 public class Transaction {
     private String name;
     private String type;
@@ -49,6 +47,8 @@ public class Transaction {
 
     public int getPic() { return this.pic; }
 
+    public Uri getUri() { return this.selectedImageUri; }
+
     //Setters
     public void setName(String name){
         this.name = name;
@@ -66,6 +66,7 @@ public class Transaction {
         this.date = date;
     }
 
-
     public void setPic(int pic) { this.pic = pic; }
+
+    public void setUri(Uri image) { this.selectedImageUri = image; }
 }

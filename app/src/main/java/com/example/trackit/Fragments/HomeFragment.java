@@ -66,8 +66,6 @@ public class HomeFragment extends Fragment {
     Spinner tendencia;
 
     FirebaseDatabase firebaseDatabase;
-
-    // creating a variable for our Database Reference for Firebase.
     DatabaseReference databaseReference;
 
     RecyclerView recyclerViewTransaction;
@@ -210,6 +208,8 @@ public class HomeFragment extends Fragment {
             chartYear();
         } else if(seleccio.equals("Últims 6 mesos")){
             chartHalfYear();
+        } else if(seleccio.equals("Darrer mes")){
+            chartMonth();
         }
     }
 
@@ -362,8 +362,84 @@ public class HomeFragment extends Fragment {
         mCubicValueLineChart.startAnimation();
     }
 
-    private void chartMonth() {
+    private void chartMonth() throws ParseException {
+        Iterator<Transaction> iter = null;
+        Transaction actual;
+        Integer dayActual;
+        Integer monthActual;
+        if (Transactions != null) {
+            iter = Transactions.iterator();
+        }
 
+        ArrayList<Float> incomeDay = new ArrayList<>();
+        ArrayList<Float> expenseDay = new ArrayList<>();
+
+        Date now = new Date();
+        int month = now.getMonth();
+        int day = now.getDay();
+        int days;
+
+        if(month == 0 || month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10){
+            days = 31;
+        }else if(month == 2){
+            days = 28;
+        }else{
+            days = 30;
+        }
+
+        for (int y = 0; y < days; y++) {
+            incomeDay.add((float) 0);
+            expenseDay.add((float) 0);
+        }
+
+        double NumAnterior;
+        if (Transactions != null) {
+            while (iter.hasNext()) {
+                actual = iter.next();
+                String da = actual.getDate();
+                monthActual = sdf.parse(actual.getDate()).getMonth();
+                if(da.substring(1,2).equals("/")){
+                    dayActual = Integer.parseInt(da.substring(0,1)) - 1;
+                }else{
+                    dayActual = Integer.parseInt(da.substring(0,2)) - 1;
+                }
+
+                if(monthActual == month || (dayActual < days && monthActual == month - 1)) {
+                    if (actual.getType().equals("Nòmina") || actual.getType().equals("Criptomonedes") || actual.getType().equals("Accions") || actual.getType().equals("Altres ingressos")) {
+                        NumAnterior = incomeDay.get(dayActual) + actual.getQuantity();
+                        incomeDay.set(dayActual, (float) NumAnterior);
+                    } else {
+                        NumAnterior = expenseDay.get(dayActual) + abs(actual.getQuantity());
+                        expenseDay.set(dayActual, (float) NumAnterior);
+                    }
+                }
+            }
+        }
+
+        Date actualDate = new Date();
+        int actualDay = actualDate.getDay();
+
+        for (int i = 0; i < days; i++) {
+            if (actualDay < 0) {
+                actualDay = days - 1;
+            } else {
+                actualDay--;
+            }
+        }
+
+        for (int j = 0; j < days; j++) {
+            if (actualDay == days) {
+                actualDay = 0;
+            }
+            serieIncome.addPoint(new ValueLinePoint(Integer.toString(actualDay + 1), incomeDay.get(actualDay)));
+            serieExpenses.addPoint(new ValueLinePoint(Integer.toString(actualDay + 1), expenseDay.get(actualDay)));
+            actualDay++;
+        }
+
+        mCubicValueLineChart.clearChart();
+        mCubicValueLineChart.addSeries(serieIncome);
+        mCubicValueLineChart.addSeries((serieExpenses));
+        mCubicValueLineChart.startAnimation();
     }
 
     private void chartWeek() {

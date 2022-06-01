@@ -419,15 +419,9 @@ public class HomeFragment extends Fragment {
         Double despeses = .0;
         Double ingressos = .0;
 
-        int size;
-        if(transactions.size() <= 4){
-            size = transactions.size();
-        }else{
-            size = 4;
-        }
 
         if(transactions != null){
-            for(int i = 0; i < size; i++){
+            for(int i = 0; i < transactions.size() && i < 10; i++){
                 transaction = transactions.get(transactions.size() - i - 1);
                 String type = transaction.getType();
 

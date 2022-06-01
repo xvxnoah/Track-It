@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +45,7 @@ public class TransactionsFragment extends Fragment {
     private ArrayList<Transaction> transactionVos;
     private TextView expense, income;
     private PieChart mPieChart;
+    private CardView card;
 
     private UserInfo userInfo;
 
@@ -101,6 +103,7 @@ public class TransactionsFragment extends Fragment {
         expense = vista.findViewById(R.id.expense);
         income = vista.findViewById(R.id.ingressos);
         mPieChart = (PieChart) vista.findViewById(R.id.piechart);
+        card = vista.findViewById(R.id.card_icon_transaction);
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 

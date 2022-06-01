@@ -25,7 +25,7 @@
             android:layout_height="match_parent">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_image"
+                android:id="@+id/card_image_transaction"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_marginStart="12dp"
@@ -65,7 +65,7 @@
                 android:textColor="@color/textPrimary"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/category"
-                app:layout_constraintStart_toEndOf="@+id/card_image"
+                app:layout_constraintStart_toEndOf="@+id/card_image_transaction"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"/>
 

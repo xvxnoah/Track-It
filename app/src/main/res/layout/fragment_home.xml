@@ -7,193 +7,266 @@
     android:background="@color/white"
     tools:context=".Fragments.HomeFragment">
 
-    <TextView
-        android:id="@+id/Recents"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="500dp"
-        android:background="@color/background"
-        android:fontFamily="@font/g_bold"
-        android:padding="10dp"
-        android:text="Transaccions recents"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="24sp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recentRecyclerView"
-        android:layout_width="406dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="14dp"
-        android:nestedScrollingEnabled="false"
-        app:layout_constraintTop_toBottomOf="@+id/Recents"
-        tools:layout_editor_absoluteX="19dp" />
-
-    <Spinner
-        android:id="@+id/spinnerTendencia"
-        android:layout_width="194dp"
-        android:layout_height="43dp"
-        android:layout_gravity="top"
-        android:layout_marginTop="4dp"
-        android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.82"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/setUpText2" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <FrameLayout
-        android:layout_width="183dp"
-        android:layout_height="80dp"
-        android:background="@drawable/round"
-        android:backgroundTint="@color/greenIncome"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.067"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.199">
 
         <TextView
-            android:id="@+id/TextIngressos"
-            android:layout_width="89dp"
+            android:id="@+id/balanceHome"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="65dp"
-            android:layout_marginVertical="10dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/g_bold"
-            android:text="Ingressos"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:padding="10dp"
+            android:text="@string/balan_del_compte"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/balance"/>
 
         <TextView
-            android:id="@+id/QuantityIngressos"
-            android:layout_width="103dp"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="65dp"
-            android:layout_marginVertical="40dp"
+            android:id="@+id/balance"
+            android:layout_width="334dp"
+            android:layout_height="50dp"
             android:fontFamily="@font/g_bold"
-            android:text="0€"
-            android:textSize="24sp" />
+            android:text="@string/_0"
+            android:textAlignment="center"
+            android:textSize="48sp"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/balanceHome" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="38dp"
-            android:layout_height="39dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="20dp"
-            android:src="@drawable/money_in" />
-    </FrameLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toStartOf="@+id/balanceHome"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="30dp">
 
-    <TextView
-        android:id="@+id/setUpText2"
-        android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:background="@color/background"
-        android:fontFamily="@font/g_bold"
-        android:padding="10dp"
-        android:text="Tendència"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.331" />
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@+id/topBar">
 
-    <TextView
-        android:id="@+id/setUpText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:background="@color/background"
-        android:fontFamily="@font/g_bold"
-        android:padding="10dp"
-        android:text="Balanç del compte"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <org.eazegraph.lib.charts.ValueLineChart
-        android:id="@+id/cubiclinechart"
-        android:layout_width="345dp"
-        android:layout_height="193dp"
-        app:egCurveSmoothness="0.4"
-        app:egIndicatorLineColor="@color/green"
-        app:egLegendHeight="40dp"
-        app:egShowStandardValue="true"
-        app:egUseCubic="true"
-        app:egUseOverlapFill="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.535" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="160dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/round"
+                android:backgroundTint="@color/greenIncome"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/balance"
-        android:layout_width="334dp"
-        android:layout_height="50dp"
-        android:fontFamily="@font/g_bold"
-        android:text="0€"
-        android:textAlignment="center"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.082" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    <FrameLayout
-        android:layout_width="179dp"
-        android:layout_height="75dp"
-        android:background="@drawable/round"
-        android:backgroundTint="@color/expenseFiles"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.198">
+                    <TextView
+                        android:id="@+id/TextIngressos"
+                        android:layout_width="89dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/g_bold"
+                        android:text="@string/ingressos"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView2"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/TextDespeses"
-            android:layout_width="103dp"
-            android:layout_height="49dp"
-            android:layout_marginHorizontal="65dp"
-            android:layout_marginVertical="10dp"
-            android:fontFamily="@font/g_bold"
-            android:text="Despeses"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/QuantityIngressos"
+                        android:layout_width="103dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/g_bold"
+                        android:text="@string/_0"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/TextIngressos" />
 
-        <TextView
-            android:id="@+id/QuantityDespeses"
-            android:layout_width="102dp"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="65dp"
-            android:layout_marginVertical="40dp"
-            android:fontFamily="@font/g_bold"
-            android:text="0€"
-            android:textSize="24sp" />
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="38dp"
+                        android:layout_height="39dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="20dp"
+                        android:src="@drawable/money_in"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
-        <ImageView
-            android:id="@+id/imageMoneyOut"
-            android:layout_width="38dp"
-            android:layout_height="39dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="20dp"
-            android:src="@drawable/money_out" />
-    </FrameLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="160dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/round"
+                android:backgroundTint="@color/expenseFiles"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardView"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/TextDespeses"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/g_bold"
+                        android:text="@string/despeses"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageMoneyOut"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/QuantityDespeses"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/g_bold"
+                        android:text="@string/_0"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/TextDespeses" />
+
+                    <ImageView
+                        android:id="@+id/imageMoneyOut"
+                        android:layout_width="38dp"
+                        android:layout_height="39dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="20dp"
+                        android:src="@drawable/money_out"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tendencia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:background="@color/white"
+                android:fontFamily="@font/g_bold"
+                android:padding="10dp"
+                android:text="@string/tend_ncia"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintBottom_toTopOf="@+id/cubiclinechart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView"/>
+
+            <Spinner
+                android:id="@+id/spinnerTendencia"
+                android:layout_width="194dp"
+                android:layout_height="43dp"
+                android:layout_gravity="top"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintBottom_toTopOf="@+id/cubiclinechart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.452"
+                app:layout_constraintStart_toEndOf="@+id/tendencia"
+                app:layout_constraintTop_toBottomOf="@+id/cardView2"
+                app:layout_constraintVertical_bias="0.17000002" />
+
+            <org.eazegraph.lib.charts.ValueLineChart
+                android:id="@+id/cubiclinechart"
+                android:layout_width="345dp"
+                android:layout_height="193dp"
+                android:layout_marginBottom="80dp"
+                android:layout_marginTop="40dp"
+                app:egCurveSmoothness="0.4"
+                app:egIndicatorLineColor="@color/green"
+                app:egLegendHeight="40dp"
+                app:egShowStandardValue="true"
+                app:egUseCubic="true"
+                app:egUseOverlapFill="false"
+                app:layout_constraintBottom_toTopOf="@+id/Recents"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.54"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tendencia" />
+
+            <TextView
+                android:id="@+id/Recents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@color/white"
+                android:fontFamily="@font/g_bold"
+                android:padding="10dp"
+                android:text="Transaccions recents"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="160dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cubiclinechart" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recentRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:listitem="@layout/transaction_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Recents" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -69,6 +69,7 @@ public class HomeFragment extends Fragment {
     DatabaseReference databaseReference;
 
     RecyclerView recyclerViewTransaction;
+    TextView recent;
     private ArrayList<Transaction> transactionVos;
 
     // creating a variable for our object class
@@ -127,6 +128,7 @@ public class HomeFragment extends Fragment {
         recyclerViewTransaction = vista.findViewById(R.id.recentRecyclerViewTransactions);
         recyclerViewTransaction.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        recent = vista.findViewById(R.id.Recents);
         setSpinner();
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
@@ -488,7 +490,6 @@ public class HomeFragment extends Fragment {
         Double despeses = .0;
         Double ingressos = .0;
 
-
         if(transactions != null){
             for(int i = 0; i < transactions.size() && i < 10; i++){
                 transaction = transactions.get(transactions.size() - i - 1);
@@ -527,6 +528,8 @@ public class HomeFragment extends Fragment {
                 }
                 transactionVos.add(transaction);
             }
+        }else{
+            recent.setText("No n'hi ha transaccions");
         }
     }
 }

@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -30,8 +29,6 @@ public class RegisterPage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
-    boolean show = true;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,28 +42,6 @@ public class RegisterPage extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(RegisterPage.this, R.color.softGrey));
 
         setup();
-
-        Button btn = findViewById(R.id.buttonPSW);
-        EditText psw = findViewById((R.id.passwordRegister));
-        EditText email = findViewById((R.id.emailRegister));
-        psw.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        email.setInputType(InputType.TYPE_CLASS_TEXT);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!show){
-                    btn.setForeground(getResources().getDrawable(R.drawable.ojo1));
-                    show = true;
-                    psw.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    psw.setSelection(psw.getText().length());
-                }else{
-                    btn.setForeground(getResources().getDrawable(R.drawable.ojo2));
-                    show = false;
-                    psw.setInputType(InputType.TYPE_CLASS_TEXT);
-                    psw.setSelection(psw.getText().length());
-                }
-            }
-        });
     }
 
     private void setup() {
@@ -137,7 +112,7 @@ public class RegisterPage extends AppCompatActivity {
 
         editor.putString(AuthActivity.USER, user);
         editor.putString(AuthActivity.TYPE, "NORMAL");
-        
+
         editor.commit();
     }
 }

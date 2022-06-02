@@ -51,4 +51,5 @@
     <string name="ingressos">Ingressos</string>
     <string name="despeses">Despeses</string>
     <string name="tend_ncia">Tendència</string>
+    <string name="iniciarsessio">Iniciar sessió</string>
 </resources>

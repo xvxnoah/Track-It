@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/greenIncome</item>
     </style>
 
+    <style name="MyHintStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/mainBlue</item>
+    </style>
+
+    <style name="EditTextThemeOverlay" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@android:color/holo_blue_light</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/mainBlue</item>
+        <item name="colorAccent">@color/mainBlue</item>
+
+        <item name="android:textColorHint">@color/mainBlue</item>
+    </style>
 </resources>

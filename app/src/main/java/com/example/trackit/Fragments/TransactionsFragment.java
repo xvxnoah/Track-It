@@ -1,5 +1,6 @@
 package com.example.trackit.Fragments;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.HorizontalScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -58,6 +60,7 @@ public class TransactionsFragment extends Fragment {
     private Integer mesActual, anyActual;
     private MaterialButton gener, febrer, marc, abril, maig, juny, juliol, agost, setembre, octubre, novembre, desembre;
     private Spinner yearSelector;
+    private HorizontalScrollView hsv;
 
 
     private UserInfo userInfo;
@@ -119,6 +122,7 @@ public class TransactionsFragment extends Fragment {
         card = vista.findViewById(R.id.card_icon_transaction);
         textTransactions = vista.findViewById(R.id.transactionsInFragment);
         yearSelector = vista.findViewById(R.id.yearSpinner);
+        hsv = vista.findViewById(R.id.selectors);
         iniciateButtons(vista);
         setSpinner();
 
@@ -164,6 +168,20 @@ public class TransactionsFragment extends Fragment {
         return vista;
     }
 
+    private void moveSelectors(MaterialButton button){
+        hsv.post(new Runnable() {
+            @Override
+            public void run() {
+                int x, y;
+
+                x = button.getLeft();
+
+                ObjectAnimator animator=ObjectAnimator.ofInt(hsv, "scrollX",x);
+                animator.setDuration(800);
+                animator.start();
+            }
+        });
+    }
     private void provideActualYear() {
         anyActual = new Date().getYear();
     }
@@ -194,7 +212,6 @@ public class TransactionsFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
     }
@@ -227,6 +244,7 @@ public class TransactionsFragment extends Fragment {
         gener.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                moveSelectors(gener);
                 setMonth(gener);
             }
         });
@@ -234,6 +252,7 @@ public class TransactionsFragment extends Fragment {
         febrer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                moveSelectors(febrer);
                 setMonth(febrer);
             }
         });
@@ -241,6 +260,7 @@ public class TransactionsFragment extends Fragment {
         marc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                moveSelectors(marc);
                 setMonth(marc);
             }
         });
@@ -248,6 +268,7 @@ public class TransactionsFragment extends Fragment {
         abril.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                moveSelectors(abril);
                 setMonth(abril);
             }
         });
@@ -255,6 +276,7 @@ public class TransactionsFragment extends Fragment {
         maig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                moveSelectors(maig);
                 setMonth(maig);
             }
         });
@@ -262,6 +284,7 @@ public class TransactionsFragment extends Fragment {
         juny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                moveSelectors(juny);
                 setMonth(juny);
             }
         });
@@ -269,6 +292,7 @@ public class TransactionsFragment extends Fragment {
         juliol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                moveSelectors(juliol);
                 setMonth(juliol);
             }
         });
@@ -276,6 +300,7 @@ public class TransactionsFragment extends Fragment {
         agost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                moveSelectors(agost);
                 setMonth(agost);
             }
         });
@@ -283,6 +308,7 @@ public class TransactionsFragment extends Fragment {
         setembre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                moveSelectors(setembre);
                 setMonth(setembre);
             }
         });
@@ -290,6 +316,7 @@ public class TransactionsFragment extends Fragment {
         octubre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                moveSelectors(octubre);
                 setMonth(octubre);
             }
         });
@@ -297,6 +324,7 @@ public class TransactionsFragment extends Fragment {
         novembre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                moveSelectors(novembre);
                 setMonth(novembre);
             }
         });
@@ -304,6 +332,7 @@ public class TransactionsFragment extends Fragment {
         desembre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                moveSelectors(desembre);
                 setMonth(desembre);
             }
         });
@@ -313,28 +342,40 @@ public class TransactionsFragment extends Fragment {
         Integer month = new Date().getMonth();
 
         if(month == 0){
+            moveSelectors(gener);
             setMonth(gener);
         } else if(month == 1){
+            moveSelectors(febrer);
             setMonth(febrer);
         } else if(month == 2){
+            moveSelectors(marc);
             setMonth(marc);
         } else if(month == 3){
+            moveSelectors(abril);
             setMonth(abril);
         } else if(month == 4){
+            moveSelectors(maig);
             setMonth(maig);
         } else if(month == 5){
+            moveSelectors(juny);
             setMonth(juny);
         } else if(month == 6){
+            moveSelectors(juliol);
             setMonth(juliol);
         } else if(month == 7){
+            moveSelectors(agost);
             setMonth(agost);
         } else if(month == 8){
+            moveSelectors(setembre);
             setMonth(setembre);
         } else if(month == 9){
+            moveSelectors(octubre);
             setMonth(octubre);
         } else if(month == 10){
+            moveSelectors(novembre);
             setMonth(novembre);
         } else if(month == 11){
+            moveSelectors(desembre);
             setMonth(desembre);
         }
     }

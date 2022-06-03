@@ -33,6 +33,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
@@ -90,10 +91,16 @@ public class AuthActivity extends AppCompatActivity {
                                         updateUI(user);
                                     } else {
                                         // If sign in fails, display a message to the user.
-                                        updateUI(null);
+                                        Toast.makeText(AuthActivity.this, ((FirebaseAuthException) task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
+                } else if(email.getText().toString().isEmpty() && pass.getText().toString().isEmpty()){
+                    Toast.makeText(AuthActivity.this, "S'han d'omplir tots els camps!", Toast.LENGTH_SHORT).show();
+                } else if(email.getText().toString().isEmpty()){
+                    Toast.makeText(AuthActivity.this, "Has d'indicar l'email!", Toast.LENGTH_SHORT).show();
+                } else{
+                    Toast.makeText(AuthActivity.this, "Has d'indicar la contrassenya!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

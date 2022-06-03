@@ -68,6 +68,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
                         android:text="Gener"
+                        android:textColor="@color/black"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
@@ -79,6 +80,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
                         android:text="Febrer"
+                        android:textColor="@color/black"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
@@ -90,6 +92,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
                         android:text="Març"
+                        android:textColor="@color/black"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
@@ -101,6 +104,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
                         android:text="Abril"
+                        android:textColor="@color/black"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
@@ -112,6 +116,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
                         android:text="Maig"
+                        android:textColor="@color/black"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
@@ -123,6 +128,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
                         android:text="Juny"
+                        android:textColor="@color/black"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
@@ -134,6 +140,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
                         android:text="Juliol"
+                        android:textColor="@color/black"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
@@ -145,6 +152,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
                         android:text="Agost"
+                        android:textColor="@color/black"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
@@ -156,6 +164,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
                         android:text="Setembre"
+                        android:textColor="@color/black"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
@@ -167,6 +176,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
                         android:text="Octubre"
+                        android:textColor="@color/black"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
@@ -178,6 +188,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
                         android:text="Novembre"
+                        android:textColor="@color/black"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
@@ -189,6 +200,7 @@
                         android:layout_marginEnd="16dp"
                         android:gravity="center"
                         android:text="Desembre"
+                        android:textColor="@color/black"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
                 </LinearLayout>

@@ -110,14 +110,6 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        fab_news.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateFab();
-                startActivity(new Intent(HomePage.this, NewsPage.class));
-            }
-        });
-
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.principal_menu:

@@ -99,20 +99,6 @@
             app:srcCompat="@drawable/money_out"
             app:tint="@color/white" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_news"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="120dp"
-            android:backgroundTint="@color/blue"
-            android:contentDescription="@string/app_name"
-            android:visibility="invisible"
-            app:backgroundTint="@android:color/transparent"
-            app:maxImageSize="36dp"
-            app:srcCompat="@drawable/news"
-            app:tint="@color/white" />
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

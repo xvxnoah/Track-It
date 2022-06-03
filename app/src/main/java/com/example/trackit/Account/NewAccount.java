@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -94,6 +95,16 @@ public class NewAccount extends AppCompatActivity {
 
         Window window = NewAccount.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(NewAccount.this, R.color.lila));
+
+        ImageButton back = findViewById(R.id.back_setup);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+                finish();
+            }
+        });
     }
 
     public void addDatatoFirebase(String name, String email, Double quantity) {

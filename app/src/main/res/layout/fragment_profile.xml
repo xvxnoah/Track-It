@@ -237,41 +237,6 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/Backup"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="1dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="0dp"
-                app:cardElevation="0dp">
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="16dp"
-                        android:src="@drawable/ic_baseline_backup_24"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <Button
-                        android:id="@+id/backup_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/background"
-                        android:fontFamily="@font/g_bold"
-                        android:text="Còpia de seguretat"
-                        android:textColor="@color/black"
-                        app:rippleColor="@color/background" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
                 android:id="@+id/about_us"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -331,33 +296,27 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:tint="@color/blackNews" />
 
-                    <TextView
+                    <Button
+                        android:id="@+id/logOut"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
+                        android:backgroundTint="@color/background"
                         android:fontFamily="@font/g_bold"
-                        android:text="Tanca sessió"
-                        android:textColor="@color/textPrimary"
-                        android:textSize="16sp" />
+                        android:text="TANCA SESSIÓ"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textColorHint="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.498"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.853" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.cardview.widget.CardView>
 
-            <Button
-                android:id="@+id/logOut"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/mainBlue"
-                android:fontFamily="@font/g_bold"
-                android:text="@string/tanca_sessi"
-                android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.853" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

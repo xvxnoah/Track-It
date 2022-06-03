@@ -156,15 +156,7 @@ public class ExpensePage extends AppCompatActivity{
 
                     Transaction transaction;
 
-                    if(data == null){
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
-                        Date date = new Date();
-                        data = formatter.format(date);
-                        transaction = new Transaction(description, category, quantity, data, selectedImageUri);
-                    } else{
-                        transaction = new Transaction(description, category, quantity, dateExpense.getText().toString(), selectedImageUri);
-                    }
-
+                    transaction = new Transaction(description, category, quantity, dateExpense.getText().toString(), selectedImageUri);
                     userInfo.addTransaction(transaction);
                     userInfo.updateWasted(expense);
                     ref.setValue(userInfo);

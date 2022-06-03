@@ -529,7 +529,7 @@ public class HomeFragment extends Fragment {
                 transactionVos.add(transaction);
             }
         }else{
-            recent.setText("No n'hi ha transaccions");
+            recent.setText("No hi ha transaccions");
         }
     }
 }

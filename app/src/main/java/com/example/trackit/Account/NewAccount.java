@@ -71,10 +71,9 @@ public class NewAccount extends AppCompatActivity {
 
                 String name = userName.getText().toString();
 
-
                 String quantity = userQuantity.getText().toString();
 
-                if(!quantity.isEmpty()){
+                if(!quantity.isEmpty() && !name.isEmpty()){
                     // Below line is used to get reference for our database.
                     databaseReference = firebaseDatabase.getReference("users/"+email);
 
@@ -83,6 +82,10 @@ public class NewAccount extends AppCompatActivity {
 
                     // below line is for checking weather the edittext fields are empty or not.
                     addDatatoFirebase(name, email, Double.valueOf(quantity));
+                } else if(quantity.isEmpty() && name.isEmpty()){
+                    Toast.makeText(NewAccount.this, "S'han d'omplir tots els camps!", Toast.LENGTH_LONG).show();
+                } else if(name.isEmpty()){
+                    Toast.makeText(NewAccount.this, "Has d'introduir un nom d'usuari!", Toast.LENGTH_LONG).show();
                 } else{
                     Toast.makeText(NewAccount.this, "Has d'introduir una quantitat!", Toast.LENGTH_LONG).show();
                 }
@@ -117,7 +120,8 @@ public class NewAccount extends AppCompatActivity {
                 // inside the method of on Data change we are setting
                 // our object class to our database reference.
                 // data base reference will sends data to firebase.
-                databaseReference.setValue(User);
+
+                //databaseReference.setValue(User);
 
                 // After adding this data we are showing toast message.
                 Toast.makeText(NewAccount.this, "La configuració s'ha realitzat correctament", Toast.LENGTH_SHORT).show();
@@ -126,9 +130,6 @@ public class NewAccount extends AppCompatActivity {
 
                 SharedPreferences saveUser = getSharedPreferences(SETUP_USER, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = saveUser.edit();
-
-                SharedPreferences preferences = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
-                String email = preferences.getString(AuthActivity.USER, null);
 
                 editor.putString(SETUP_EMAIL, email);
                 editor.commit();
@@ -143,12 +144,13 @@ public class NewAccount extends AppCompatActivity {
             }
         });
 
-        // Save to sharedPreferences
+        /* Save to sharedPreferences
         SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(User);
         prefsEditor.putString("UserInfo", json);
         prefsEditor.commit();
+        */
     }
 }

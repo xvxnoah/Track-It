@@ -49,11 +49,13 @@ public class Splash_Screen2 extends AppCompatActivity {
 
     }
 
+    /* Same device */
     private boolean alreadySetUpLocal() {
-        /* Same device */
+        /* Usuari actual */
         SharedPreferences preferencesUser = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
         String email = preferencesUser.getString(AuthActivity.USER, null);
 
+        /* Usuari guardat al sistema */
         SharedPreferences preferencesSetUp = getSharedPreferences(NewAccount.SETUP_USER, Context.MODE_PRIVATE);
         String user = preferencesSetUp.getString(NewAccount.SETUP_EMAIL, null);
 

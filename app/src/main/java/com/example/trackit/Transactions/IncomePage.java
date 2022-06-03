@@ -154,14 +154,7 @@ public class IncomePage extends AppCompatActivity {
 
                     Transaction transaction;
 
-                    if(data == null){
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
-                        Date date = new Date();
-                        data = formatter.format(date);
-                        transaction = new Transaction(description, category, quantity, data, selectedImageUri);
-                    } else{
-                        transaction = new Transaction(description, category, quantity, dateIncome.getText().toString(), selectedImageUri);
-                    }
+                    transaction = new Transaction(description, category, quantity, dateIncome.getText().toString(), selectedImageUri);
                     userInfo.addTransaction(transaction);
                     userInfo.updateSave(quantity);
                     ref.setValue(userInfo);
@@ -209,7 +202,6 @@ public class IncomePage extends AppCompatActivity {
         });
 
     }
-
 
     @Override
     public void onBackPressed(){

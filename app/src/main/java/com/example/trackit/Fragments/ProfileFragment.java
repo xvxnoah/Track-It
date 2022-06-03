@@ -20,11 +20,11 @@ import android.widget.ImageView;
 
 import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.Adapters.AdapterTransactions;
+import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
 import com.example.trackit.ViewModel.AboutUs;
 import com.example.trackit.initActivities.Info_Welcome_Page;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -131,7 +131,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 SharedPreferences saveSession = getActivity().getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
 
-                String email = saveSession.getString(AuthActivity.USER, null);
+                UserInfo.setUniqueInstance(null);
 
                 saveSession.edit().clear().commit();
 

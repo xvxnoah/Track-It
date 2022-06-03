@@ -1,5 +1,6 @@
 package com.example.trackit.Adapters;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,13 @@ public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransaction
         holder.title.setText(transactionVos.get(position).getName());
         holder.category.setText(transactionVos.get(position).getType());
         String quantity = String.valueOf(transactionVos.get(position).getQuantity());
-        holder.amount.setText(quantity);
+
+        if(transactionVos.get(position).getQuantity() < 0){
+            holder.amount.setText(quantity);
+            holder.amount.setTextColor(Color.RED);
+        } else{
+            holder.amount.setText(quantity);
+        }
         holder.date.setText(transactionVos.get(position).getDate());
         holder.picCategory.setImageResource(transactionVos.get(position).getPic());
 

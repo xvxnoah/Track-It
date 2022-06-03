@@ -43,7 +43,7 @@ public class TransactionsFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private ArrayList<Transaction> transactionVos;
-    private TextView expense, income;
+    private TextView expense, income, textTransactions;
     private PieChart mPieChart;
     private CardView card;
 
@@ -104,6 +104,7 @@ public class TransactionsFragment extends Fragment {
         income = vista.findViewById(R.id.ingressos);
         mPieChart = (PieChart) vista.findViewById(R.id.piechart);
         card = vista.findViewById(R.id.card_icon_transaction);
+        textTransactions = vista.findViewById(R.id.transactionsInFragment);
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
@@ -182,13 +183,17 @@ public class TransactionsFragment extends Fragment {
             }
         }
 
-        despeses = Math.abs(despeses);
-        mPieChart.clearChart();
-        mPieChart.addPieSlice(new PieModel("Ingressos", ingressos.floatValue(), Color.parseColor("#00A86B")));
-        mPieChart.addPieSlice(new PieModel("Despeses", despeses.floatValue(), Color.parseColor("#FD3C4A")));
+        if(transactions != null){
+            despeses = Math.abs(despeses);
+            mPieChart.clearChart();
+            mPieChart.addPieSlice(new PieModel("Ingressos", ingressos.floatValue(), Color.parseColor("#00A86B")));
+            mPieChart.addPieSlice(new PieModel("Despeses", despeses.floatValue(), Color.parseColor("#FD3C4A")));
 
-        mPieChart.setDrawValueInPie(false);
-        mPieChart.startAnimation();
+            mPieChart.setDrawValueInPie(false);
+            mPieChart.startAnimation();
+        } else{
+            textTransactions.setText("No hi ha transaccions");
+        }
 
         expense.setText(despeses.toString());
         income.setText(ingressos.toString());

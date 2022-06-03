@@ -110,6 +110,8 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+
+
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.principal_menu:
@@ -152,18 +154,14 @@ public class HomePage extends AppCompatActivity {
         if(isOpen){
             fab_in.startAnimation(fabClose);
             fab_out.startAnimation(fabClose);
-            fab_news.startAnimation(fabClose);
             fab_in.setClickable(false);
             fab_out.setClickable(false);
-            fab_news.setClickable(false);
             isOpen = false;
         } else{
             fab_in.startAnimation(fabOpen);
             fab_out.startAnimation(fabOpen);
-            fab_news.startAnimation(fabOpen);
             fab_in.setClickable(true);
             fab_out.setClickable(true);
-            fab_news.setClickable(true);
             isOpen = true;
         }
     }

@@ -3,6 +3,7 @@ package com.example.trackit.Fragments;
 import static java.lang.Math.abs;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,9 +24,12 @@ import android.widget.TextView;
 
 import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.Adapters.AdapterTransactions;
+import com.example.trackit.HomePage;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
+import com.example.trackit.News.NewsPage;
 import com.example.trackit.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,11 +40,13 @@ import org.eazegraph.lib.charts.ValueLineChart;
 import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,6 +54,8 @@ import java.util.Iterator;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+
+    FloatingActionButton fab_news;
 
     ValueLineSeries serieIncome;
     ValueLineSeries serieExpenses;
@@ -125,6 +133,8 @@ public class HomeFragment extends Fragment {
         QuantityDespeses = vista.findViewById(R.id.QuantityDespeses);
         QuantityIngressos = vista.findViewById(R.id.QuantityIngressos);
 
+        fab_news = vista.findViewById(R.id.fab_news);
+
         recyclerViewTransaction = vista.findViewById(R.id.recentRecyclerViewTransactions);
         recyclerViewTransaction.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -181,6 +191,13 @@ public class HomeFragment extends Fragment {
                 // your code here
             }
 
+        });
+
+        fab_news.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), NewsPage.class));
+            }
         });
         return vista;
     }
@@ -444,9 +461,91 @@ public class HomeFragment extends Fragment {
         mCubicValueLineChart.startAnimation();
     }
 
-    private void chartWeek() {
+    /*
+    private void chartWeek() throws ParseException {
+        Iterator<Transaction> iter = null;
+        Transaction actual;
+        Integer dayActual;
+        Integer monthActual;
+        if (Transactions != null) {
+            iter = Transactions.iterator();
+        }
 
+        ArrayList<Float> incomeDay = new ArrayList<>();
+        ArrayList<Float> expenseDay = new ArrayList<>();
+
+        Date now = new Date();
+        int month = now.getMonth();
+        int day = now.getDay();
+        int days;
+
+        days = 7;
+
+        for (int y = 0; y < days; y++) {
+            incomeDay.add((float) 0);
+            expenseDay.add((float) 0);
+        }
+
+        DateFormat formatter;
+        Locale locale;
+        double NumAnterior;
+        String dayOfWeek;
+        String dayBefore = now.toString();
+        boolean aux = false;
+        if (Transactions != null) {
+            while (iter.hasNext()) {
+                actual = iter.next();
+                locale = new Locale("Catalan");
+                formatter = new SimpleDateFormat("EEEE", locale);
+                Date dateActual = sdf.parse(actual.getDate());
+                dayOfWeek = formatter.format(dateActual);
+                if(actual.getDate().equals(dayBefore) == false){
+                    dayBefore = actual.getDate();
+                    aux = true;
+                }
+
+                if((now.getDay()!=dateActual.getDay()) && ){
+
+                }
+
+                if(monthActual == month || (dayActual < days && monthActual == month - 1)) {
+                    if (actual.getType().equals("Nòmina") || actual.getType().equals("Criptomonedes") || actual.getType().equals("Accions") || actual.getType().equals("Altres ingressos")) {
+                        NumAnterior = incomeDay.get(dayActual) + actual.getQuantity();
+                        incomeDay.set(dayActual, (float) NumAnterior);
+                    } else {
+                        NumAnterior = expenseDay.get(dayActual) + abs(actual.getQuantity());
+                        expenseDay.set(dayActual, (float) NumAnterior);
+                    }
+                }
+            }
+        }
+
+        Date actualDate = new Date();
+        int actualDay = actualDate.getDay();
+
+        for (int i = 0; i < days; i++) {
+            if (actualDay < 0) {
+                actualDay = days - 1;
+            } else {
+                actualDay--;
+            }
+        }
+
+        for (int j = 0; j < days; j++) {
+            if (actualDay == days) {
+                actualDay = 0;
+            }
+            serieIncome.addPoint(new ValueLinePoint(Integer.toString(actualDay + 1), incomeDay.get(actualDay)));
+            serieExpenses.addPoint(new ValueLinePoint(Integer.toString(actualDay + 1), expenseDay.get(actualDay)));
+            actualDay++;
+        }
+
+        mCubicValueLineChart.clearChart();
+        mCubicValueLineChart.addSeries(serieIncome);
+        mCubicValueLineChart.addSeries((serieExpenses));
+        mCubicValueLineChart.startAnimation();
     }
+    */
 
     private void setSpinner() {
         tendencia = vista.findViewById(R.id.spinnerTendencia);

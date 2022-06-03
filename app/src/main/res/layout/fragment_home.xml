@@ -27,11 +27,11 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/balance"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/balance"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/balance"
@@ -63,6 +63,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginStart="24dp"
+            android:backgroundTint="@color/background"
+            android:contentDescription="@string/app_name"
+            android:visibility="visible"
+            app:backgroundTint="@color/background"
+            app:layout_constraintStart_toEndOf="@+id/balanceHome"
+            app:maxImageSize="36dp"
+            app:srcCompat="@drawable/news"
+            app:tint="@color/black"
+            tools:layout_editor_absoluteY="5dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

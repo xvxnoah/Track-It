@@ -38,6 +38,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/mainBlue"
+                android:popupBackground="@color/spinner"
                 android:spinnerMode="dropdown"
                 app:layout_constraintBottom_toBottomOf="@+id/titol_transactions"
                 app:layout_constraintEnd_toEndOf="parent"

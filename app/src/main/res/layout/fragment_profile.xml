@@ -219,7 +219,8 @@
                         android:id="@+id/fingerprint_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/background"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/white"
                         android:fontFamily="@font/g_bold"
                         android:text="Protecció amb empremta"
                         android:textColor="@color/black"
@@ -227,10 +228,10 @@
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/password_switch_compact"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="28dp" />
+                        android:layout_marginStart="5dp"/>
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -262,9 +263,11 @@
 
                     <Button
                         android:id="@+id/about_us_btn"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/background"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="4dp"
+                        android:backgroundTint="@color/white"
                         android:fontFamily="@font/g_bold"
                         android:text="Sobre nosaltres"
                         android:textColor="@color/black"
@@ -298,10 +301,11 @@
 
                     <Button
                         android:id="@+id/logOut"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:backgroundTint="@color/background"
+                        android:layout_marginEnd="4dp"
+                        android:backgroundTint="@color/white"
                         android:fontFamily="@font/g_bold"
                         android:text="TANCA SESSIÓ"
                         android:textAllCaps="false"

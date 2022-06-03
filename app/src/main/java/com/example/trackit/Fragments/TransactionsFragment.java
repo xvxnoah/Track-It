@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.trackit.Account.AuthActivity;
@@ -51,9 +54,11 @@ public class TransactionsFragment extends Fragment {
     private TextView expense, income, textTransactions;
     private PieChart mPieChart;
     private CardView card;
-    SimpleDateFormat sdf;
-    Integer mesActual;
-    MaterialButton gener, febrer, marc, abril, maig, juny, juliol, agost, setembre, octubre, novembre, desembre;
+    private SimpleDateFormat sdf;
+    private Integer mesActual, anyActual;
+    private MaterialButton gener, febrer, marc, abril, maig, juny, juliol, agost, setembre, octubre, novembre, desembre;
+    private Spinner yearSelector;
+
 
     private UserInfo userInfo;
 
@@ -113,7 +118,9 @@ public class TransactionsFragment extends Fragment {
         mPieChart = (PieChart) vista.findViewById(R.id.piechart);
         card = vista.findViewById(R.id.card_icon_transaction);
         textTransactions = vista.findViewById(R.id.transactionsInFragment);
+        yearSelector = vista.findViewById(R.id.yearSpinner);
         iniciateButtons(vista);
+        setSpinner();
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
@@ -150,9 +157,55 @@ public class TransactionsFragment extends Fragment {
         });
 
         monthListeners();
+        spinnerListener();
+        provideActualYear();
         provideActualMonth();
 
         return vista;
+    }
+
+    private void provideActualYear() {
+        anyActual = new Date().getYear();
+    }
+
+    private void spinnerListener(){
+        yearSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String any = yearSelector.getSelectedItem().toString();
+                sdf = new SimpleDateFormat("yyyy");
+
+                try{
+                    anyActual = sdf.parse(any).getYear();
+                } catch (ParseException e){
+                    e.printStackTrace();
+                }
+
+                transactionVos = new ArrayList<>();
+                try{
+                    fillUpList();
+                } catch (ParseException e){
+                    e.printStackTrace();
+                }
+
+                AdapterTransactions adapter = new AdapterTransactions(transactionVos);
+                recyclerViewTransaction.setAdapter(adapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void setSpinner() {
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
+                android.R.layout.simple_spinner_item,
+                getResources().getStringArray(R.array.yearsCategory));
+
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSelector.setAdapter(spinnerAdapter);
     }
 
     private void iniciateButtons(View vista){
@@ -284,7 +337,6 @@ public class TransactionsFragment extends Fragment {
         } else if(month == 11){
             setMonth(desembre);
         }
-
     }
 
     private void setMonth(MaterialButton button) {
@@ -489,14 +541,15 @@ public class TransactionsFragment extends Fragment {
         Double despeses = .0;
         Double ingressos = .0;
         sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Integer monthTransaction;
+        Integer monthTransaction, yearTransaction;
 
         if(transactions != null){
             for(int i = 0; i < transactions.size(); i++){
                 transaction = transactions.get(transactions.size() - i - 1);
                 monthTransaction = sdf.parse(transaction.getDate()).getMonth();
+                yearTransaction = sdf.parse(transaction.getDate()).getYear();
 
-                if(monthTransaction.equals(mesActual)){
+                if(monthTransaction.equals(mesActual) && yearTransaction.equals(anyActual)){
                     String type = transaction.getType();
 
                     if(type.equals("Alimentació")){

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.Adapters.AdapterTransactions;
@@ -31,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.awt.font.TextAttribute;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URI;
@@ -49,6 +51,7 @@ public class ProfileFragment extends Fragment {
     com.example.trackit.Model.UserInfo userInfo;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    TextView mailID;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -94,16 +97,18 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_profile, container, false);
+        view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         Button logOut = (Button)view.findViewById(R.id.logOut);
         Button aboutUs = (Button)view.findViewById(R.id.about_us_btn);
+        mailID = view.findViewById(R.id.mail_id);
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
         // Getting text from our edittext fields.
         SharedPreferences preferences = getActivity().getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
         String email = preferences.getString(AuthActivity.USER, null);
+        mailID.setText(email);
         email = email.replace('.', ',');
 
         userInfo = com.example.trackit.Model.UserInfo.getInstance();

@@ -46,7 +46,6 @@ public class Welcome_Page extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Welcome_Page.this, NewAccount.class));
-                // finish?¿
             }
         });
     }

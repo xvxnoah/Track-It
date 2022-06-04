@@ -37,6 +37,7 @@ public class Info_Welcome_Page extends AppCompatActivity {
     private Button loginPage;
     private Button registerPage;
     private boolean out;
+    static Info_Welcome_Page info_welcome_page;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class Info_Welcome_Page extends AppCompatActivity {
         session();
         out = false;
         setContentView(R.layout.activity_info_welcome_page);
+        info_welcome_page = this;
 
         loginPage = findViewById(R.id.login_welcome);
         registerPage = findViewById(R.id.register_welcome);
@@ -139,14 +141,18 @@ public class Info_Welcome_Page extends AppCompatActivity {
         }
     }
 
+    public static Info_Welcome_Page getInstance(){
+        return info_welcome_page;
+    }
+
     private void session() {
         SharedPreferences preferences = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
 
         String user = preferences.getString(AuthActivity.USER, null);
 
         if(user != null){
-            Toast.makeText(this,"Benvingut de nou!",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(Info_Welcome_Page.this, HomePage.class)); //CHECK FOR SETUP ACCOUNT
+            Intent intent = new Intent(this, Splash_Screen2.class);
+            startActivity(intent);
             finish();
         }
     }

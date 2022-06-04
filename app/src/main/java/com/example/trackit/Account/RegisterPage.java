@@ -76,6 +76,7 @@ public class RegisterPage extends AppCompatActivity {
                                         Intent intent = new Intent(RegisterPage.this, Welcome_Page.class);
                                         saveSession(userEmail);
                                         startActivity(intent);
+                                        Info_Welcome_Page.getInstance().finish();
                                         finish();
 
                                     } else {

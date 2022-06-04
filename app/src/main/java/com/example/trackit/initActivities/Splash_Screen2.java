@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -77,11 +78,14 @@ public class Splash_Screen2 extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     Log.d("==== CheckDB", "Already configured!");
+                    Toast.makeText(Splash_Screen2.this, "Benvingut de nou!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Splash_Screen2.this, HomePage.class);
                     startActivity(intent);
+                    Info_Welcome_Page.getInstance().finish();
                     finish();
                 } else {
                     Log.d("==== CheckDB", "Not configured!");
+                    Toast.makeText(Splash_Screen2.this, "Has de configurar el compte!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Splash_Screen2.this, Welcome_Page.class);
                     startActivity(intent);
                     finish();

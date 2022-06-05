@@ -121,6 +121,13 @@ public class UserInfo extends Observable {
         notifyObservers(transaction);
     }
 
+    public void addBudget(Budget budget){
+        if(this.budgets==null){
+            this.budgets = new ArrayList<Budget>();
+        }
+        this.budgets.add(budget);
+    }
+
     public void updateWasted(double quantity) {
         this.quantity = this.quantity - quantity;
         this.moneyWasted = this.moneyWasted + quantity;

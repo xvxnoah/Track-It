@@ -271,11 +271,11 @@
                 app:layout_constraintTop_toBottomOf="@id/cubiclinechart" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recentRecyclerViewTransactions"
+                android:id="@+id/recentRecyclerViewHome"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="130dp"
                 android:nestedScrollingEnabled="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:listitem="@layout/transaction_item"

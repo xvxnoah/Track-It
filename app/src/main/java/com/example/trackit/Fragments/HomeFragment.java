@@ -24,7 +24,6 @@ import android.widget.TextView;
 
 import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.Adapters.AdapterTransactions;
-import com.example.trackit.HomePage;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
 import com.example.trackit.News.NewsPage;
@@ -40,13 +39,11 @@ import org.eazegraph.lib.charts.ValueLineChart;
 import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -135,7 +132,7 @@ public class HomeFragment extends Fragment {
 
         fab_news = vista.findViewById(R.id.fab_news);
 
-        recyclerViewTransaction = vista.findViewById(R.id.recentRecyclerViewTransactions);
+        recyclerViewTransaction = vista.findViewById(R.id.recentRecyclerViewHome);
         recyclerViewTransaction.setLayoutManager(new LinearLayoutManager(getContext()));
 
         recent = vista.findViewById(R.id.Recents);

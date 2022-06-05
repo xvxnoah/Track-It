@@ -125,7 +125,7 @@ public class NewAccount extends AppCompatActivity {
 
         databaseReference.setValue(User);
         // We are use add value event listener method which is called with database reference.
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // inside the method of on Data change we are setting
@@ -164,4 +164,5 @@ public class NewAccount extends AppCompatActivity {
         prefsEditor.commit();
         */
     }
+
 }

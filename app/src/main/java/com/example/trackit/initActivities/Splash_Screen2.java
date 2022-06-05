@@ -73,7 +73,7 @@ public class Splash_Screen2 extends AppCompatActivity {
         String email = preferencesUser.getString(AuthActivity.USER, null);
 
         DatabaseReference reference = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("users");
-        reference.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
+        reference.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){

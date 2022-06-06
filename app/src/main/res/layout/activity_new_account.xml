@@ -9,18 +9,15 @@
 
     <ImageButton
         android:id="@+id/back_setup"
-        android:layout_width="75dp"
+        android:layout_width="wrap_content"
         android:layout_height="54dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
         android:adjustViewBounds="true"
         android:backgroundTint="@color/lila"
         android:contentDescription="@string/back_register"
         android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/arrow"
-        app:layout_constraintEnd_toStartOf="@+id/setUpText"
-        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/white"
@@ -30,7 +27,8 @@
         android:id="@+id/setUpText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
         android:background="@color/lila"
         android:fontFamily="@font/g_bold"
         android:padding="10dp"
@@ -40,7 +38,7 @@
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/back_setup"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.009" />
 

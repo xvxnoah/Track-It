@@ -16,17 +16,16 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+        android:layout_marginTop="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.037" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/back_income"
         android:layout_width="75dp"
         android:layout_height="54dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="10dp"
         android:adjustViewBounds="true"
         android:backgroundTint="@color/greenIncome"
         android:contentDescription="@string/back_expense"
@@ -40,148 +39,26 @@
         app:tint="@color/white"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="495dp"
-        android:background="@drawable/rounded_shape"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/continueIncome"
-            android:layout_width="210dp"
-            android:layout_height="48dp"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="95dp"
-            android:layout_marginBottom="22dp"
-            android:backgroundTint="@color/greenIncome"
-            android:fontFamily="@font/g_bold"
-            android:text="@string/continua"
-            android:textAllCaps="false"
-            tools:ignore="TextContrastCheck" />
-
-
-        <EditText
-            android:id="@+id/incomeTitle"
-            android:layout_width="341dp"
-            android:layout_height="48dp"
-            android:layout_gravity="top"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="40dp"
-
-            android:autofillHints=""
-            android:background="@android:color/transparent"
-            android:ems="10"
-            android:fontFamily="@font/g_bold"
-            android:hint="Títol"
-            android:inputType="textPersonName"
-            android:textColor="@color/softBlack"
-            android:textSize="16sp"
-            tools:ignore="TextContrastCheck" />
-
-        <Spinner
-            android:id="@+id/spinnerIncomeCategory"
-            android:layout_width="341dp"
-            android:layout_height="48dp"
-            android:layout_gravity="top"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="120dp"
-            android:contentDescription="@string/app_name" />
-
-
-
-        <TextView
-            android:id="@+id/adjuntTextIncome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="40dp"
-            android:layout_marginBottom="280dp"
-            android:fontFamily="@font/g_bold"
-            android:text="@string/fitxer_adjunt"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/cameraIncome"
-            android:layout_width="102dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="34dp"
-            android:layout_marginBottom="190dp"
-            android:backgroundTint="@color/greenIncome"
-            android:drawableTop="@drawable/camera"
-            android:fontFamily="@font/g_bold"
-            android:text="@string/camera"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:cornerRadius="10dp" />
-
-        <Button
-            android:id="@+id/imageIncome"
-            android:layout_width="102dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="190dp"
-            android:backgroundTint="@color/greenIncome"
-            android:drawableTop="@drawable/imageicon"
-            android:fontFamily="@font/g_bold"
-            android:text="@string/imatge"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:cornerRadius="10dp" />
-
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="183dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="230dp"
-            android:layout_marginTop="215dp"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <EditText
-            android:layout_width="341dp"
-            android:layout_height="48dp"
-            android:id="@+id/dateIncome"
-            android:hint="@string/selecciona_la_data"
-            android:fontFamily="@font/g_bold"
-            android:textSize="16sp"
-            android:textAlignment="center"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="120dp"
-            android:inputType="date"
-            android:textIsSelectable="false"
-            android:focusableInTouchMode="false"/>
-    </FrameLayout>
-
     <TextView
         android:id="@+id/howmuchText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
         android:fontFamily="@font/g_bold"
+        android:layout_marginStart="30dp"
         android:text="@string/quant"
         android:textColor="@color/softGrey"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintBottom_toTopOf="@id/enterIncome"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_income"
         tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/enterIncome"
-        android:layout_width="372dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="30dp"
         android:autofillHints=""
         android:background="@android:color/transparent"
         android:ems="10"
@@ -190,11 +67,152 @@
         android:textColor="@color/white"
         android:textSize="54sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.641"
+        app:layout_constraintBottom_toTopOf="@id/frameLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/howmuchText"
         tools:ignore="TextContrastCheck" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <EditText
+                android:id="@+id/incomeTitle"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints=""
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:fontFamily="@font/g_bold"
+                android:hint="Títol"
+                android:inputType="textPersonName"
+                android:textColor="@color/softBlack"
+                android:textSize="16sp"
+                tools:ignore="TextContrastCheck"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/spinnerIncomeCategory"/>
+
+            <Spinner
+                android:id="@+id/spinnerIncomeCategory"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/adjuntTextIncome"
+                android:contentDescription="@string/app_name" />
+
+            <TextView
+                android:id="@+id/adjuntTextIncome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/g_bold"
+                android:text="@string/fitxer_adjunt"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/cameraIncome"/>
+
+            <Button
+                android:id="@+id/cameraIncome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/greenIncome"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="20dp"
+                android:drawableTop="@drawable/camera"
+                android:fontFamily="@font/g_bold"
+                android:text="@string/camera"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/dateIncome"
+                app:layout_constraintEnd_toStartOf="@id/imageIncome"/>
+
+            <Button
+                android:id="@+id/imageIncome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/greenIncome"
+                android:drawableTop="@drawable/imageicon"
+                android:fontFamily="@font/g_bold"
+                android:text="@string/imatge"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintStart_toEndOf="@id/cameraIncome"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toTopOf="@id/dateIncome"/>
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/dateIncome"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:id="@+id/dateIncome"
+                android:hint="@string/selecciona_la_data"
+                android:fontFamily="@font/g_bold"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:layout_marginBottom="20dp"
+                android:inputType="date"
+                android:textIsSelectable="false"
+                android:focusableInTouchMode="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/continueIncome"/>
+
+            <Button
+                android:id="@+id/continueIncome"
+                android:layout_width="210dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/greenIncome"
+                android:fontFamily="@font/g_bold"
+                android:text="@string/continua"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TextContrastCheck" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

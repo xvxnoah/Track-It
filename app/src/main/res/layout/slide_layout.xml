@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,31 +8,34 @@
         android:id="@+id/slide_image"
         android:layout_width="189dp"
         android:layout_height="234dp"
-        android:translationX="120dp"
-        android:translationY="100dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/image1" />
 
     <TextView
         android:id="@+id/slide_heading"
-        android:layout_width="336dp"
-        android:layout_height="43dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/g_bold"
         android:gravity="center"
-        android:text="HEADING"
+        android:text="@string/heading"
         android:textSize="24sp"
-        android:translationX="20dp"
-        android:translationY="350dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slide_image" />
 
     <TextView
         android:id="@+id/slide_desc"
-        android:layout_width="367dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:fontFamily="@font/g_bold"
         android:gravity="center"
-        android:text="Esto es una descripción que sirve como plantilla para cualquier SlideAdapter que se vaya a utilizar posteriormente en la implementación de esta funcionalidad de la aplicación."
+        android:text="@string/descc"
+        android:layout_marginTop="10dp"
         android:textSize="16sp"
-        android:translationY="400dp" />
-</RelativeLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slide_heading" />
+</androidx.constraintlayout.widget.ConstraintLayout>

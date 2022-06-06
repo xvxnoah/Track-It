@@ -51,7 +51,7 @@ public class ProfileFragment extends Fragment {
     com.example.trackit.Model.UserInfo userInfo;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    TextView mailID;
+    TextView mailID, userID;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -102,6 +102,9 @@ public class ProfileFragment extends Fragment {
         Button logOut = (Button)view.findViewById(R.id.logOut);
         Button aboutUs = (Button)view.findViewById(R.id.about_us_btn);
         mailID = view.findViewById(R.id.mail_id);
+        userID = view.findViewById(R.id.profile_name);
+
+        userID.setText(UserInfo.getInstance().getName());
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 

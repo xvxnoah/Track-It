@@ -52,4 +52,10 @@
     <string name="despeses">Despeses</string>
     <string name="tend_ncia">Tendència</string>
     <string name="iniciarsessio">Iniciar sessió</string>
+    <string name="heading">HEADING</string>
+    <string name="descc">Esto es una descripción que sirve como plantilla para cualquier SlideAdapter que se vaya a utilizar posteriormente en la implementación de esta funcionalidad de la aplicación.</string>
+    <string name="protecci_amb_empremta">Protecció amb empremta</string>
+    <string name="activar_empremta">Activar Empremta</string>
+    <string name="sobre_nosaltres">Sobre nosaltres</string>
+    <string name="tanca_sessio">TANCA SESSIÓ</string>
 </resources>

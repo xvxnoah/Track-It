@@ -48,45 +48,38 @@
         android:id="@+id/balanceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
         android:fontFamily="@font/g_bold"
-        android:text="Balanç"
+        android:text="Balanç inicial"
+        android:layout_marginStart="30dp"
         android:textColor="@color/softGrey"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/userQuantity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintBottom_toTopOf="@+id/userQuantity"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_setup"
-        app:layout_constraintVertical_bias="0.26"
         tools:ignore="TextContrastCheck" />
+
 
     <EditText
         android:id="@+id/userQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="20dp"
         android:autofillHints=""
         android:background="@android:color/transparent"
-        android:ems="10"
+        android:layout_marginStart="30dp"
         android:hint="@string/euro"
         android:inputType="textPersonName"
         android:textColor="@color/white"
         android:textSize="54sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/frameSetUp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.641"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/balanceText"
-        app:layout_constraintVertical_bias="0.73"
         tools:ignore="TextContrastCheck" />
-
 
     <FrameLayout
         android:id="@+id/frameSetUp"
         android:layout_width="match_parent"
-        android:layout_height="317dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/rounded_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,20 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/continueBtn"
-                android:layout_width="210dp"
-                android:layout_height="48dp"
-                android:layout_gravity="bottom"
-                android:backgroundTint="@color/lila"
-                android:fontFamily="@font/g_bold"
-                android:text="@string/continua"
-                android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/linearLayoutCompat"
-                tools:ignore="TextContrastCheck" />
+
 
             <EditText
                 android:id="@+id/userName"
@@ -118,8 +98,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:autofillHints=""
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:background="@android:color/transparent"
-                android:ems="10"
                 android:fontFamily="@font/g_bold"
                 android:hint="Nom"
                 android:inputType="textPersonName"
@@ -127,23 +108,19 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.503"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.47000003"
                 tools:ignore="TextContrastCheck" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linearLayoutCompat"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/continueBtn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/userName">
+                app:layout_constraintTop_toBottomOf="@id/userName">
 
                 <ImageView
                     android:layout_width="24dp"
@@ -168,9 +145,24 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="16dp" />
-
-
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <Button
+                android:id="@+id/continueBtn"
+                android:layout_width="210dp"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/lila"
+                android:fontFamily="@font/g_bold"
+                android:text="@string/continua"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayoutCompat"
+                tools:ignore="TextContrastCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

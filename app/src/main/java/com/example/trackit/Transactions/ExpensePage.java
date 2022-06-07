@@ -128,7 +128,7 @@ public class ExpensePage extends AppCompatActivity{
     }
 
     private void setListeners() {
-        ImageButton back = findViewById(R.id.back_about_us);
+        ImageButton back = findViewById(R.id.back_expense);
         Button imageExpense = findViewById(R.id.imageExpense);
         Button cameraExpense = findViewById(R.id.cameraExpense);
 
@@ -139,7 +139,7 @@ public class ExpensePage extends AppCompatActivity{
             }
         });
 
-        Button continueExpense= findViewById(R.id.continueToWeb);
+        Button continueExpense= findViewById(R.id.continueExpense);
 
         continueExpense.setOnClickListener(new View.OnClickListener() {
             @Override

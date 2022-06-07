@@ -47,4 +47,6 @@
     <color name="primary">#F6F6F7</color>
     <color name="secondary">#575A6C</color>
     <color name="spinner">#A4EFEB</color>
+
+    <color name="divider">#ECECEC</color>
 </resources>

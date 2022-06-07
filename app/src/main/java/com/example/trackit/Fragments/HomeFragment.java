@@ -160,7 +160,7 @@ public class HomeFragment extends Fragment {
                     updateFragment();
                     transactionVos = new ArrayList<>();
                     fillUpList();
-                    AdapterTransactions adapter = new AdapterTransactions(transactionVos);
+                    AdapterTransactions adapter = new AdapterTransactions(transactionVos, getContext());
                     recyclerViewTransaction.setAdapter(adapter);
                 } catch (ParseException e) {
                     e.printStackTrace();

@@ -150,7 +150,7 @@ public class TransactionsFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                AdapterTransactions adapter = new AdapterTransactions(transactionVos);
+                AdapterTransactions adapter = new AdapterTransactions(transactionVos, getContext());
                 recyclerViewTransaction.setAdapter(adapter);
             }
 
@@ -206,7 +206,7 @@ public class TransactionsFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                AdapterTransactions adapter = new AdapterTransactions(transactionVos);
+                AdapterTransactions adapter = new AdapterTransactions(transactionVos, getContext());
                 recyclerViewTransaction.setAdapter(adapter);
             }
 
@@ -572,7 +572,7 @@ public class TransactionsFragment extends Fragment {
             e.printStackTrace();
         }
 
-        AdapterTransactions adapter = new AdapterTransactions(transactionVos);
+        AdapterTransactions adapter = new AdapterTransactions(transactionVos, getContext());
         recyclerViewTransaction.setAdapter(adapter);
     }
 

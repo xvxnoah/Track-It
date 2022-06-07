@@ -22,4 +22,12 @@
 
         <item name="android:textColorHint">@color/mainBlue</item>
     </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">A
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>

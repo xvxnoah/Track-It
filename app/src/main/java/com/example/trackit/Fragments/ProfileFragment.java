@@ -17,7 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.Adapters.AdapterTransactions;
@@ -25,6 +27,7 @@ import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
 import com.example.trackit.ViewModel.AboutUs;
 import com.example.trackit.initActivities.Info_Welcome_Page;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -101,6 +104,7 @@ public class ProfileFragment extends Fragment {
 
         Button logOut = (Button)view.findViewById(R.id.logOut);
         Button aboutUs = (Button)view.findViewById(R.id.about_us_btn);
+
         mailID = view.findViewById(R.id.mail_id);
         userID = view.findViewById(R.id.profile_name);
 

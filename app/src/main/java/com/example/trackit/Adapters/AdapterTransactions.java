@@ -1,9 +1,11 @@
 package com.example.trackit.Adapters;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,9 +21,11 @@ import java.util.ArrayList;
 
 public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransactions.ViewHolder> {
     ArrayList<Transaction> transactionVos;
+    private Context context;
 
-    public AdapterTransactions(ArrayList<Transaction> transactionVos) {
+    public AdapterTransactions(ArrayList<Transaction> transactionVos, Context context) {
         this.transactionVos = transactionVos;
+        this.context = context;
     }
 
     @NonNull
@@ -46,6 +50,7 @@ public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransaction
         holder.date.setText(transactionVos.get(position).getDate());
         holder.picCategory.setImageResource(transactionVos.get(position).getPic());
 
+        holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition));
     }
 
     @Override

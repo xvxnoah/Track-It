@@ -203,7 +203,19 @@ public class HomeFragment extends Fragment {
         sdf = new SimpleDateFormat("dd/MM/yyyy");
         Transactions = userInfo.getTransactions();
         balance.setText(Double.toString(userInfo.getQuantity()) + '€');
+
+        if(userInfo.getMoneySaved() >= 1000 && userInfo.getMoneySaved() < 10000){
+            QuantityIngressos.setTextSize(22);
+        } else if(userInfo.getMoneySaved() >= 10000){
+            QuantityIngressos.setTextSize(19);
+        }
         QuantityIngressos.setText(Double.toString(userInfo.getMoneySaved()) + '€');
+
+        if(userInfo.getMoneyWasted() >= 1000 && userInfo.getMoneyWasted() < 10000){
+            QuantityDespeses.setTextSize(22);
+        } else if(userInfo.getMoneyWasted() >= 10000){
+            QuantityDespeses.setTextSize(19);
+        }
         QuantityDespeses.setText(Double.toString(userInfo.getMoneyWasted()) + '€');
 
         mCubicValueLineChart = (ValueLineChart) vista.findViewById(R.id.cubiclinechart);

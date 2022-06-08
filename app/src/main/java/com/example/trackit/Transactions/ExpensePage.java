@@ -40,6 +40,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -144,21 +146,21 @@ public class ExpensePage extends AppCompatActivity{
         continueExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText enterIncome = (EditText) findViewById(R.id.enterExpense);
+                EditText enterExpense = (EditText) findViewById(R.id.enterExpense);
                 EditText incomeDescription = (EditText) findViewById(R.id.expenseDescription);
                 String category = expenseCategories.getSelectedItem().toString();
 
-                if(!enterIncome.getText().toString().isEmpty() && !incomeDescription.getText().toString().isEmpty() && !category.equals("Categoria") && !dateExpense.getText().toString().isEmpty()){
+                if(!enterExpense.getText().toString().isEmpty() && !incomeDescription.getText().toString().isEmpty() && !category.equals("Categoria") && !dateExpense.getText().toString().isEmpty()){
                     // Atributes of the Transaction's class
                     String description = incomeDescription.getText().toString();
-                    double expense = Double.valueOf(enterIncome.getText().toString());
-                    double quantity = 0 - expense;
+                    BigDecimal bd = new BigDecimal(enterExpense.getText().toString()).setScale(2, RoundingMode.UNNECESSARY);
+                    double quantity = 0 - bd.doubleValue();
 
                     Transaction transaction;
 
                     transaction = new Transaction(description, category, quantity, dateExpense.getText().toString(), selectedImageUri);
                     userInfo.addTransaction(transaction);
-                    userInfo.updateWasted(expense);
+                    userInfo.updateWasted(bd.doubleValue());
                     ref.setValue(userInfo);
                     Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
                     startActivity(intent);

@@ -207,7 +207,7 @@ public class HomeFragment extends Fragment {
         if(userInfo.getMoneySaved() >= 1000 && userInfo.getMoneySaved() < 10000){
             QuantityIngressos.setTextSize(22);
         } else if(userInfo.getMoneySaved() >= 10000){
-            QuantityIngressos.setTextSize(19);
+            QuantityIngressos.setTextSize(18);
         }
 
         QuantityIngressos.setText(Double.toString(userInfo.getMoneySaved()) + '€');
@@ -215,7 +215,7 @@ public class HomeFragment extends Fragment {
         if(userInfo.getMoneyWasted() >= 1000 && userInfo.getMoneyWasted() < 10000){
             QuantityDespeses.setTextSize(22);
         } else if(userInfo.getMoneyWasted() >= 10000){
-            QuantityDespeses.setTextSize(19);
+            QuantityDespeses.setTextSize(18);
         }
         QuantityDespeses.setText(Double.toString(userInfo.getMoneyWasted()) + '€');
 

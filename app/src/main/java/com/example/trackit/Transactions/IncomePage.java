@@ -1,5 +1,7 @@
 package com.example.trackit.Transactions;
 
+import static java.lang.Math.round;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +43,8 @@ import com.google.firebase.firestore.auth.User;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -150,7 +154,9 @@ public class IncomePage extends AppCompatActivity {
                 if(!enterIncome.getText().toString().isEmpty() && !category.equals("Categoria") && !dateIncome.getText().toString().isEmpty() && !incomeDescription.getText().toString().isEmpty()){
                     // Atributes of the Transaction's class
                     String description = incomeDescription.getText().toString();
-                    double quantity = Double.valueOf(enterIncome.getText().toString());
+                    BigDecimal bd = new BigDecimal(enterIncome.getText().toString()).setScale(2, RoundingMode.UNNECESSARY);
+
+                    double quantity = bd.doubleValue();
 
                     Transaction transaction;
 
@@ -214,7 +220,7 @@ public class IncomePage extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(
-                Intent.createChooser(intent, "Seleccione una imagen"),
+                Intent.createChooser(intent, "Selecciona una imatge"),
                 1);
     }
 

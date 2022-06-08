@@ -25,6 +25,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class NewAccount extends AppCompatActivity {
 
     public static final String SETUP_USER = "";
@@ -80,7 +83,7 @@ public class NewAccount extends AppCompatActivity {
                     User = UserInfo.getInstance();
 
                     // below line is for checking weather the edittext fields are empty or not.
-                    addDatatoFirebase(name, email, Double.valueOf(quantity));
+                    addDatatoFirebase(name, email, quantity);
                 } else if(quantity.isEmpty() && name.isEmpty()){
                     Toast.makeText(NewAccount.this, "S'han d'omplir tots els camps!", Toast.LENGTH_LONG).show();
                 } else if(name.isEmpty()){
@@ -105,7 +108,7 @@ public class NewAccount extends AppCompatActivity {
         });
     }
 
-    public void addDatatoFirebase(String name, String email, Double quantity) {
+    public void addDatatoFirebase(String name, String email, String quantity) {
         //  Below this lines of code are used to set data in our object class.
         SharedPreferences preferences = getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
 
@@ -117,8 +120,10 @@ public class NewAccount extends AppCompatActivity {
             User.setDriveLogin(true);
         }
 
+        BigDecimal bd = new BigDecimal(quantity).setScale(2, RoundingMode.UNNECESSARY);
+
         User.setName(name);
-        User.setQuantity(quantity);
+        User.setQuantity(bd.doubleValue());
         User.setEmail(preferences.getString(AuthActivity.USER, null));
 
         databaseReference.setValue(User);

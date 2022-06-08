@@ -233,6 +233,7 @@ public class HomeFragment extends Fragment {
         String seleccio = tendencia.getSelectedItem().toString();
 
         if(seleccio.equals("Últim any") || seleccio.equals("Selecciona")){
+            tendencia.setSelection(1);
             chartYear();
         } else if(seleccio.equals("Últims 6 mesos")){
             chartHalfYear();

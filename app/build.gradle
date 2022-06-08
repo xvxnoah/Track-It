@@ -51,6 +51,12 @@ dependencies {
     // Date/Time
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
 
+    // Rounded Image View
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    // Justified text
+    implementation 'me.biubiubiu.justifytext:library:1.1'
+
     // Picasso for image url
     implementation 'com.squareup.picasso:picasso:2.5.0'
 

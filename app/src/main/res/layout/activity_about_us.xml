@@ -4,25 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context=".Transactions.ExpensePage">
+    android:background="@color/softBlue"
+    tools:context=".ViewModel.AboutUs">
 
 
     <TextView
         android:id="@+id/textAboutUs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/g_bold"
         android:text="Sobre nosaltres"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintStart_toStartOf="@+id/back_about_us"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/back_about_us"
@@ -30,13 +28,11 @@
         android:layout_height="54dp"
         android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/softBlue"
         android:contentDescription="@string/back_expense"
         android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/arrow"
-        app:layout_constraintEnd_toStartOf="@+id/textAboutUs"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/white"
@@ -44,44 +40,74 @@
 
     <FrameLayout
         android:id="@+id/frameLayout2"
-        android:layout_width="409dp"
-        android:layout_height="594dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/rounded_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/continueToWeb"
-            android:layout_width="210dp"
-            android:layout_height="48dp"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="95dp"
-            android:layout_marginBottom="22dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:fontFamily="@font/g_bold"
-            android:text="Visita la pàgina web"
-            android:textAllCaps="false"
-            tools:ignore="TextContrastCheck" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/image2"
-            android:layout_width="409dp"
-            android:layout_height="211dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="310dp"
-            tools:srcCompat="@drawable/logobog" />
+            <me.biubiubiu.justifytext.library.JustifyTextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/g_bold"
+                android:textSize="16sp"
+                android:text="@string/about_us"
+                app:layout_constraintBottom_toTopOf="@id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="354dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="40dp"
-            android:fontFamily="@font/g_bold"
-            android:text="@string/about_us"
-            android:textSize="18dp" />
+            <me.biubiubiu.justifytext.library.JustifyTextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/g_bold"
+                android:textSize="16sp"
+                android:text="Per a més informació visita la pàgina web oficial de Bet On Green."
+                app:layout_constraintBottom_toTopOf="@id/image2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView"/>
+
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/logobog"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@id/continueToWeb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView2"/>
+
+            <Button
+                android:id="@+id/continueToWeb"
+                android:layout_width="210dp"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/softBlue"
+                android:fontFamily="@font/g_bold"
+                android:text="@string/visita_la_p_gina_web"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image2"
+                tools:ignore="TextContrastCheck" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
 

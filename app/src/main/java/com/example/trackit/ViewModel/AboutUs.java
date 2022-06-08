@@ -52,13 +52,15 @@ public class AboutUs extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_us);
         getSupportActionBar().hide();
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_about_us);
 
         Window window = AboutUs.this.getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(AboutUs.this, R.color.redExpense));
+        window.setStatusBarColor(ContextCompat.getColor(AboutUs.this, R.color.softBlue));
+
+        setListeners();
     }
 
 
@@ -72,15 +74,14 @@ public class AboutUs extends AppCompatActivity{
             }
         });
 
-        Button continueExpense= findViewById(R.id.continueToWeb);
+        Button continueWeb = findViewById(R.id.continueToWeb);
+        Uri uri = Uri.parse("https://github.com/xvxnoah/Track-It");
 
-        continueExpense.setOnClickListener(new View.OnClickListener() {
+        continueWeb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                    Intent intent = new Intent(AboutUs.this, Transaction_Done.class);
-                    startActivity(intent);
-                    finish();
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             }
         });
     }

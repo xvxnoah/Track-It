@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/lila">
 
-
     <ImageButton
         android:id="@+id/back_setup"
         android:layout_width="wrap_content"
@@ -55,7 +54,6 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextContrastCheck" />
 
-
     <EditText
         android:id="@+id/userQuantity"
         android:layout_width="300dp"
@@ -87,8 +85,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-
 
             <EditText
                 android:id="@+id/userName"
@@ -163,9 +159,6 @@
                 tools:ignore="TextContrastCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </FrameLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

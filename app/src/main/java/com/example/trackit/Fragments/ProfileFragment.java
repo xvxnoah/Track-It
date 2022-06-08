@@ -129,7 +129,6 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userInfo = dataSnapshot.getValue(com.example.trackit.Model.UserInfo.class);
                 com.example.trackit.Model.UserInfo.setUniqueInstance(userInfo);
-
             }
 
             @Override
@@ -155,8 +154,8 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        aboutUs.setOnClickListener(new View.OnClickListener() {
 
+        aboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), AboutUs.class);

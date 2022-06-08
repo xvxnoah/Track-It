@@ -40,7 +40,7 @@ public class UserInfo extends Observable {
         this.DriveLogin = false;
     }
 
-    public void UserInfo(float moneySaved, float moneyWasted, ArrayList<Transaction> transactions, ArrayList<Budget> budgets ,boolean DriveLogin){
+    public void UserInfo(double moneySaved, double moneyWasted, ArrayList<Transaction> transactions, ArrayList<Budget> budgets, boolean DriveLogin){
         this.moneySaved = moneySaved;
         this.moneyWasted = moneyWasted;
         this.transactions = transactions;
@@ -91,11 +91,11 @@ public class UserInfo extends Observable {
         this.quantity = quantity;
     }
 
-    public void setMoneySaved(float moneySaved){
+    public void setMoneySaved(double moneySaved){
         this.moneySaved = moneySaved;
     }
 
-    public void setMoneyWasted(float moneyWasted){
+    public void setMoneyWasted(double moneyWasted){
         this.moneyWasted = moneyWasted;
     }
 

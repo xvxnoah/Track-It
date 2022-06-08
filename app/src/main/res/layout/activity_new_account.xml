@@ -64,7 +64,7 @@
         android:background="@android:color/transparent"
         android:layout_marginStart="30dp"
         android:hint="@string/euro"
-        android:inputType="textPersonName"
+        android:inputType="number|numberSigned|numberDecimal"
         android:textColor="@color/white"
         android:textSize="54sp"
         android:textStyle="bold"

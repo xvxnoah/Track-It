@@ -7,7 +7,8 @@ public class Budget {
     private double quantity;
     private boolean alert;
 
-    public Budget(String type, double objective, boolean alert){
+    public Budget(String name, String type, double objective, boolean alert){
+        this.name = name;
         this.type = type;
         this.objective = objective;
         this.quantity = 0;

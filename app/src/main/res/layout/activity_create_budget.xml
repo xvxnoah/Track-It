@@ -118,15 +118,30 @@
         android:id="@+id/howmuchText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="88dp"
         android:fontFamily="@font/g_bold"
         android:text="Quant vols estalviar?"
         android:textColor="@color/softGrey"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/back_create_budget"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/howmuchText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/g_bold"
+        android:text="Nombra el pressupost"
+        android:textColor="@color/softGrey"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterBudget"
         tools:ignore="TextContrastCheck" />
 
     <EditText
@@ -134,6 +149,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="160dp"
         android:autofillHints=""
         android:background="@android:color/transparent"
         android:ems="10"
@@ -144,5 +160,20 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout2"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/nameBudget"
+        android:layout_width="355dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="@font/g_bold"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/howmuchText2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

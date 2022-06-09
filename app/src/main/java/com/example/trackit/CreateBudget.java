@@ -45,6 +45,7 @@ import java.util.ArrayList;
 public class CreateBudget extends AppCompatActivity {
 
     private Spinner budgetCategories;
+    private EditText name;
     private UserInfo userInfo;
     private DatabaseReference ref;
 
@@ -137,16 +138,18 @@ public class CreateBudget extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText enterBudget = (EditText) findViewById(R.id.enterBudget);
+                EditText nameBudget = (EditText) findViewById((R.id.nameBudget));
+
                 String category = budgetCategories.getSelectedItem().toString();
                 boolean alert = ((SwitchMaterial) findViewById(R.id.switchBudget)).isChecked();
 
                 if(!enterBudget.getText().toString().isEmpty() && !category.equals("Categoria")){
                     // Atributes of the Transaction's class
                     double quantity = Double.valueOf(enterBudget.getText().toString());
-
+                    String name = nameBudget.getText().toString();
                     Budget budget;
 
-                    budget = new Budget(category, quantity, alert);
+                    budget = new Budget(name, category, quantity, alert);
                     userInfo.addBudget(budget);
                     ref.setValue(userInfo);
                     Intent intent = new Intent(CreateBudget.this, Transaction_Done.class);

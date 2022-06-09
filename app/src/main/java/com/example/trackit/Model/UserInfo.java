@@ -1,6 +1,7 @@
 package com.example.trackit.Model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Observable;
 
 public class UserInfo extends Observable {
@@ -136,5 +137,25 @@ public class UserInfo extends Observable {
     public void updateSave(double quantity) {
         this.quantity = this.quantity + quantity;
         this.moneySaved = this.moneySaved + quantity;
+    }
+
+    public void updateBudget(String budget, double quantity) {
+        ArrayList<Budget> Budgets = getBudgets();
+        Budget actual;
+        ArrayList<String> budgetNames = new ArrayList<>();
+        Iterator<Budget> iter = null;
+
+        if (Budgets != null) {
+            iter = Budgets.iterator();
+        }
+
+        if (Budgets != null) {
+            while (iter.hasNext()) {
+                if(iter.next().getName().equals(budget)){
+                    iter.next().updateQuantity(quantity);
+                }
+
+            }
+        }
     }
 }

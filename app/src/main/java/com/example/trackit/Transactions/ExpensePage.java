@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
+import com.example.trackit.Model.Budget;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
@@ -43,18 +44,23 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 
 public class ExpensePage extends AppCompatActivity{
 
+    private Spinner budgetsSpinner;
     private Spinner expenseCategories;
     private UserInfo userInfo;
     private DatabaseReference ref;
     EditText dateExpense;
     private String data;
     Uri selectedImageUri;
+
+    ArrayList Budgets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +70,9 @@ public class ExpensePage extends AppCompatActivity{
 
         setListeners();
 
-        setSpinner();
+        setSpinnerBudget();
+
+        setSpinnerCategories();
 
         Window window = ExpensePage.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(ExpensePage.this, R.color.redExpense));
@@ -92,7 +100,54 @@ public class ExpensePage extends AppCompatActivity{
         });
     }
 
-    private void setSpinner() {
+    private void setSpinnerBudget() {
+        budgetsSpinner = findViewById(R.id.spinnerIncomeCategory);
+        Budgets = userInfo.getBudgets();
+        Budget actual;
+        ArrayList<String> budgetNames = new ArrayList<>();
+        Iterator<Budget> iter = null;
+
+        if (Budgets != null) {
+            iter = Budgets.iterator();
+        }
+
+        if (Budgets != null) {
+            while (iter.hasNext()) {
+                actual = iter.next();
+                budgetNames.add(actual.getName());
+            }
+        }
+
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,budgetNames){
+            @Override
+            public boolean isEnabled(int position) {
+                if(position == 0){
+                    // Desactivem el primer item
+                    return false;
+                } else{
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+
+                if(position == 0){
+                    tv.setTextColor(Color.GRAY);
+                } else{
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        budgetsSpinner.setAdapter(spinnerAdapter);
+    }
+
+    private void setSpinnerCategories() {
         expenseCategories = findViewById(R.id.spinnerExpenseCategory);
 
         String arrayName = "expense_categories";
@@ -149,7 +204,7 @@ public class ExpensePage extends AppCompatActivity{
                 EditText enterExpense = (EditText) findViewById(R.id.enterExpense);
                 EditText incomeDescription = (EditText) findViewById(R.id.expenseDescription);
                 String category = expenseCategories.getSelectedItem().toString();
-
+                String budget = budgetsSpinner.getSelectedItem().toString();
                 if(!enterExpense.getText().toString().isEmpty() && !incomeDescription.getText().toString().isEmpty() && !category.equals("Categoria") && !dateExpense.getText().toString().isEmpty()){
                     // Atributes of the Transaction's class
                     String description = incomeDescription.getText().toString();
@@ -161,6 +216,10 @@ public class ExpensePage extends AppCompatActivity{
                     transaction = new Transaction(description, category, quantity, dateExpense.getText().toString(), selectedImageUri);
                     userInfo.addTransaction(transaction);
                     userInfo.updateWasted(bd.doubleValue());
+
+                    if(budget != null){
+                        userInfo.updateBudget(budget, quantity);
+                    }
                     ref.setValue(userInfo);
                     Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
                     startActivity(intent);

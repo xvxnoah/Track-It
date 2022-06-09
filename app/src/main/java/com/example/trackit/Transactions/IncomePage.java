@@ -1,5 +1,6 @@
 package com.example.trackit.Transactions;
 
+import static java.lang.Math.abs;
 import static java.lang.Math.round;
 
 import androidx.annotation.NonNull;
@@ -46,18 +47,23 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 
 public class IncomePage extends AppCompatActivity {
 
+    private Spinner budgetsSpinner;
     private Spinner incomeCategories;
     private UserInfo userInfo;
     private DatabaseReference ref;
     EditText dateIncome;
     private String data = null;
     Uri selectedImageUri;
+
+    ArrayList Budgets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +73,7 @@ public class IncomePage extends AppCompatActivity {
 
         setListeners();
 
-        setSpinner();
+        setSpinnerCategories();
 
         Window window = IncomePage.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(IncomePage.this, R.color.greenIncome));
@@ -94,7 +100,7 @@ public class IncomePage extends AppCompatActivity {
         });
     }
 
-    private void setSpinner() {
+    private void setSpinnerCategories() {
         incomeCategories = findViewById(R.id.spinnerIncomeCategory);
 
         String arrayName = "income_categories";

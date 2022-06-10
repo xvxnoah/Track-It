@@ -12,7 +12,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -23,11 +22,9 @@ import com.example.trackit.HomePage;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
-import com.example.trackit.ViewModel.TransactionVo;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
 
@@ -104,7 +101,7 @@ public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransaction
             super(itemView);
 
             title = itemView.findViewById(R.id.titleTransaction);
-            category = itemView.findViewById(R.id.category);
+            category = itemView.findViewById(R.id.amount);
             amount = itemView.findViewById(R.id.money);
             date = itemView.findViewById(R.id.date);
             picCategory = itemView.findViewById(R.id.card_icon_transaction);

@@ -70,10 +70,6 @@ public class ExpensePage extends AppCompatActivity{
 
         setListeners();
 
-        setSpinnerBudget();
-
-        setSpinnerCategories();
-
         Window window = ExpensePage.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(ExpensePage.this, R.color.redExpense));
 
@@ -98,10 +94,14 @@ public class ExpensePage extends AppCompatActivity{
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+
+        setSpinnerBudget();
+
+        setSpinnerCategories();
     }
 
     private void setSpinnerBudget() {
-        budgetsSpinner = findViewById(R.id.spinnerIncomeCategory);
+        budgetsSpinner = findViewById(R.id.spinnerBudgetExpense);
         Budgets = userInfo.getBudgets();
         Budget actual;
         ArrayList<String> budgetNames = new ArrayList<>();
@@ -118,7 +118,7 @@ public class ExpensePage extends AppCompatActivity{
             }
         }
 
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,budgetNames){
+        ArrayAdapter<String> spinnerAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,budgetNames){
             @Override
             public boolean isEnabled(int position) {
                 if(position == 0){
@@ -143,8 +143,8 @@ public class ExpensePage extends AppCompatActivity{
             }
         };
 
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        budgetsSpinner.setAdapter(spinnerAdapter);
+        spinnerAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        budgetsSpinner.setAdapter(spinnerAdapter1);
     }
 
     private void setSpinnerCategories() {
@@ -154,7 +154,7 @@ public class ExpensePage extends AppCompatActivity{
         int arrayName_ID = getResources().getIdentifier(arrayName,"array",this.getPackageName());
         String[] categories = getResources().getStringArray(arrayName_ID);
 
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories){
+        ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories){
             @Override
             public boolean isEnabled(int position) {
                 if(position == 0){
@@ -179,8 +179,8 @@ public class ExpensePage extends AppCompatActivity{
             }
         };
 
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        expenseCategories.setAdapter(spinnerAdapter);
+        spinnerAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        expenseCategories.setAdapter(spinnerAdapter2);
 
     }
 

@@ -25,7 +25,7 @@
             android:layout_height="match_parent">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_image_transaction"
+                android:id="@+id/card_image_budget"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_marginStart="12dp"
@@ -64,13 +64,13 @@
                 android:text=""
                 android:textColor="@color/textPrimary"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/category"
-                app:layout_constraintStart_toEndOf="@+id/card_image_transaction"
+                app:layout_constraintBottom_toTopOf="@+id/amount"
+                app:layout_constraintStart_toEndOf="@+id/card_image_budget"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"/>
 
             <TextView
-                android:id="@+id/category"
+                android:id="@+id/amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

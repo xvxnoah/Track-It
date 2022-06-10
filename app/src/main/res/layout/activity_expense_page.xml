@@ -22,7 +22,7 @@
         tools:ignore="TextContrastCheck" />
 
     <Spinner
-        android:id="@+id/spinnerBudgetIncome2"
+        android:id="@+id/spinnerBudgetExpense"
         android:layout_width="306dp"
         android:layout_height="37dp"
         android:layout_marginStart="52dp"

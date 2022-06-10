@@ -117,7 +117,7 @@ public class BudgetFragment extends Fragment {
         Button bt = vista.findViewById(R.id.createBudget);
         recent = vista.findViewById(R.id.recentBudgets);
 
-        recyclerViewBudgets = vista.findViewById(R.id.recentRecyclerViewHome);
+        recyclerViewBudgets = vista.findViewById(R.id.recyclerViewBudgets);
         recyclerViewBudgets.setLayoutManager(new LinearLayoutManager(getContext()));
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");

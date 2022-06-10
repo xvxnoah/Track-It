@@ -58,10 +58,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewBudgets"
-            android:layout_width="269dp"
-            android:layout_height="176dp"
+            android:layout_width="372dp"
+            android:layout_height="170dp"
             android:layout_gravity="top"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="160dp"
             android:layout_marginBottom="300dp" />
 

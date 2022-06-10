@@ -597,44 +597,33 @@ public class HomeFragment extends Fragment {
     public void fillUpList() {
         ArrayList<Transaction> transactions = userInfo.getTransactions();
         Transaction transaction;
-        Double despeses = .0;
-        Double ingressos = .0;
 
         if(transactions != null){
+            recent.setText("Transaccions recents");
             for(int i = 0; i < transactions.size() && i < 10; i++){
                 transaction = transactions.get(transactions.size() - i - 1);
                 String type = transaction.getType();
 
                 if(type.equals("Alimentació")){
                     transaction.setPic(R.drawable.ic_baseline_fastfood_24);
-                    despeses += transaction.getQuantity();
                 } else if(type.equals("Compres")){
                     transaction.setPic(R.drawable.ic_baseline_shopping_cart_24);
-                    despeses += transaction.getQuantity();
                 } else if(type.equals("Transport")){
                     transaction.setPic(R.drawable.ic_baseline_directions_transit_24);
-                    despeses += transaction.getQuantity();
                 } else if(type.equals("Salut/Higiene")){
                     transaction.setPic(R.drawable.person);
-                    despeses += transaction.getQuantity();
                 } else if(type.equals("Educació")){
                     transaction.setPic(R.drawable.ic_baseline_auto_stories_24);
-                    despeses += transaction.getQuantity();
                 } else if(type.equals("Altres despeses")){
                     transaction.setPic(R.drawable.transaction);
-                    despeses += transaction.getQuantity();
                 } else if(type.equals("Nòmina")){
                     transaction.setPic(R.drawable.ic_baseline_attach_money_24);
-                    ingressos += transaction.getQuantity();
                 } else if(type.equals("Criptomonedes")){
                     transaction.setPic(R.drawable.ic_currency_btc);
-                    ingressos += transaction.getQuantity();
                 } else if(type.equals("Accions")){
                     transaction.setPic(R.drawable.ic_cash_100);
-                    ingressos += transaction.getQuantity();
                 } else if(type.equals("Altres ingressos")){
                     transaction.setPic(R.drawable.transaction);
-                    ingressos += transaction.getQuantity();
                 }
                 transactionVos.add(transaction);
             }

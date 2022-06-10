@@ -59,4 +59,6 @@
     <string name="sobre_nosaltres">Sobre nosaltres</string>
     <string name="tanca_sessio">TANCA SESSIÓ</string>
     <string name="visita_la_p_gina_web">Visita la pàgina web</string>
+    <string name="eliminar_transacci">Eliminar transacció</string>
+    <string name="editar_transacci">Editar transacció</string>
 </resources>

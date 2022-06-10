@@ -1,5 +1,7 @@
 package com.example.trackit.Model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
@@ -120,6 +122,14 @@ public class UserInfo extends Observable {
 
         setChanged();
         notifyObservers(transaction);
+    }
+
+    public void deleteTransaction(Transaction transaction){
+        for(Transaction t : getTransactions()){
+            if(t == transaction){
+                transactions.remove(t);
+            }
+        }
     }
 
     public void addBudget(Budget budget){

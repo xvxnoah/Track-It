@@ -22,7 +22,6 @@ import android.widget.Toast;
 import com.example.trackit.initActivities.Info_Welcome_Page;
 import com.example.trackit.R;
 import com.example.trackit.initActivities.Splash_Screen2;
-import com.example.trackit.initActivities.Welcome_Page;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -194,7 +193,7 @@ public class AuthActivity extends AppCompatActivity {
 
             String emailUser = email.getText().toString();
 
-            Toast.makeText(this,"Signed In successfully",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Inici de sessió correcte!",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, Splash_Screen2.class);
 
             // Save log in status
@@ -208,7 +207,7 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     private void showHome(String user){
-        Toast.makeText(this,"Signed In successfully",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Inici de sessió correcte!",Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, Splash_Screen2.class);
 
         // Save log in status

@@ -3,6 +3,8 @@ package com.example.trackit.Account;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
@@ -36,6 +38,8 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.concurrent.Executor;
+
 // ADD POSSIBILITY TO SEE PASSWORD
 public class AuthActivity extends AppCompatActivity {
 
@@ -45,6 +49,11 @@ public class AuthActivity extends AppCompatActivity {
     public static final String CREDENTIALS = "credentials";
     public static final String USER = "user";
     public static final String TYPE = "type";
+
+    private Executor executor;
+    private BiometricPrompt biometricPrompt;
+    private BiometricPrompt.PromptInfo promptInfo;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +69,10 @@ public class AuthActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(AuthActivity.this, R.color.softGrey));
 
         setup();
+        biometricSetUp();
+
+        sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
+
     }
 
     @Override
@@ -87,6 +100,10 @@ public class AuthActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         FirebaseUser user = mAuth.getCurrentUser();
+                                        SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+                                        editor.putString("email", email.getText().toString());
+                                        editor.putString("password", pass.getText().toString());
+                                        editor.apply();
                                         updateUI(user);
                                     } else {
                                         // If sign in fails, display a message to the user.
@@ -101,6 +118,15 @@ public class AuthActivity extends AppCompatActivity {
                 } else{
                     Toast.makeText(AuthActivity.this, "Has d'indicar la contrassenya!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        Button fingerprint = findViewById(R.id.fingerprint_login);
+
+        fingerprint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                biometricPrompt.authenticate(promptInfo);
             }
         });
 
@@ -124,6 +150,7 @@ public class AuthActivity extends AppCompatActivity {
         forgotClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //biometricPrompt.authenticate(promptInfo);
                 Intent intent = new Intent(AuthActivity.this, ForgotPassword.class);
                 startActivity(intent);
                 finish();
@@ -231,5 +258,73 @@ public class AuthActivity extends AppCompatActivity {
         }
 
         editor.commit();
+    }
+
+    private void biometricSetUp(){
+        BiometricManager biometricManager = BiometricManager.from(this);
+        switch (biometricManager.canAuthenticate()){
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                Toast.makeText(getApplicationContext(),
+                        "Device Doesn't have fingerprint", Toast.LENGTH_SHORT).show();
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                Toast.makeText(getApplicationContext(),
+                        "Not Working", Toast.LENGTH_SHORT).show();
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                Toast.makeText(getApplicationContext(),
+                        "No FingerPrint Assigned", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        executor = ContextCompat.getMainExecutor(this);
+
+        biometricPrompt = new BiometricPrompt(AuthActivity.this, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                Toast.makeText(getApplicationContext(),
+                        "Login Succes", Toast.LENGTH_SHORT).show();
+                String email = sharedPreferences.getString("email", "");
+                String password = sharedPreferences.getString("password", "");
+
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(AuthActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    //FirebaseUser user = mAuth.getCurrentUser();
+                                    Intent intent = new Intent(AuthActivity.this, Splash_Screen2.class);
+
+                                    // Save log in status
+                                    saveSession(email, false);
+
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(AuthActivity.this, ((FirebaseAuthException) task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+                Toast.makeText(getApplicationContext(),
+                        "Login Fail", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Biometric")
+                .setDescription("Use FingerPrint To Login")
+                .setDeviceCredentialAllowed(true).build();
     }
 }

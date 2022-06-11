@@ -1,6 +1,9 @@
 package com.example.trackit.initActivities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
@@ -27,6 +30,8 @@ import com.example.trackit.Adapters.SliderAdapter;
 import com.example.trackit.HomePage;
 import com.example.trackit.R;
 
+import java.util.concurrent.Executor;
+
 public class Info_Welcome_Page extends AppCompatActivity {
 
     private ViewPager mSlideViewPager;
@@ -42,6 +47,8 @@ public class Info_Welcome_Page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         // check if session already active
         session();

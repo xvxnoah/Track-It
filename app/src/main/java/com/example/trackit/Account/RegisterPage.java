@@ -72,6 +72,10 @@ public class RegisterPage extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         String userEmail = email.getText().toString();
+                                        SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+                                        editor.putString("email", userEmail);
+                                        editor.putString("password", pass.getText().toString());
+                                        editor.apply();
 
                                         Intent intent = new Intent(RegisterPage.this, Welcome_Page.class);
                                         saveSession(userEmail);

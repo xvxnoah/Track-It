@@ -241,12 +241,15 @@ public class ExpensePage extends AppCompatActivity{
 
                             if(budget.equals("Selecciona") == false) {
                                 userInfo.updateBudget(budget, quantity);
+                                ref.setValue(userInfo);
+                                Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
+                                startActivity(intent);
+                                finish();
+                                bottomSheetDialog.dismiss();
+                            } else{
+                                Toast.makeText(ExpensePage.this,"No has seleccionat pressupost!",Toast.LENGTH_LONG).show();
                             }
-                            ref.setValue(userInfo);
-                            Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
-                            startActivity(intent);
-                            finish();
-                            bottomSheetDialog.dismiss();
+
                         }
                     });
 

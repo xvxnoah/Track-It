@@ -35,6 +35,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
+            app:tint="@color/black"
             android:scaleType="centerCrop"
             app:riv_corner_radius="10dp"/>
 

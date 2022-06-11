@@ -53,6 +53,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.UUID;
 
 public class ExpensePage extends AppCompatActivity{
 
@@ -215,7 +216,8 @@ public class ExpensePage extends AppCompatActivity{
 
                     Transaction transaction;
 
-                    transaction = new Transaction(description, category, quantity, dateExpense.getText().toString(), selectedImageUri);
+                    String uniqueID = UUID.randomUUID().toString();
+                    transaction = new Transaction(uniqueID, description, category, quantity, dateExpense.getText().toString(), selectedImageUri);
                     userInfo.addTransaction(transaction);
                     userInfo.updateWasted(bd.doubleValue());
 

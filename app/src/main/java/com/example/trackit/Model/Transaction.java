@@ -1,8 +1,12 @@
 package com.example.trackit.Model;
 
 import android.net.Uri;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 
 public class Transaction {
+    private String uniqueID;
     private String name;
     private String type;
     private double quantity;
@@ -11,7 +15,8 @@ public class Transaction {
     private Uri selectedImageUri;
 
     //Constructor
-    public Transaction(String name, String type, double quantity, String date, Uri SelectedImageUri){
+    public Transaction(String uniqueID, String name, String type, double quantity, String date, Uri SelectedImageUri){
+        this.uniqueID = uniqueID;
         this.name = name;
         this.type = type;
         this.quantity = quantity;
@@ -49,6 +54,8 @@ public class Transaction {
 
     public Uri getUri() { return this.selectedImageUri; }
 
+    public String getUniqueID() { return this.uniqueID; }
+
     //Setters
     public void setName(String name){
         this.name = name;
@@ -69,4 +76,6 @@ public class Transaction {
     public void setPic(int pic) { this.pic = pic; }
 
     public void setUri(Uri image) { this.selectedImageUri = image; }
+
+    private void setUniqueID(String uniqueID) { this.uniqueID = uniqueID; }
 }

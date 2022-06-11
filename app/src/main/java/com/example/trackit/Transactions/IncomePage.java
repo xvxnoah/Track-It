@@ -54,6 +54,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.UUID;
 
 public class IncomePage extends AppCompatActivity {
 
@@ -216,7 +217,8 @@ public class IncomePage extends AppCompatActivity {
 
                     Transaction transaction;
 
-                    transaction = new Transaction(description, category, quantity, dateIncome.getText().toString(), selectedImageUri);
+                    String uniqueID = UUID.randomUUID().toString();
+                    transaction = new Transaction(uniqueID, description, category, quantity, dateIncome.getText().toString(), selectedImageUri);
                     userInfo.addTransaction(transaction);
                     userInfo.updateSave(quantity);
 

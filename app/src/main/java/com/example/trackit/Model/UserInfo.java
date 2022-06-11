@@ -124,12 +124,49 @@ public class UserInfo extends Observable {
         notifyObservers(transaction);
     }
 
-    public void deleteTransaction(Transaction transaction){
+    public boolean deleteTransaction(Transaction transaction){
+        String IDdelete = transaction.getUniqueID();
+        String ID;
+
         for(Transaction t : getTransactions()){
-            if(t == transaction){
+            ID = t.getUniqueID();
+
+            if(ID.equals(IDdelete)){
                 transactions.remove(t);
+
+                if(transaction.getQuantity() < 0){
+                    this.updateWasted(transaction.getQuantity());
+                } else{
+                    this.updateSave(-transaction.getQuantity());
+                }
+                return true;
             }
         }
+        return false;
+    }
+
+    public boolean updateTransaction(Transaction old, Transaction updated){
+        String thisID;
+        String oldID = old.getUniqueID();
+
+        for(Transaction t : getTransactions()){
+            thisID = t.getUniqueID();
+
+            if(thisID.equals(oldID)){
+                deleteTransaction(t);
+
+                addTransaction(updated);
+
+                if(updated.getQuantity() < 0){
+                    updateWasted(-updated.getQuantity());
+                } else{
+                    updateSave(updated.getQuantity());
+                }
+
+                return true;
+            }
+        }
+        return false;
     }
 
     public void addBudget(Budget budget){

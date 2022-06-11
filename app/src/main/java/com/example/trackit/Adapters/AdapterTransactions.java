@@ -29,6 +29,8 @@ import com.example.trackit.Transactions.EditTransaction;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.auth.User;
+import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -175,9 +177,14 @@ public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransaction
             @Override
             public void onClick(View view) {
                 Transaction t = transactionVos.get(holder.getAdapterPosition());
+
+                Gson gson = new Gson();
+                String transactionDataObject = gson.toJson(t);
+
                 Intent i = new Intent(context, EditTransaction.class);
-                i.putExtra("Transaction", t);
+                i.putExtra("Transaction", transactionDataObject);
                 context.startActivity(i);
+
                 bottomSheetDialog.dismiss();
             }
         });

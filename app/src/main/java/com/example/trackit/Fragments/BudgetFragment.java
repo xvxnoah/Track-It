@@ -60,8 +60,8 @@ public class BudgetFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    RecyclerView recyclerViewBudgets;
-    TextView recent;
+    RecyclerView recyclerViewBudgets, recyclerCompleted;
+    TextView recent, completed;
     private ArrayList<Budget> budgetsVos;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -120,6 +120,12 @@ public class BudgetFragment extends Fragment {
         recyclerViewBudgets = vista.findViewById(R.id.recyclerViewBudgets);
         recyclerViewBudgets.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        recyclerCompleted = vista.findViewById(R.id.recyclerViewBudgetsCompleted);
+        recyclerCompleted.setVisibility(View.INVISIBLE);
+
+        completed = vista.findViewById(R.id.completedBudgets);
+        completed.setVisibility(View.INVISIBLE);
+
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
         // Getting text from our edittext fields.
@@ -171,7 +177,7 @@ public class BudgetFragment extends Fragment {
                 budgetsVos.add(budget);
             }
         }else{
-            recent.setText("No hi ha pressupostos");
+            recent.setText("No tens cap pressupost");
         }
     }
 }

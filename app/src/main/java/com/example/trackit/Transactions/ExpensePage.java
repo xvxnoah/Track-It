@@ -233,17 +233,16 @@ public class ExpensePage extends AppCompatActivity{
                         public void onClick(View view) {
                             String budget = budgetsSpinner.getSelectedItem().toString();
 
-                            if(budget.equals("Selecciona") == false  && userInfo.updateBudget(budget, quantity, false)) {
-                                userInfo.updateBudget(budget, quantity, false);
+                            if(budget.equals("Selecciona") == false  && userInfo.updateBudget(budget, Math.abs(quantity), false)) {
+                                //userInfo.updateBudget(budget, quantity, false);
                                 ref.setValue(userInfo);
                                 Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
                                 startActivity(intent);
                                 finish();
                                 bottomSheetDialog.dismiss();
                             } else{
-                                Toast.makeText(ExpensePage.this,"No has seleccionat pressupost!",Toast.LENGTH_LONG).show();
+                                Toast.makeText(ExpensePage.this,"No has seleccionat pressupost o la quantitat no es pot restar!",Toast.LENGTH_LONG).show();
                             }
-
                         }
                     });
 

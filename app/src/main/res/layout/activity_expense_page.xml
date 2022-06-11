@@ -40,7 +40,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/howmuchText"
+        android:id="@+id/howmuchTextBudget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/g_bold"
@@ -56,7 +56,6 @@
         android:id="@+id/enterExpense"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="30dp"
         android:autofillHints=""
@@ -78,7 +77,6 @@
         android:background="@drawable/rounded_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout

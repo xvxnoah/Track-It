@@ -7,54 +7,108 @@
     android:background="@color/lila"
     tools:context=".Fragments.HomeFragment">
 
+    <TextView
+        android:id="@+id/textExpense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/g_bold"
+        android:text="Pressupostos"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="411dp"
-        android:layout_height="480dp"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/rounded_shape"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.996"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewBudgets"
-            android:layout_width="380dp"
-            android:layout_height="211dp"
-            android:layout_gravity="top"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="44dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recentBudgets" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/recentBudgets"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginStart="96dp"
-            android:layout_marginBottom="404dp"
-            android:fontFamily="@font/g_bold"
-            android:text="No tens cap pressupost."
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/recentBudgets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/g_bold"
+                android:text="No tens cap pressupost"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/scrollNonCompleted"/>
 
-        <Button
-            android:id="@+id/createBudget"
-            android:layout_width="250dp"
-            android:layout_height="48dp"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="96dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/lila"
-            android:fontFamily="@font/g_bold"
-            android:text="Crear un pressupost"
-            android:textAllCaps="false"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewBudgets" />
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollNonCompleted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                android:scrollbars="none"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recentBudgets"
+                app:layout_constraintBottom_toTopOf="@id/completedBudgets">
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewBudgets"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"/>
+            </androidx.core.widget.NestedScrollView>
+
+            <TextView
+                android:id="@+id/completedBudgets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/g_bold"
+                android:text="Pressupostos completats"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scrollNonCompleted"
+                app:layout_constraintBottom_toTopOf="@id/scrollCompleted"/>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollCompleted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/completedBudgets"
+                app:layout_constraintBottom_toTopOf="@id/createBudget">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewBudgetsCompleted"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"/>
+            </androidx.core.widget.NestedScrollView>
+
+            <Button
+                android:id="@+id/createBudget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/lila"
+                android:fontFamily="@font/g_bold"
+                android:text="Crear un pressupost"
+                android:textAllCaps="false"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scrollCompleted"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

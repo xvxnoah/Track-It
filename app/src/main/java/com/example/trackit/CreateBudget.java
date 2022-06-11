@@ -199,8 +199,6 @@ public class CreateBudget extends AppCompatActivity {
                     budget = new Budget(name, category, quantity, alert, color);
                     userInfo.addBudget(budget);
                     ref.setValue(userInfo);
-                    Intent intent = new Intent(CreateBudget.this, Transaction_Done.class);
-                    startActivity(intent);
                     finish();
 
                 }else{

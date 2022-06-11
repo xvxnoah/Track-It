@@ -69,7 +69,6 @@ public class Budget {
     }
 
     public void updateQuantity(double quantity, boolean sumar) {
-
         if(sumar){
             this.quantity = this.quantity + quantity;
         }else{

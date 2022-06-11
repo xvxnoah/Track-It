@@ -45,6 +45,7 @@ import java.util.ArrayList;
 public class CreateBudget extends AppCompatActivity {
 
     private Spinner budgetCategories;
+    private Spinner budgetColours;
     private EditText name;
     private UserInfo userInfo;
     private DatabaseReference ref;
@@ -57,7 +58,8 @@ public class CreateBudget extends AppCompatActivity {
 
         setListeners();
 
-        setSpinner();
+        setSpinner1();
+        setSpinner2();
 
         Window window = CreateBudget.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(CreateBudget.this, R.color.lila));
@@ -85,7 +87,7 @@ public class CreateBudget extends AppCompatActivity {
         });
     }
 
-    private void setSpinner(){
+    private void setSpinner1(){
         budgetCategories = findViewById(R.id.spinnerCreateBudget);
 
         String arrayName = "budget_categories";
@@ -121,6 +123,42 @@ public class CreateBudget extends AppCompatActivity {
         budgetCategories.setAdapter(spinnerAdapter);
     }
 
+    private void setSpinner2(){
+        budgetColours = findViewById(R.id.spinnerBudgetColours);
+
+        String arrayName = "budget_colours";
+        int arrayName_ID = getResources().getIdentifier(arrayName,"array",this.getPackageName());
+        String[] categories = getResources().getStringArray(arrayName_ID);
+
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories) {
+            @Override
+            public boolean isEnabled(int position) {
+                if (position == 0) {
+                    // Desactivem el primer item
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+
+                if (position == 0) {
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        budgetColours.setAdapter(spinnerAdapter);
+    }
+
     private void setListeners() {
         ImageButton back = findViewById(R.id.back_create_budget);
 
@@ -141,6 +179,15 @@ public class CreateBudget extends AppCompatActivity {
                 EditText nameBudget = (EditText) findViewById((R.id.nameBudget));
 
                 String category = budgetCategories.getSelectedItem().toString();
+                String StrColor = budgetColours.getSelectedItem().toString();
+                int color = 0;
+                if(StrColor.equals("Vermell")){
+                    color = Color.RED;
+                }else if(StrColor.equals("Blau")){
+                    color = Color.BLUE;
+                }else if(StrColor.equals("Verd")){
+                    color = Color.GREEN;
+                }
                 boolean alert = ((SwitchMaterial) findViewById(R.id.switchBudget)).isChecked();
 
                 if(!enterBudget.getText().toString().isEmpty() && !category.equals("Categoria")){
@@ -149,7 +196,7 @@ public class CreateBudget extends AppCompatActivity {
                     String name = nameBudget.getText().toString();
                     Budget budget;
 
-                    budget = new Budget(name, category, quantity, alert);
+                    budget = new Budget(name, category, quantity, alert, color);
                     userInfo.addBudget(budget);
                     ref.setValue(userInfo);
                     Intent intent = new Intent(CreateBudget.this, Transaction_Done.class);

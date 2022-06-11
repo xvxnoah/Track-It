@@ -176,4 +176,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/howmuchText2" />
 
+    <Spinner
+        android:id="@+id/spinnerBudgetColours"
+        android:layout_width="128dp"
+        android:layout_height="50dp"
+        android:layout_gravity="top"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="140dp"
+        app:layout_constraintStart_toEndOf="@+id/howmuchText"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

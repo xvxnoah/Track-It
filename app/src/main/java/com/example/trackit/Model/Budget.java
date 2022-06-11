@@ -1,18 +1,22 @@
 package com.example.trackit.Model;
 
+import android.graphics.Color;
+
 public class Budget {
     private String name;
     private String type;
     private double objective;
     private double quantity;
     private boolean alert;
+    private int color;
 
-    public Budget(String name, String type, double objective, boolean alert){
+    public Budget(String name, String type, double objective, boolean alert, int color){
         this.name = name;
         this.type = type;
         this.objective = objective;
         this.quantity = 0;
         this.alert = alert;
+        this.color = color;
     }
 
     public Budget(){
@@ -33,6 +37,8 @@ public class Budget {
 
     public double getQuantity() { return quantity; }
 
+    public int getColor() { return color; }
+
     public boolean isAlert() {
         return alert;
     }
@@ -51,6 +57,8 @@ public class Budget {
     public void setAlert(boolean alert) {
         this.alert = alert;
     }
+
+    public void setColor(int color) { this.color = color; }
 
     public String getName() {
         return this.name;

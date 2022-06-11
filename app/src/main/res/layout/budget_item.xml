@@ -41,21 +41,21 @@
                 android:id="@+id/card_image_budget"
                 android:layout_width="21dp"
                 android:layout_height="23dp"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
                 app:cardBackgroundColor="@color/button"
                 app:cardCornerRadius="120dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.09" />
+                app:layout_constraintVertical_bias="0.207" />
 
             <TextView
                 android:id="@+id/titleTransaction"
                 android:layout_width="251dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginBottom="68dp"
+                android:layout_marginBottom="56dp"
                 android:text=""
                 android:textColor="@color/textPrimary"
                 android:textSize="16sp"

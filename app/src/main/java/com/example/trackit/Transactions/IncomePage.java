@@ -54,6 +54,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.UUID;
 
 public class IncomePage extends AppCompatActivity {
 
@@ -216,7 +217,8 @@ public class IncomePage extends AppCompatActivity {
 
                     Transaction transaction;
 
-                    transaction = new Transaction(description, category, quantity, dateIncome.getText().toString(), selectedImageUri);
+                    String uniqueID = UUID.randomUUID().toString();
+                    transaction = new Transaction(uniqueID, description, category, quantity, dateIncome.getText().toString(), selectedImageUri);
                     userInfo.addTransaction(transaction);
                     userInfo.updateSave(quantity);
 
@@ -234,15 +236,16 @@ public class IncomePage extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             String budget = budgetsSpinner.getSelectedItem().toString();
-
                             if(budget.equals("Selecciona") == false) {
-                                userInfo.updateBudget(budget, quantity);
+                                 userInfo.updateBudget(budget, quantity, true);
+                                ref.setValue(userInfo);
+                                Intent intent = new Intent(IncomePage.this, Transaction_Done.class);
+                                startActivity(intent);
+                                finish();
+                                bottomSheetDialog.dismiss();
+                            } else{
+                                Toast.makeText(IncomePage.this,"No has seleccionat pressupost o la quantitat de pressupost no es pot restar!",Toast.LENGTH_LONG).show();
                             }
-                            ref.setValue(userInfo);
-                            Intent intent = new Intent(IncomePage.this, Transaction_Done.class);
-                            startActivity(intent);
-                            finish();
-                            bottomSheetDialog.dismiss();
                         }
                     });
 

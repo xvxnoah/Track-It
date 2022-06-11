@@ -3,6 +3,7 @@ package com.example.trackit.Adapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -12,8 +13,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,13 +25,17 @@ import com.example.trackit.HomePage;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
+import com.example.trackit.Transactions.EditTransaction;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.auth.User;
+import com.google.gson.Gson;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransactions.ViewHolder> {
+public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransactions.ViewHolder> implements Serializable {
     ArrayList<Transaction> transactionVos;
     private Context context;
     private DatabaseReference ref;
@@ -94,7 +101,7 @@ public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransaction
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView title, category, amount, date;
-        ImageView picCategory;
+        AppCompatImageView picCategory;
         CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
@@ -137,7 +144,7 @@ public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransaction
         }
 
         money.setText(holder.amount.getText().toString() + '€');
-        roundedImageView.setImageResource(R.drawable.ic_baseline_directions_transit_24);
+        roundedImageView.setImageResource(selectImage(holder));
 
         bottomSheetView.findViewById(R.id.deleteButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,33 +153,69 @@ public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransaction
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Transaction t = transactionVos.get(holder.getAdapterPosition());
-                        transactionVos.remove(holder.getAdapterPosition());
-
                         UserInfo user = UserInfo.getInstance();
-                        Double ammount = Double.valueOf(holder.amount.getText().toString());
 
-                        if(Double.valueOf(holder.amount.getText().toString()) < 0){
-                            user.setMoneyWasted(user.getMoneyWasted() + ammount);
-                            user.setQuantity(user.getQuantity() + ammount);
+                        if(user.getInstance().deleteTransaction(t)){
+                            Toast.makeText(context, "Transacció eliminada!", Toast.LENGTH_SHORT).show();
+                            transactionVos.remove(holder.getAdapterPosition());
+                            updateFirebase();
                         } else{
-                            user.getInstance().setMoneySaved(user.getInstance().getMoneySaved() - ammount);
-                            user.setQuantity(user.getQuantity() - ammount);
+                            Toast.makeText(context, "Error a l'eliminar!", Toast.LENGTH_SHORT).show();
                         }
 
-                        user.getInstance().deleteTransaction(t);
-                        updateFirebase();
                     }
                 }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
                     }
                 }).show();
                 bottomSheetDialog.dismiss();
             }
         });
+
+        bottomSheetView.findViewById(R.id.editButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Transaction t = transactionVos.get(holder.getAdapterPosition());
+
+                Gson gson = new Gson();
+                String transactionDataObject = gson.toJson(t);
+
+                Intent i = new Intent(context, EditTransaction.class);
+                i.putExtra("Transaction", transactionDataObject);
+                context.startActivity(i);
+
+                bottomSheetDialog.dismiss();
+            }
+        });
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
+    }
+
+    private int selectImage(AdapterTransactions.ViewHolder holder){
+        String type = transactionVos.get(holder.getLayoutPosition()).getType();
+        if(type.equals("Alimentació")){
+            return R.drawable.ic_baseline_fastfood_24;
+        } else if(type.equals("Compres")){
+            return R.drawable.ic_baseline_shopping_cart_24;
+        } else if(type.equals("Transport")){
+            return R.drawable.ic_baseline_directions_transit_24;
+        } else if(type.equals("Salut/Higiene")){
+            return R.drawable.person;
+        } else if(type.equals("Educació")){
+            return R.drawable.ic_baseline_auto_stories_24;
+        } else if(type.equals("Altres despeses")){
+            return R.drawable.transaction;
+        } else if(type.equals("Nòmina")){
+            return R.drawable.ic_baseline_attach_money_24;
+        } else if(type.equals("Criptomonedes")){
+            return R.drawable.ic_currency_btc;
+        } else if(type.equals("Accions")){
+            return R.drawable.ic_cash_100;
+        } else if(type.equals("Altres ingressos")){
+            return R.drawable.transaction;
+        }
+        return 0;
     }
 
     private void updateFirebase(){

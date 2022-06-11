@@ -15,7 +15,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -25,13 +24,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
-import com.example.trackit.HomePage;
 import com.example.trackit.Model.Budget;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
@@ -47,12 +44,10 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
-import java.util.Locale;
+import java.util.UUID;
 
 public class ExpensePage extends AppCompatActivity{
 
@@ -215,7 +210,8 @@ public class ExpensePage extends AppCompatActivity{
 
                     Transaction transaction;
 
-                    transaction = new Transaction(description, category, quantity, dateExpense.getText().toString(), selectedImageUri);
+                    String uniqueID = UUID.randomUUID().toString();
+                    transaction = new Transaction(uniqueID, description, category, quantity, dateExpense.getText().toString(), selectedImageUri);
                     userInfo.addTransaction(transaction);
                     userInfo.updateWasted(bd.doubleValue());
 
@@ -237,14 +233,17 @@ public class ExpensePage extends AppCompatActivity{
                         public void onClick(View view) {
                             String budget = budgetsSpinner.getSelectedItem().toString();
 
-                            if(budget.equals("Selecciona") == false) {
-                                userInfo.updateBudget(budget, quantity);
+                            if(budget.equals("Selecciona") == false  && userInfo.updateBudget(budget, quantity, false)) {
+                                userInfo.updateBudget(budget, quantity, false);
+                                ref.setValue(userInfo);
+                                Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
+                                startActivity(intent);
+                                finish();
+                                bottomSheetDialog.dismiss();
+                            } else{
+                                Toast.makeText(ExpensePage.this,"No has seleccionat pressupost!",Toast.LENGTH_LONG).show();
                             }
-                            ref.setValue(userInfo);
-                            Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
-                            startActivity(intent);
-                            finish();
-                            bottomSheetDialog.dismiss();
+
                         }
                     });
 

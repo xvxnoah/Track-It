@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_200"
+    tools:context=".Transactions.IncomePage">
+
+    <TextView
+        android:id="@+id/editTransaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/g_bold"
+        android:text="Editar transacció"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/back_edit"
+        android:layout_width="75dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        android:backgroundTint="@color/teal_200"
+        android:contentDescription="@string/back_expense"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/arrow"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/titleEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/g_bold"
+                android:text="Títol"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/editTitle"/>
+
+            <EditText
+                android:id="@+id/editTitle"
+                android:layout_width="280dp"
+                android:gravity="center_horizontal"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:autofillHints=""
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:fontFamily="@font/g_bold"
+                android:inputType="textPersonName"
+                android:textColor="@color/softBlack"
+                android:textSize="16sp"
+                tools:ignore="TextContrastCheck"
+                app:layout_constraintTop_toTopOf="@id/titleEditText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/categoryEditText"/>
+
+            <TextView
+                android:id="@+id/categoryEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/g_bold"
+                android:text="Categoria"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTitle"
+                app:layout_constraintBottom_toTopOf="@id/spinnerEditCategory"/>
+
+            <Spinner
+                android:id="@+id/spinnerEditCategory"
+                android:layout_width="300dp"
+                android:gravity="center_horizontal"
+                android:layout_height="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/dateEditText"
+                android:contentDescription="@string/app_name" />
+
+            <TextView
+                android:id="@+id/dateEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/g_bold"
+                android:text="Data"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/dateEdit"/>
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:id="@+id/dateEdit"
+                android:fontFamily="@font/g_bold"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:layout_marginBottom="20dp"
+                android:inputType="date"
+                android:textIsSelectable="false"
+                android:focusableInTouchMode="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/ammountEditText"/>
+
+            <TextView
+                android:id="@+id/ammountEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/g_bold"
+                android:text="Quantitat"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/editAmmount"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <EditText
+                android:id="@+id/editAmmount"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal"
+                android:autofillHints=""
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:fontFamily="@font/g_bold"
+                android:inputType="number|numberSigned|numberDecimal"
+                android:textColor="@color/softBlack"
+                android:textSize="16sp"
+                tools:ignore="TextContrastCheck"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/acceptEdit"/>
+
+            <Button
+                android:id="@+id/acceptEdit"
+                android:layout_width="210dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/teal_200"
+                android:fontFamily="@font/g_bold"
+                android:text="Guardar"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TextContrastCheck" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

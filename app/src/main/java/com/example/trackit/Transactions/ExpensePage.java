@@ -233,8 +233,8 @@ public class ExpensePage extends AppCompatActivity{
                         public void onClick(View view) {
                             String budget = budgetsSpinner.getSelectedItem().toString();
 
-                            if(budget.equals("Selecciona") == false) {
-                                userInfo.updateBudget(budget, quantity, true);
+                            if(budget.equals("Selecciona") == false  && userInfo.updateBudget(budget, quantity, false)) {
+                                userInfo.updateBudget(budget, quantity, false);
                                 ref.setValue(userInfo);
                                 Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
                                 startActivity(intent);

@@ -236,7 +236,8 @@ public class IncomePage extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             String budget = budgetsSpinner.getSelectedItem().toString();
-                            if(budget.equals("Selecciona") == false && userInfo.updateBudget(budget, quantity, false)) {
+                            if(budget.equals("Selecciona") == false) {
+                                 userInfo.updateBudget(budget, quantity, true);
                                 ref.setValue(userInfo);
                                 Intent intent = new Intent(IncomePage.this, Transaction_Done.class);
                                 startActivity(intent);

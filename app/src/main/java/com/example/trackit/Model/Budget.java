@@ -68,8 +68,13 @@ public class Budget {
         this.name = nameBudget;
     }
 
-    public void updateQuantity(double quantity) {
-        this.quantity = this.quantity + quantity;
+    public void updateQuantity(double quantity, boolean sumar) {
+
+        if(sumar){
+            this.quantity = this.quantity + quantity;
+        }else{
+            this.quantity = this.quantity - quantity;
+        }
         if(quantity >= objective){
             alert = true;
         }

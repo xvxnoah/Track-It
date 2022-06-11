@@ -1,7 +1,5 @@
 package com.example.trackit.Model;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
@@ -186,7 +184,7 @@ public class UserInfo extends Observable {
         this.moneySaved = this.moneySaved + quantity;
     }
 
-    public void updateBudget(String budget, double quantity) {
+    public boolean updateBudget(String budget, double quantity, boolean sumar) {
         ArrayList<Budget> Budgets = getBudgets();
         Budget actual;
         ArrayList<String> budgetNames = new ArrayList<>();
@@ -210,9 +208,12 @@ public class UserInfo extends Observable {
             }
         }
         this.budgets.remove(pos);
-        if(updatedBudget != null){
-            updatedBudget.updateQuantity(quantity);
+        if(updatedBudget != null && (updatedBudget.getQuantity()>=quantity || sumar)){
+            updatedBudget.updateQuantity(quantity, sumar);
             this.budgets.add(updatedBudget);
+            return true;
+        }else{
+            return false;
         }
     }
 }

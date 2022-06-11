@@ -236,18 +236,15 @@ public class IncomePage extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             String budget = budgetsSpinner.getSelectedItem().toString();
-
-                            if(budget.equals("Selecciona") == false) {
-                                userInfo.updateBudget(budget, quantity);
+                            if(budget.equals("Selecciona") == false && userInfo.updateBudget(budget, quantity, false)) {
                                 ref.setValue(userInfo);
                                 Intent intent = new Intent(IncomePage.this, Transaction_Done.class);
                                 startActivity(intent);
                                 finish();
                                 bottomSheetDialog.dismiss();
                             } else{
-                                Toast.makeText(IncomePage.this,"No has seleccionat pressupost!",Toast.LENGTH_LONG).show();
+                                Toast.makeText(IncomePage.this,"No has seleccionat pressupost o la quantitat de pressupost no es pot restar!",Toast.LENGTH_LONG).show();
                             }
-
                         }
                     });
 

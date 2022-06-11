@@ -48,7 +48,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.207" />
+                app:layout_constraintVertical_bias="0.103" />
 
             <TextView
                 android:id="@+id/titleTransaction"
@@ -56,6 +56,7 @@
                 android:layout_height="36dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="56dp"
+                android:fontFamily="@font/g_bold"
                 android:text=""
                 android:textColor="@color/textPrimary"
                 android:textSize="16sp"
@@ -68,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/g_bold"
                 android:text=""
                 android:textColor="@color/textSecondary"
                 android:textSize="14sp"

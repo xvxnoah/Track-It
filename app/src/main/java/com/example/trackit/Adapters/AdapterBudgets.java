@@ -1,6 +1,7 @@
 package com.example.trackit.Adapters;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,11 +40,15 @@ public class AdapterBudgets extends RecyclerView.Adapter<AdapterBudgets.ViewHold
         holder.title.setText(budgetVos.get(position).getName());
         holder.amount.setText(budgetVos.get(position).getType());
         String quantity = String.valueOf(budgetVos.get(position).getQuantity());
-        int percentatge = (int) (budgetVos.get(position).getQuantity()/budgetVos.get(position).getObjective());
-
-        holder.bar.setProgress(percentatge, true);
+        int g = (int) budgetVos.get(position).getQuantity();
+        int r = (int) budgetVos.get(position).getObjective();
+        double percentatge = (budgetVos.get(position).getQuantity()/budgetVos.get(position).getObjective())*100;
+        int percentatge2 = (int) percentatge;
+        holder.bar.setProgress(percentatge2, true);
+        holder.bar.setProgressTintList(ColorStateList.valueOf(budgetVos.get(position).getColor()));
         holder.amount.setText(quantity);
 
+        holder.cardView.setBackgroundColor(budgetVos.get(position).getColor());
         holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition));
     }
 

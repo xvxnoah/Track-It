@@ -61,7 +61,7 @@ public class Budget {
     }
 
     public void updateQuantity(double quantity) {
-        this.quantity = quantity + quantity;
+        this.quantity = this.quantity + quantity;
         if(quantity >= objective){
             alert = true;
         }

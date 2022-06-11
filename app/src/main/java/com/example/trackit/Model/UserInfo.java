@@ -154,18 +154,28 @@ public class UserInfo extends Observable {
         Budget actual;
         ArrayList<String> budgetNames = new ArrayList<>();
         Iterator<Budget> iter = null;
-
+        Budget updatedBudget = null;
         if (Budgets != null) {
             iter = Budgets.iterator();
         }
-
+        boolean found = false;
+        int pos = 0;
         if (Budgets != null) {
             while (iter.hasNext()) {
-                if(iter.next().getName().equals(budget)){
-                    iter.next().updateQuantity(quantity);
+                actual = iter.next();
+                if(actual.getName().equals(budget)){
+                    updatedBudget = actual;
+                    found = true;
                 }
-
+                if(!found){
+                    pos++;
+                }
             }
+        }
+        this.budgets.remove(pos);
+        if(updatedBudget != null){
+            updatedBudget.updateQuantity(quantity);
+            this.budgets.add(updatedBudget);
         }
     }
 }

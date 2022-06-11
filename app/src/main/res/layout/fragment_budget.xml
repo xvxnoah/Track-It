@@ -19,11 +19,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewBudgets"
-            android:layout_width="453dp"
-            android:layout_height="227dp"
+            android:layout_width="380dp"
+            android:layout_height="211dp"
             android:layout_gravity="top"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="44dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recentBudgets" />
 
@@ -34,6 +34,7 @@
             android:layout_gravity="top"
             android:layout_marginStart="96dp"
             android:layout_marginBottom="404dp"
+            android:fontFamily="@font/g_bold"
             android:text="No tens cap pressupost."
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"

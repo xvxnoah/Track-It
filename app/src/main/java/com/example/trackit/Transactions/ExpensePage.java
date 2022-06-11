@@ -111,6 +111,7 @@ public class ExpensePage extends AppCompatActivity{
             iter = Budgets.iterator();
         }
 
+        budgetNames.add("Selecciona");
         if (Budgets != null) {
             while (iter.hasNext()) {
                 actual = iter.next();
@@ -217,9 +218,10 @@ public class ExpensePage extends AppCompatActivity{
                     userInfo.addTransaction(transaction);
                     userInfo.updateWasted(bd.doubleValue());
 
-                    if(budget != null){
-                        userInfo.updateBudget(budget, quantity);
+                    if(budget.equals("Selecciona") == false){
+                        userInfo.updateBudget(budget, Math.abs(quantity));
                     }
+
                     ref.setValue(userInfo);
                     Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
                     startActivity(intent);

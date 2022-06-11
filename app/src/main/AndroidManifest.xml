@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrackIt">
         <activity
+            android:name=".Transactions.EditTransaction"
+            android:exported="false" />
+        <activity
             android:name=".CreateBudget"
             android:exported="false" />
         <activity
@@ -55,10 +58,10 @@
             android:exported="false" />
         <activity
             android:name=".initActivities.Splash_Screen2"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ViewModel.AboutUs"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".initActivities.Splash_Screen"
             android:exported="true"

@@ -15,6 +15,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -24,15 +25,18 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
+import com.example.trackit.HomePage;
 import com.example.trackit.Model.Budget;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -95,13 +99,11 @@ public class ExpensePage extends AppCompatActivity{
             }
         });
 
-        setSpinnerBudget();
-
         setSpinnerCategories();
     }
 
-    private void setSpinnerBudget() {
-        budgetsSpinner = findViewById(R.id.spinnerBudgetExpense);
+    private void setSpinnerBudget(BottomSheetDialog bottomSheetDialog) {
+        budgetsSpinner = bottomSheetDialog.findViewById(R.id.spinnerBudgetExpense);
         Budgets = userInfo.getBudgets();
         Budget actual;
         ArrayList<String> budgetNames = new ArrayList<>();
@@ -182,7 +184,6 @@ public class ExpensePage extends AppCompatActivity{
 
         spinnerAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         expenseCategories.setAdapter(spinnerAdapter2);
-
     }
 
     private void setListeners() {
@@ -203,12 +204,12 @@ public class ExpensePage extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 EditText enterExpense = (EditText) findViewById(R.id.enterExpense);
-                EditText incomeDescription = (EditText) findViewById(R.id.expenseDescription);
+                EditText expenseDescription = (EditText) findViewById(R.id.expenseDescription);
                 String category = expenseCategories.getSelectedItem().toString();
-                String budget = budgetsSpinner.getSelectedItem().toString();
-                if(!enterExpense.getText().toString().isEmpty() && !incomeDescription.getText().toString().isEmpty() && !category.equals("Categoria") && !dateExpense.getText().toString().isEmpty()){
+
+                if(!enterExpense.getText().toString().isEmpty() && !expenseDescription.getText().toString().isEmpty() && !category.equals("Categoria") && !dateExpense.getText().toString().isEmpty()){
                     // Atributes of the Transaction's class
-                    String description = incomeDescription.getText().toString();
+                    String description = expenseDescription.getText().toString();
                     BigDecimal bd = new BigDecimal(enterExpense.getText().toString()).setScale(2, RoundingMode.UNNECESSARY);
                     double quantity = 0 - bd.doubleValue();
 
@@ -218,14 +219,38 @@ public class ExpensePage extends AppCompatActivity{
                     userInfo.addTransaction(transaction);
                     userInfo.updateWasted(bd.doubleValue());
 
-                    if(budget.equals("Selecciona") == false){
-                        userInfo.updateBudget(budget, Math.abs(quantity));
-                    }
+                    final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(ExpensePage.this, R.style.BottomSheetDialogTheme);
+                    bottomSheetDialog.setContentView(R.layout.bottom_sheet_budget);
 
-                    ref.setValue(userInfo);
-                    Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
-                    startActivity(intent);
-                    finish();
+                    bottomSheetDialog.show();
+
+                    setSpinnerBudget(bottomSheetDialog);
+
+                    bottomSheetDialog.findViewById(R.id.positiveButton).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String budget = budgetsSpinner.getSelectedItem().toString();
+                            if(budget.equals("Selecciona") == false) {
+                                userInfo.updateBudget(budget, Math.abs(quantity));
+                            }
+                            ref.setValue(userInfo);
+                            Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
+                            startActivity(intent);
+                            finish();
+                            bottomSheetDialog.dismiss();
+                        }
+                    });
+
+                    bottomSheetDialog.findViewById(R.id.negativeButton).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ref.setValue(userInfo);
+                            Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);
+                            startActivity(intent);
+                            finish();
+                            bottomSheetDialog.dismiss();
+                        }
+                    });
 
                 }else{
                     // If something is empty, display a message to the user.
@@ -264,6 +289,7 @@ public class ExpensePage extends AppCompatActivity{
             }
         });
     }
+
 
     @Override
     public void onBackPressed(){

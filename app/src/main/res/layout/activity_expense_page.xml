@@ -8,29 +8,6 @@
     tools:context=".Transactions.ExpensePage">
 
     <TextView
-        android:id="@+id/budgetText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/g_bold"
-        android:text="Afegir a un pressupost?"
-        android:textColor="@color/softGrey"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterExpense"
-        tools:ignore="TextContrastCheck" />
-
-    <Spinner
-        android:id="@+id/spinnerBudgetExpense"
-        android:layout_width="306dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budgetText2" />
-
-    <TextView
         android:id="@+id/textExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,8 +43,8 @@
         android:id="@+id/howmuchText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
         android:fontFamily="@font/g_bold"
+        android:layout_marginStart="30dp"
         android:text="@string/quant"
         android:textColor="@color/softGrey"
         android:textSize="20sp"
@@ -79,8 +56,9 @@
         android:id="@+id/enterExpense"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="30dp"
         android:autofillHints=""
         android:background="@android:color/transparent"
         android:ems="10"

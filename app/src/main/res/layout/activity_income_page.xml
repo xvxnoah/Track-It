@@ -7,15 +7,6 @@
     android:background="@color/greenIncome"
     tools:context=".Transactions.IncomePage">
 
-    <Spinner
-        android:id="@+id/spinnerBudgetIncome"
-        android:layout_width="306dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budgetText" />
-
     <TextView
         android:id="@+id/textIncome"
         android:layout_width="wrap_content"
@@ -52,9 +43,8 @@
         android:id="@+id/howmuchText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="16dp"
         android:fontFamily="@font/g_bold"
+        android:layout_marginStart="30dp"
         android:text="@string/quant"
         android:textColor="@color/softGrey"
         android:textSize="20sp"
@@ -62,26 +52,13 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextContrastCheck" />
 
-    <TextView
-        android:id="@+id/budgetText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/g_bold"
-        android:text="Afegir a un pressupost?"
-        android:textColor="@color/softGrey"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterIncome"
-        tools:ignore="TextContrastCheck" />
-
     <EditText
         android:id="@+id/enterIncome"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="30dp"
         android:autofillHints=""
         android:background="@android:color/transparent"
         android:ems="10"
@@ -136,11 +113,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toTopOf="@id/adjuntTextIncome"
+                app:layout_constraintBottom_toTopOf="@id/dateEditText"
                 android:contentDescription="@string/app_name" />
 
             <TextView
-                android:id="@+id/adjuntTextIncome"
+                android:id="@+id/dateEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -234,6 +211,8 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

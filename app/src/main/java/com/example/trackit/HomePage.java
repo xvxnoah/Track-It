@@ -35,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class HomePage extends AppCompatActivity {
 
-    FloatingActionButton fab, fab_in, fab_out, fab_news;
+    FloatingActionButton fab, fab_in, fab_out;
     Animation fabOpen, fabClose;
     ActivityHomePageBinding binding;
     private static HomePage instance;
@@ -68,7 +68,6 @@ public class HomePage extends AppCompatActivity {
         fab = findViewById(R.id.fab);
         fab_in = findViewById(R.id.fab_in);
         fab_out = findViewById(R.id.fab_out);
-        fab_news = findViewById(R.id.fab_news);
 
         // Animations
         fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
@@ -76,13 +75,11 @@ public class HomePage extends AppCompatActivity {
 
         // Start listeners
         startListeners();
-
     }
 
     public static HomePage getInstance(){
         return instance;
     }
-
 
     private void startListeners() {
         // Set the click listener on the main FAB
@@ -102,15 +99,12 @@ public class HomePage extends AppCompatActivity {
         });
 
         fab_out.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 animateFab();
                 startActivity(new Intent(HomePage.this, ExpensePage.class));
             }
         });
-
-
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
@@ -133,7 +127,6 @@ public class HomePage extends AppCompatActivity {
                     replaceFragment(new ProfileFragment());
                     break;
             }
-
             return true;
         });
     }

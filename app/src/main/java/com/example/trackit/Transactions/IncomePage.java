@@ -32,9 +32,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
+import com.example.trackit.Model.Budget;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.R;
 import com.example.trackit.Model.UserInfo;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -98,6 +100,54 @@ public class IncomePage extends AppCompatActivity {
                 System.out.println("La lectura ha fallat: " + databaseError.getCode());
             }
         });
+    }
+
+    private void setSpinnerBudget(BottomSheetDialog bottomSheetDialog) {
+        budgetsSpinner = bottomSheetDialog.findViewById(R.id.spinnerBudgetExpense);
+        Budgets = userInfo.getBudgets();
+        Budget actual;
+        ArrayList<String> budgetNames = new ArrayList<>();
+        Iterator<Budget> iter = null;
+
+        if (Budgets != null) {
+            iter = Budgets.iterator();
+        }
+
+        budgetNames.add("Selecciona");
+        if (Budgets != null) {
+            while (iter.hasNext()) {
+                actual = iter.next();
+                budgetNames.add(actual.getName());
+            }
+        }
+
+        ArrayAdapter<String> spinnerAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,budgetNames){
+            @Override
+            public boolean isEnabled(int position) {
+                if(position == 0){
+                    // Desactivem el primer item
+                    return false;
+                } else{
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+
+                if(position == 0){
+                    tv.setTextColor(Color.GRAY);
+                } else{
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
+        spinnerAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        budgetsSpinner.setAdapter(spinnerAdapter1);
     }
 
     private void setSpinnerCategories() {
@@ -169,10 +219,43 @@ public class IncomePage extends AppCompatActivity {
                     transaction = new Transaction(description, category, quantity, dateIncome.getText().toString(), selectedImageUri);
                     userInfo.addTransaction(transaction);
                     userInfo.updateSave(quantity);
-                    ref.setValue(userInfo);
-                    Intent intent = new Intent(IncomePage.this, Transaction_Done.class);
-                    startActivity(intent);
-                    finish();
+
+                    final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(IncomePage.this, R.style.BottomSheetDialogTheme);
+                    bottomSheetDialog.setContentView(R.layout.bottom_sheet_budget);
+
+                    bottomSheetDialog.show();
+
+                    setSpinnerBudget(bottomSheetDialog);
+
+                    bottomSheetDialog.findViewById(R.id.positiveButton).setBackgroundColor(getResources().getColor(R.color.greenIncome));
+                    bottomSheetDialog.findViewById(R.id.negativeButton).setBackgroundColor(getResources().getColor(R.color.greenIncome));
+
+                    bottomSheetDialog.findViewById(R.id.positiveButton).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String budget = budgetsSpinner.getSelectedItem().toString();
+
+                            if(budget.equals("Selecciona") == false) {
+                                userInfo.updateBudget(budget, quantity);
+                            }
+                            ref.setValue(userInfo);
+                            Intent intent = new Intent(IncomePage.this, Transaction_Done.class);
+                            startActivity(intent);
+                            finish();
+                            bottomSheetDialog.dismiss();
+                        }
+                    });
+
+                    bottomSheetDialog.findViewById(R.id.negativeButton).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ref.setValue(userInfo);
+                            Intent intent = new Intent(IncomePage.this, Transaction_Done.class);
+                            startActivity(intent);
+                            finish();
+                            bottomSheetDialog.dismiss();
+                        }
+                    });
 
                 }else{
                     // If something is empty, display a message to the user.

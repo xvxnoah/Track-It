@@ -41,13 +41,14 @@
                     android:layout_height="match_parent"
                     android:padding="16dp">
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/card_icon_transaction"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:backgroundTint="@color/transparent"
-                        android:src="@drawable/ic_baseline_fastfood_24"
+                        app:srcCompat="@drawable/ic_baseline_fastfood_24"
                         app:tint="@color/white"
+                        android:scaleType="fitXY"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

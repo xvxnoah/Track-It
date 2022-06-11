@@ -225,6 +225,10 @@ public class ExpensePage extends AppCompatActivity{
                     bottomSheetDialog.show();
 
                     setSpinnerBudget(bottomSheetDialog);
+
+                    bottomSheetDialog.findViewById(R.id.positiveButton).setBackgroundColor(getResources().getColor(R.color.redExpense));
+                    bottomSheetDialog.findViewById(R.id.negativeButton).setBackgroundColor(getResources().getColor(R.color.redExpense));
+
                     TextView tv = bottomSheetDialog.findViewById(R.id.textDialogBudget);
                     tv.setText("Restar despesa a un pressupost?");
 

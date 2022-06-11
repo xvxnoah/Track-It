@@ -225,13 +225,16 @@ public class ExpensePage extends AppCompatActivity{
                     bottomSheetDialog.show();
 
                     setSpinnerBudget(bottomSheetDialog);
+                    TextView tv = bottomSheetDialog.findViewById(R.id.textDialogBudget);
+                    tv.setText("Restar despesa a un pressupost?");
 
                     bottomSheetDialog.findViewById(R.id.positiveButton).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             String budget = budgetsSpinner.getSelectedItem().toString();
+
                             if(budget.equals("Selecciona") == false) {
-                                userInfo.updateBudget(budget, Math.abs(quantity));
+                                userInfo.updateBudget(budget, quantity);
                             }
                             ref.setValue(userInfo);
                             Intent intent = new Intent(ExpensePage.this, Transaction_Done.class);

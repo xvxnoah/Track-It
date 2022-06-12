@@ -304,6 +304,9 @@ public class NewAccount extends AppCompatActivity {
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
+            String imageStr = email + UUID.randomUUID().toString();
+            User.setImageStr(email + UUID.randomUUID().toString()) ;
+
             // Defining the child of storageReference
             StorageReference ref
                     = storageReference

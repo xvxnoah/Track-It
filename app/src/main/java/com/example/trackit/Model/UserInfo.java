@@ -41,6 +41,7 @@ public class UserInfo extends Observable {
         this.transactions = new ArrayList<Transaction>();
         this.budgets = new ArrayList<Budget>();
         this.DriveLogin = false;
+        this.imageStr = "null";
     }
 
     public void UserInfo(double moneySaved, double moneyWasted, ArrayList<Transaction> transactions, ArrayList<Budget> budgets, boolean DriveLogin){
@@ -49,7 +50,7 @@ public class UserInfo extends Observable {
         this.transactions = transactions;
         this.budgets = budgets;
         this.DriveLogin = DriveLogin;
-        this.imageStr = null;
+        this.imageStr = "null";
         this.transactionStr = null;
     }
 

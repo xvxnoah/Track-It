@@ -1,5 +1,6 @@
 package com.example.trackit.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,8 @@ import com.example.trackit.R;
 import com.example.trackit.ViewModel.AboutUs;
 import com.example.trackit.initActivities.Info_Welcome_Page;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,8 +42,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -49,8 +56,30 @@ import java.io.InputStream;
  */
 public class ProfileFragment extends Fragment {
 
-    View view;
+    private static final int RESULT_OK = -1;
+    // creating a variable for our object class
+    com.example.trackit.Model.UserInfo User;
+
+    private Uri imageToUploadUri;
+
+    // views for button
+    private Button btnSelect, btnCamera;
+
+    // view for image view
+    private ImageView imageView;
+
+    // Uri indicates, where the image will be picked from
+    private Uri filePath;
+
+    // request code
+    private final int PICK_IMAGE_REQUEST = 22;
+
+
+    View view, view2;
     ImageView profilePic;
+    FirebaseStorage storage;
+    StorageReference storageReference;
+
 
     com.example.trackit.Model.UserInfo userInfo;
     FirebaseDatabase firebaseDatabase;
@@ -103,6 +132,11 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profile, container, false);
+        view2 = inflater.inflate(R.layout.bottom_edit_profile, container, false);
+        btnSelect = view2.findViewById(R.id.optionGallery);
+
+        storage = FirebaseStorage.getInstance("gs://track-it-86761.appspot.com");
+        storageReference = storage.getReference();
 
         Button logOut = (Button)view.findViewById(R.id.logOut);
         Button aboutUs = (Button)view.findViewById(R.id.about_us_btn);
@@ -145,7 +179,7 @@ public class ProfileFragment extends Fragment {
         });
 
         StorageReference mImageStorage = FirebaseStorage.getInstance("gs://track-it-86761.appspot.com").getReference();
-        if(userInfo.getImageStr().equals("null") == false){
+        if(userInfo.getImageStr() != null){
             StorageReference ref = mImageStorage.child("images/" + userInfo.getImageStr());
 
             ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -225,6 +259,15 @@ public class ProfileFragment extends Fragment {
                 });
             }
         });
+
+        btnSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                SelectImage();
+                uploadImage(userInfo.getEmail());
+            }
+        });
         return view;
     }
 
@@ -265,5 +308,142 @@ public class ProfileFragment extends Fragment {
             bmImage.setImageBitmap(result);
         }
     }
+
+    // Select Image method
+    private void SelectImage()
+    {
+
+        // Defining Implicit Intent to mobile gallery
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(
+                Intent.createChooser(
+                        intent,
+                        "Selecciona una imatge..."),
+                22);
+    }
+
+    // Override onActivityResult method
+    @Override
+    public void onActivityResult(int requestCode,
+                                 int resultCode,
+                                 Intent data)
+    {
+
+        super.onActivityResult(requestCode,
+                resultCode,
+                data);
+
+        if(requestCode == 111 && resultCode == RESULT_OK){
+
+        }
+        if (requestCode == PICK_IMAGE_REQUEST
+                && resultCode == RESULT_OK
+                && data != null
+                && data.getData() != null) {
+
+            Button camera = view.findViewById(R.id.cameraProfile);
+            camera.setVisibility(View.INVISIBLE);
+
+            Button galllery = view.findViewById(R.id.galleryProfile);
+            galllery.setVisibility(View.INVISIBLE);
+            // Get the Uri of data
+            filePath = data.getData();
+            try {
+
+                // Setting image on image view using Bitmap
+                Bitmap bitmap = MediaStore
+                        .Images
+                        .Media
+                        .getBitmap(getContext().getContentResolver(),
+                                filePath);
+            }
+
+            catch (IOException e) {
+                // Log the exception
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // UploadImage method
+    private void uploadImage(String email)
+    {
+        if (filePath != null) {
+
+            // Code for showing progressDialog while uploading
+            ProgressDialog progressDialog
+                    = new ProgressDialog(view.getContext());
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+            String imageStr = email;
+            User.setImageStr(imageStr) ;
+
+            // Defining the child of storageReference
+            StorageReference ref
+                    = storageReference
+                    .child(
+                            "images/" + imageStr);
+
+            // adding listeners on upload
+            // or failure of image
+            ref.putFile(filePath)
+                    .addOnSuccessListener(
+                            new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                                @Override
+                                public void onSuccess(
+                                        UploadTask.TaskSnapshot taskSnapshot)
+                                {
+
+                                    // Image uploaded successfully
+                                    // Dismiss dialog
+                                    progressDialog.dismiss();
+                                    Toast
+                                            .makeText(view.getContext(),
+                                                    "Imatge de perfil pujada",
+                                                    Toast.LENGTH_SHORT)
+                                            .show();
+                                }
+                            })
+
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e)
+                        {
+
+                            // Error, Image not uploaded
+                            progressDialog.dismiss();
+                            Toast
+                                    .makeText(view.getContext(),
+                                            "Error " + e.getMessage(),
+                                            Toast.LENGTH_SHORT)
+                                    .show();
+                        }
+                    })
+                    .addOnProgressListener(
+                            new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                                // Progress Listener for loading
+                                // percentage on the dialog box
+                                @Override
+                                public void onProgress(
+                                        UploadTask.TaskSnapshot taskSnapshot)
+                                {
+                                    double progress
+                                            = (100.0
+                                            * taskSnapshot.getBytesTransferred()
+                                            / taskSnapshot.getTotalByteCount());
+                                    progressDialog.setMessage(
+                                            "Pujat "
+                                                    + (int)progress + "%");
+                                }
+                            });
+        }
+    }
+
+
 
 }

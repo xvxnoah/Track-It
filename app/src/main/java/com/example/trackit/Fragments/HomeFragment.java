@@ -5,7 +5,11 @@ import static java.lang.Math.abs;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,13 +18,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.Adapters.AdapterTransactions;
@@ -28,17 +35,22 @@ import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
 import com.example.trackit.News.NewsPage;
 import com.example.trackit.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.eazegraph.lib.charts.ValueLineChart;
 import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
 
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -204,6 +216,26 @@ public class HomeFragment extends Fragment {
     public void updateFragment() throws ParseException {
         sdf = new SimpleDateFormat("dd/MM/yyyy");
         Transactions = userInfo.getTransactions();
+
+        StorageReference mImageStorage = FirebaseStorage.getInstance("gs://track-it-86761.appspot.com").getReference();
+        if(userInfo.getImageStr() != null){
+            StorageReference ref = mImageStorage.child("images/" + userInfo.getImageStr());
+
+            ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downUri = task.getResult();
+                        String imageUrl = downUri.toString();
+                        new HomeFragment.DownloadImageTask((ImageView) vista.findViewById(R.id.profile_pic)).execute(imageUrl);
+                        Toast.makeText(vista.getContext(), imageUrl , Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(vista.getContext(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
         balance.setText(Double.toString(userInfo.getQuantity()) + '€');
 
         if(userInfo.getMoneySaved() >= 1000 && userInfo.getMoneySaved() < 10000){
@@ -546,6 +578,31 @@ public class HomeFragment extends Fragment {
             }
         }else{
             recent.setText("No hi ha transaccions");
+        }
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
         }
     }
 }

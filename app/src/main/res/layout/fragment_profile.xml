@@ -124,12 +124,12 @@
                         android:layout_gravity="center"
                         android:backgroundTint="@color/white"
                         android:fontFamily="@font/g_bold"
-                        android:text="@string/activar_empremta"
+                        android:text="Protecció digital"
                         android:textColor="@color/black"
                         app:rippleColor="@color/background" />
 
                     <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/password_switch_compact"
+                        android:id="@+id/password_switch_profile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|end"/>

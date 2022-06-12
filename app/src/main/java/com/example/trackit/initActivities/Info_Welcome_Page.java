@@ -1,9 +1,6 @@
 package com.example.trackit.initActivities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.biometric.BiometricManager;
-import androidx.biometric.BiometricPrompt;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
@@ -22,15 +19,11 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.Account.RegisterPage;
 import com.example.trackit.Adapters.SliderAdapter;
-import com.example.trackit.HomePage;
 import com.example.trackit.R;
-
-import java.util.concurrent.Executor;
 
 public class Info_Welcome_Page extends AppCompatActivity {
 
@@ -47,8 +40,6 @@ public class Info_Welcome_Page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
         // check if session already active
         session();
@@ -79,7 +70,6 @@ public class Info_Welcome_Page extends AppCompatActivity {
     }
 
     public void addDotsIndicator(int position){
-
         mDots = new TextView[3];
         mDotLayout.removeAllViews();
 
@@ -90,11 +80,9 @@ public class Info_Welcome_Page extends AppCompatActivity {
             mDots[i].setTextColor(getResources().getColor(R.color.purple_500));
 
             mDotLayout.addView(mDots[i]);
-
         }
 
         if(mDots.length > 0){
-
             mDots[position].setTextColor(getResources().getColor(R.color.purple_200));
         }
 
@@ -103,19 +91,16 @@ public class Info_Welcome_Page extends AppCompatActivity {
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int i, float v, int positionOffsetPixels) {
-
         }
 
         @Override
         public void onPageSelected(int i) {
-
             addDotsIndicator(i);
             visibilityButtons(i);
         }
 
         @Override
         public void onPageScrollStateChanged(int state) {
-
         }
     };
 
@@ -165,7 +150,6 @@ public class Info_Welcome_Page extends AppCompatActivity {
     }
 
     private void checkClick() {
-
         loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

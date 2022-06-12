@@ -7,35 +7,37 @@
     android:background="@color/softGrey"
     tools:context=".Account.AuthActivity">
 
+    <ImageButton
+        android:id="@+id/back_signin"
+        android:layout_width="75dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="14dp"
+        android:adjustViewBounds="true"
+        android:backgroundTint="@color/softGrey"
+        android:contentDescription="@string/back"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/arrow"
+        app:layout_constraintEnd_toStartOf="@+id/initText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/initText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/forgotTextView"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_marginTop="32dp"
+        android:text="@string/iniciar_sessio"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_baseline_fingerprint_24"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/fingerprint_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/white"
-            android:fontFamily="@font/g_bold"
-            android:text="Inicia amb emprempta"
-            android:textColor="@color/black"
-            app:rippleColor="@color/background" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <LinearLayout
         android:id="@+id/authLayout"
@@ -47,7 +49,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/initText"
         app:layout_constraintVertical_bias="0.39">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -180,19 +182,19 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/initText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/iniciar_sessio"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+    <ImageButton
+        android:id="@+id/fingerprint_login"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="16dp"
+        android:adjustViewBounds="true"
+        android:backgroundTint="@color/softGrey"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_baseline_fingerprint_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/forgotTextView"/>
 
     <TextView
         android:id="@+id/forgotTextView"
@@ -209,22 +211,5 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
-
-    <ImageButton
-        android:id="@+id/back_signin"
-        android:layout_width="75dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="14dp"
-        android:adjustViewBounds="true"
-        android:backgroundTint="@color/softGrey"
-        android:contentDescription="@string/back"
-        android:padding="10dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/arrow"
-        app:layout_constraintEnd_toStartOf="@+id/initText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

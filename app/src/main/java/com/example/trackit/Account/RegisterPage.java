@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -72,8 +73,9 @@ public class RegisterPage extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         String userEmail = email.getText().toString();
+
+                                        clearCredentials();
                                         SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
-                                        editor.putString("email", userEmail);
                                         editor.putString("password", pass.getText().toString());
                                         editor.apply();
 
@@ -108,6 +110,14 @@ public class RegisterPage extends AppCompatActivity {
                 onBackPressed();
             }
         });
+    }
+
+    private void clearCredentials() {
+        SharedPreferences clearCredentials = getSharedPreferences("data", Context.MODE_PRIVATE);
+        clearCredentials.edit().clear().commit();
+
+        SharedPreferences clearPreference = getSharedPreferences("checked", Context.MODE_PRIVATE);
+        clearPreference.edit().clear().commit();
     }
 
     @Override

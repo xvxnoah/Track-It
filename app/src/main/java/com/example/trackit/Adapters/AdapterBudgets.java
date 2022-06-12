@@ -48,6 +48,7 @@ public class AdapterBudgets extends RecyclerView.Adapter<AdapterBudgets.ViewHold
     public void onBindViewHolder(@NonNull AdapterBudgets.ViewHolder holder, int position) {
         holder.title.setText(budgetVos.get(position).getName());
         holder.amount.setText(budgetVos.get(position).getType());
+
         String quantity = String.valueOf(budgetVos.get(position).getQuantity());
         int g = (int) budgetVos.get(position).getQuantity();
         int r = (int) budgetVos.get(position).getObjective();
@@ -56,6 +57,9 @@ public class AdapterBudgets extends RecyclerView.Adapter<AdapterBudgets.ViewHold
         holder.bar.setProgress(percentatge2, true);
         holder.bar.setProgressTintList(ColorStateList.valueOf(budgetVos.get(position).getColor()));
         holder.amount.setText(quantity);
+
+        String objective = String.valueOf(budgetVos.get(position).getObjective());
+        holder.objective.setText(objective);
 
         holder.cardView.setBackgroundColor(budgetVos.get(position).getColor());
         holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition));
@@ -128,7 +132,7 @@ public class AdapterBudgets extends RecyclerView.Adapter<AdapterBudgets.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView title, amount;
+        TextView title, amount, objective;
         CardView cardView;
         ProgressBar bar;
 
@@ -139,6 +143,7 @@ public class AdapterBudgets extends RecyclerView.Adapter<AdapterBudgets.ViewHold
             amount = itemView.findViewById(R.id.amount);
             cardView = itemView.findViewById(R.id.card_image_budget);
             bar = itemView.findViewById(R.id.progressBar);
+            objective = itemView.findViewById(R.id.objectiveBudget);
         }
     }
 

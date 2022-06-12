@@ -228,7 +228,6 @@ public class HomeFragment extends Fragment {
                         Uri downUri = task.getResult();
                         String imageUrl = downUri.toString();
                         new HomeFragment.DownloadImageTask((ImageView) vista.findViewById(R.id.profile_pic)).execute(imageUrl);
-                        Toast.makeText(vista.getContext(), imageUrl , Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(vista.getContext(), ""+task.getException(), Toast.LENGTH_SHORT).show();
                     }

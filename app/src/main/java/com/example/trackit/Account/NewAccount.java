@@ -312,7 +312,6 @@ public class NewAccount extends AppCompatActivity {
 
             onCaptureImageResult(data);
 
-            filePath = data.getData();
         }
     }
 
@@ -325,9 +324,6 @@ public class NewAccount extends AppCompatActivity {
         imageView.setImageBitmap(thumbnail);
         
         cameraPic = true;
-    }
-
-    private void uploadToFirebase(byte[] bb) {
     }
 
     // UploadImage method

@@ -187,7 +187,6 @@ public class UserInfo extends Observable {
     public boolean updateBudget(String budget, double quantity, boolean sumar) {
         ArrayList<Budget> Budgets = getBudgets();
         Budget actual;
-        ArrayList<String> budgetNames = new ArrayList<>();
         Iterator<Budget> iter = null;
         Budget updatedBudget = null;
         if (Budgets != null) {
@@ -215,5 +214,35 @@ public class UserInfo extends Observable {
         }else{
             return false;
         }
+    }
+
+    public boolean deleteBudget(String budget){
+        ArrayList<Budget> Budgets = getBudgets();
+        Budget actual;
+        Iterator<Budget> iter = null;
+
+        if (Budgets != null) {
+            iter = Budgets.iterator();
+        }
+
+        boolean found = false;
+        int pos = 0;
+        if (Budgets != null) {
+            while (iter.hasNext()) {
+                actual = iter.next();
+                if(actual.getName().equals(budget)){
+                    found = true;
+                }
+                if(!found){
+                    pos++;
+                }
+            }
+        }
+
+        if(found){
+            this.budgets.remove(pos);
+            return true;
+        }
+        return false;
     }
 }

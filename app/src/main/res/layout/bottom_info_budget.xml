@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bottomSheetContainer"
+    android:id="@+id/bottomInfoBudget"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="15dp"
-        android:text="Detalls transacció"
+        android:text="Detalls pressupost"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"/>
@@ -30,15 +30,6 @@
         android:orientation="horizontal"
         android:padding="5dp">
 
-        <ImageView
-            android:id="@+id/imageSheet"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            app:tint="@color/black"
-            android:scaleType="centerCrop"
-            app:riv_corner_radius="10dp"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -47,27 +38,30 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/nameTransaction"
+                android:gravity="center"
+                android:id="@+id/nameBudget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Title"
+                android:text="Nom pressupost"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/dateTransaction"
+                android:id="@+id/objective"
+                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Free delivery"
+                android:text="Quantitat actual:"
                 android:textSize="14sp"/>
 
             <TextView
-                android:id="@+id/moneySheet"
+                android:id="@+id/ammountActual"
+                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_0"
-                android:textColor="@color/red"
+                android:textColor="@color/green"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
         </LinearLayout>
@@ -92,30 +86,18 @@
             android:layout_marginBottom="10dp">
 
             <Button
-                android:id="@+id/deleteButton"
+                android:id="@+id/deleteButtonBudget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/mainBlue"
-                android:text="@string/eliminar_transacci"
-                android:textAllCaps="false"
-                app:cornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/editButton"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/editButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/mainBlue"
-                android:text="@string/editar_transacci"
+                android:text="Eliminar pressupost"
                 android:textAllCaps="false"
                 app:cornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/deleteButton"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

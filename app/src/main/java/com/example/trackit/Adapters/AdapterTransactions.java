@@ -91,7 +91,7 @@ public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransaction
 
         holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition));
 
-        clickTransaction(holder, holder.getAdapterPosition());
+        clickTransaction(holder);
     }
 
     @Override
@@ -116,7 +116,7 @@ public class AdapterTransactions extends RecyclerView.Adapter<AdapterTransaction
         }
     }
 
-    private void clickTransaction(AdapterTransactions.ViewHolder holder, int position){
+    private void clickTransaction(AdapterTransactions.ViewHolder holder){
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

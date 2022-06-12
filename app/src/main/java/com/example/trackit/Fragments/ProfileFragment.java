@@ -153,7 +153,6 @@ public class ProfileFragment extends Fragment {
                         Uri downUri = task.getResult();
                         String imageUrl = downUri.toString();
                         new DownloadImageTask((ImageView) view.findViewById(R.id.profile_pic)).execute(imageUrl);
-                        Toast.makeText(view.getContext(), imageUrl , Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(view.getContext(), ""+task.getException(), Toast.LENGTH_SHORT).show();
                     }

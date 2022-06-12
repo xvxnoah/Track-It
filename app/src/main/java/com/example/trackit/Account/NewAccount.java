@@ -227,15 +227,6 @@ public class NewAccount extends AppCompatActivity {
                 Toast.makeText(NewAccount.this, "Error en configurar el compte " + error, Toast.LENGTH_SHORT).show();
             }
         });
-
-        /* Save to sharedPreferences
-        SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor prefsEditor = mPrefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(User);
-        prefsEditor.putString("UserInfo", json);
-        prefsEditor.commit();
-        */
     }
 
     // Select Image method
@@ -273,6 +264,11 @@ public class NewAccount extends AppCompatActivity {
                 && data != null
                 && data.getData() != null) {
 
+            Button camera = findViewById(R.id.cameraProfile);
+            camera.setVisibility(View.INVISIBLE);
+
+            Button galllery = findViewById(R.id.galleryProfile);
+            galllery.setVisibility(View.INVISIBLE);
             // Get the Uri of data
             filePath = data.getData();
             try {

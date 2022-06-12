@@ -6,10 +6,14 @@ import static java.lang.Math.round;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
+import com.example.trackit.HomePage;
 import com.example.trackit.Model.Budget;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.R;
@@ -57,7 +62,7 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class IncomePage extends AppCompatActivity {
-
+    private String CHANNEL_ID = "My Notification";
     private Spinner budgetsSpinner;
     private Spinner incomeCategories;
     private UserInfo userInfo;
@@ -241,6 +246,11 @@ public class IncomePage extends AppCompatActivity {
                             String budget = budgetsSpinner.getSelectedItem().toString();
                             if(budget.equals("Selecciona") == false) {
                                 userInfo.updateBudget(budget, quantity, true);
+
+                                if(userInfo.returnAlertStat(budget)){
+                                    setNotification(budget);
+                                }
+
                                 ref.setValue(userInfo);
                                 Intent intent = new Intent(IncomePage.this, Transaction_Done.class);
                                 startActivity(intent);
@@ -302,6 +312,23 @@ public class IncomePage extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void setNotification(String budgetName){
+        Intent intentNotification = new Intent(this, HomePage.class);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intentNotification, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID).setContentIntent(pendingIntent).setContentTitle("Has arribat a l'objectiu d'un pressupost!")
+                .setContentText("Has completat l'objectiu pel pressupost: " + budgetName).setSmallIcon(android.R.drawable.btn_star_big_on);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, "Notificació", NotificationManager.IMPORTANCE_DEFAULT);
+
+        notificationManager.createNotificationChannel(notificationChannel);
+
+        notificationManager.notify(0, builder.build());
     }
 
     @Override

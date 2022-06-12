@@ -1,5 +1,6 @@
 package com.example.trackit.Model;
 
+import android.content.Intent;
 import android.graphics.Color;
 
 public class Budget {

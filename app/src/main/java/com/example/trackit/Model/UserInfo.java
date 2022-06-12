@@ -245,4 +245,39 @@ public class UserInfo extends Observable {
         }
         return false;
     }
+
+    public boolean returnAlertStat(String budget){
+        ArrayList<Budget> Budgets = getBudgets();
+        Budget actual;
+        Iterator<Budget> iter = null;
+        Budget updated = null;
+
+        if (Budgets != null) {
+            iter = Budgets.iterator();
+        }
+
+        boolean found = false;
+        int pos = 0;
+        if (Budgets != null) {
+            while (iter.hasNext()) {
+                actual = iter.next();
+                if(actual.getName().equals(budget)){
+                    updated = actual;
+                    found = true;
+                }
+                if(!found){
+                    pos++;
+                }
+            }
+        }
+
+        if(found){
+            if(updated != null){
+                if(updated.isAlert()){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

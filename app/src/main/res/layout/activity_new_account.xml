@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/g_bold"
-                    android:text="Protecció amb emprempta"
+                    android:text="Protecció digital"
                     android:textColor="@color/textPrimary"
                     android:textSize="16sp" />
 

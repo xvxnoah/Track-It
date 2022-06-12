@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -55,6 +56,7 @@ public class ProfileFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     TextView mailID, userID;
+    SwitchCompat protection;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -108,6 +110,10 @@ public class ProfileFragment extends Fragment {
         mailID = view.findViewById(R.id.mail_id);
         userID = view.findViewById(R.id.profile_name);
 
+        protection = view.findViewById(R.id.password_switch_profile);
+
+        checkForProtection();
+
         userID.setText(UserInfo.getInstance().getName());
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
@@ -148,6 +154,18 @@ public class ProfileFragment extends Fragment {
 
                 FirebaseAuth.getInstance().signOut();
 
+                if(!protection.isChecked()){
+                    SharedPreferences clearCredentials = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+                    clearCredentials.edit().clear().commit();
+
+                    SharedPreferences.Editor profileCheck = getActivity().getSharedPreferences("checked", Context.MODE_PRIVATE).edit();
+                    profileCheck.putString("check", "false");
+                    profileCheck.apply();
+                } else{
+                    SharedPreferences.Editor profileCheck = getActivity().getSharedPreferences("checked", Context.MODE_PRIVATE).edit();
+                    profileCheck.putString("check", "true");
+                    profileCheck.apply();
+                }
                 Intent intent = new Intent(getActivity(), Info_Welcome_Page.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -163,6 +181,20 @@ public class ProfileFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void checkForProtection() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("checked", Context.MODE_PRIVATE);
+
+        String isChecked = sharedPreferences.getString("check", null);
+
+        if(isChecked != null){
+            if(isChecked.equals("true")){
+                protection.setChecked(true);
+            } else{
+                protection.setChecked(false);
+            }
+        }
     }
 
 }

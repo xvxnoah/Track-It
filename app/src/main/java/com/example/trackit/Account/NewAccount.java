@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.trackit.HomePage;
@@ -46,6 +47,8 @@ public class NewAccount extends AppCompatActivity {
     // EditText and buttons.
     private EditText userName, userQuantity;
     private Button sendDatabtn;
+    private SwitchCompat password;
+    private boolean enterWithPass = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,7 @@ public class NewAccount extends AppCompatActivity {
         // Input text of user's name and quantity.
         userName = findViewById((R.id.userName));
         userQuantity = findViewById((R.id.userQuantity));
+        password = findViewById(R.id.password_switch_compact);
 
         // Below line is used to get the instance of our Firebase database.
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
@@ -74,6 +78,8 @@ public class NewAccount extends AppCompatActivity {
                 String name = userName.getText().toString();
 
                 String quantity = userQuantity.getText().toString();
+
+                enterWithPass = password.isChecked();
 
                 if(!quantity.isEmpty() && !name.isEmpty()){
                     // Below line is used to get reference for our database.
@@ -135,12 +141,24 @@ public class NewAccount extends AppCompatActivity {
                 // our object class to our database reference.
                 // data base reference will sends data to firebase.
 
-                //databaseReference.setValue(User);
-
                 // After adding this data we are showing toast message.
                 Toast.makeText(NewAccount.this, "La configuració s'ha realitzat correctament", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(NewAccount.this, HomePage.class);
                 startActivity(intent);
+
+                if(enterWithPass){
+                    SharedPreferences.Editor profileCheck = getSharedPreferences("checked", MODE_PRIVATE).edit();
+                    profileCheck.putString("check", "true");
+                    profileCheck.apply();
+
+                    SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+                    editor.putString("email", preferences.getString(AuthActivity.USER, null));
+                    editor.apply();
+                } else{
+                    SharedPreferences.Editor profileCheck = getSharedPreferences("checked", MODE_PRIVATE).edit();
+                    profileCheck.putString("check", "false");
+                    profileCheck.apply();
+                }
 
                 SharedPreferences saveUser = getSharedPreferences(SETUP_USER, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = saveUser.edit();

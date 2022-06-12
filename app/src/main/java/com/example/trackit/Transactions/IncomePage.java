@@ -118,7 +118,10 @@ public class IncomePage extends AppCompatActivity {
         if (Budgets != null) {
             while (iter.hasNext()) {
                 actual = iter.next();
-                budgetNames.add(actual.getName());
+
+                if(!actual.isAlert()){
+                    budgetNames.add(actual.getName());
+                }
             }
         }
 

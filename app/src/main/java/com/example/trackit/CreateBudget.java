@@ -188,7 +188,6 @@ public class CreateBudget extends AppCompatActivity {
                 }else if(StrColor.equals("Verd")){
                     color = Color.GREEN;
                 }
-                boolean alert = ((SwitchMaterial) findViewById(R.id.switchBudget)).isChecked();
 
                 if(!enterBudget.getText().toString().isEmpty() && !category.equals("Categoria") && !nameBudget.getText().toString().isEmpty()){
                     // Atributes of the Transaction's class
@@ -196,7 +195,7 @@ public class CreateBudget extends AppCompatActivity {
                     String name = nameBudget.getText().toString();
                     Budget budget;
 
-                    budget = new Budget(name, category, quantity, alert, color);
+                    budget = new Budget(name, category, quantity, false, color);
                     userInfo.addBudget(budget);
                     ref.setValue(userInfo);
                     finish();

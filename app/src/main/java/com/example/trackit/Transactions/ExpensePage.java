@@ -112,7 +112,10 @@ public class ExpensePage extends AppCompatActivity{
         if (Budgets != null) {
             while (iter.hasNext()) {
                 actual = iter.next();
-                budgetNames.add(actual.getName());
+
+                if(!actual.isAlert()){
+                    budgetNames.add(actual.getName());
+                }
             }
         }
 

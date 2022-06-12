@@ -77,6 +77,7 @@ public class Budget {
         }
         if(this.quantity >= objective){
             alert = true;
+            this.quantity = objective;
         } else{
             alert = false;
         }

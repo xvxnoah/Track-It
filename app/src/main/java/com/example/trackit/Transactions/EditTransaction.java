@@ -162,7 +162,7 @@ public class EditTransaction extends AppCompatActivity {
                     }
 
                     String uniqueID = UUID.randomUUID().toString();
-                    newOne = new Transaction(uniqueID, titol, category, quantity, date.getText().toString(), transaction.getUri());
+                    newOne = new Transaction(uniqueID, titol, category, quantity, date.getText().toString());
 
                     if(transaction.getBudget() != null){
                         newOne.setBudget(transaction.getBudget());

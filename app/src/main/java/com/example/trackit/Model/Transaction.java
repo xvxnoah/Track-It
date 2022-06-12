@@ -13,16 +13,14 @@ public class Transaction {
     private double quantity;
     private String date;
     private int pic;
-    private Uri selectedImageUri;
 
     //Constructor
-    public Transaction(String uniqueID, String name, String type, double quantity, String date, Uri SelectedImageUri){
+    public Transaction(String uniqueID, String name, String type, double quantity, String date){
         this.uniqueID = uniqueID;
         this.name = name;
         this.type = type;
         this.quantity = quantity;
         this.date = date;
-        this.selectedImageUri = selectedImageUri;
     }
 
     public Transaction(){
@@ -31,7 +29,6 @@ public class Transaction {
         this.quantity = 0f;
         this.date = null;
         this.pic = -1;
-        this.selectedImageUri = null;
     }
 
     //Getters
@@ -52,8 +49,6 @@ public class Transaction {
     }
 
     public int getPic() { return this.pic; }
-
-    public Uri getUri() { return this.selectedImageUri; }
 
     public String getUniqueID() { return this.uniqueID; }
 
@@ -77,8 +72,6 @@ public class Transaction {
     }
 
     public void setPic(int pic) { this.pic = pic; }
-
-    public void setUri(Uri image) { this.selectedImageUri = image; }
 
     public void setUniqueID(String uniqueID) { this.uniqueID = uniqueID; }
 

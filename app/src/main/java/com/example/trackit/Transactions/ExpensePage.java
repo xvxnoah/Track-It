@@ -186,8 +186,6 @@ public class ExpensePage extends AppCompatActivity{
 
     private void setListeners() {
         ImageButton back = findViewById(R.id.back_expense);
-        Button imageExpense = findViewById(R.id.imageExpense);
-        Button cameraExpense = findViewById(R.id.cameraExpense);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,7 +212,7 @@ public class ExpensePage extends AppCompatActivity{
                     Transaction transaction;
 
                     String uniqueID = UUID.randomUUID().toString();
-                    transaction = new Transaction(uniqueID, description, category, quantity, dateExpense.getText().toString(), selectedImageUri);
+                    transaction = new Transaction(uniqueID, description, category, quantity, dateExpense.getText().toString());
                     userInfo.addTransaction(transaction);
                     userInfo.updateWasted(bd.doubleValue());
 
@@ -289,64 +287,10 @@ public class ExpensePage extends AppCompatActivity{
                 datePickerDialog.show();
             }
         });
-
-        imageExpense.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openGalley();
-            }
-        });
     }
-
-
     @Override
     public void onBackPressed(){
         super.onBackPressed();
         finish();
-    }
-
-    public void openGalley(){
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(
-                Intent.createChooser(intent, "Seleccione una imagen"),
-                1);
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent imageReturnedIntent) {
-        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-        selectedImageUri = null;
-
-        String filePath = null;
-        switch (requestCode) {
-            case 1:
-                if (resultCode == Activity.RESULT_OK) {
-                    selectedImageUri = imageReturnedIntent.getData();
-                    String selectedPath=selectedImageUri.getPath();
-                    if (requestCode == 1) {
-
-                        if (selectedPath != null) {
-                            InputStream imageStream = null;
-                            try {
-                                imageStream = getContentResolver().openInputStream(
-                                        selectedImageUri);
-                            } catch (FileNotFoundException e) {
-                                e.printStackTrace();
-                            }
-
-                            // Transformamos la URI de la imagen a inputStream y este a un Bitmap
-                            Bitmap bmp = BitmapFactory.decodeStream(imageStream);
-
-                            // Ponemos nuestro bitmap en un ImageView que tengamos en la vista
-                            ImageView mImg = (ImageView) findViewById(R.id.image2);
-                            mImg.setImageBitmap(bmp);
-
-                        }
-                    }
-                }
-                break;
-        }
     }
 }

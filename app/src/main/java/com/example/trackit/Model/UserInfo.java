@@ -134,8 +134,17 @@ public class UserInfo extends Observable {
 
                 if(transaction.getQuantity() < 0){
                     this.updateWasted(transaction.getQuantity());
+
+                    if(transaction.getBudget() != null){
+                        this.updateBudget(transaction.getBudget(), Math.abs(transaction.getQuantity()), true);
+                    }
+
                 } else{
                     this.updateSave(-transaction.getQuantity());
+
+                    if(transaction.getBudget() != null){
+                        this.updateBudget(transaction.getBudget(), transaction.getQuantity(), false);
+                    }
                 }
                 return true;
             }
@@ -157,8 +166,16 @@ public class UserInfo extends Observable {
 
                 if(updated.getQuantity() < 0){
                     updateWasted(-updated.getQuantity());
+
+                    if(updated.getBudget() != null){
+                        updateBudget(updated.getBudget(), Math.abs(updated.getQuantity()), false);
+                    }
                 } else{
                     updateSave(updated.getQuantity());
+
+                    if(updated.getBudget() != null){
+                        updateBudget(updated.getBudget(), updated.getQuantity(), true);
+                    }
                 }
 
                 return true;

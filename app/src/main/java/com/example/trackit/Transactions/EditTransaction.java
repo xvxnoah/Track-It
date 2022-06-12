@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
+import com.example.trackit.Fragments.TransactionsFragment;
 import com.example.trackit.HomePage;
 import com.example.trackit.Model.Transaction;
 import com.example.trackit.Model.UserInfo;
@@ -163,12 +164,14 @@ public class EditTransaction extends AppCompatActivity {
                     String uniqueID = UUID.randomUUID().toString();
                     newOne = new Transaction(uniqueID, titol, category, quantity, date.getText().toString(), transaction.getUri());
 
+                    if(transaction.getBudget() != null){
+                        newOne.setBudget(transaction.getBudget());
+                    }
+
                     if(userInfo.updateTransaction(transaction, newOne)){
                         Toast.makeText(EditTransaction.this, "Canvis guardats correctament!", Toast.LENGTH_SHORT).show();
                         ref.setValue(userInfo);
 
-                        Intent intent = new Intent(EditTransaction.this, HomePage.class);
-                        startActivity(intent);
                         finish();
                     } else{
                         Toast.makeText(EditTransaction.this, "Error en guardar els canvis!", Toast.LENGTH_SHORT).show();

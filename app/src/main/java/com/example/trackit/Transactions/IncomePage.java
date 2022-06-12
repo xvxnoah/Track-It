@@ -251,6 +251,7 @@ public class IncomePage extends AppCompatActivity {
                                     setNotification(budget);
                                 }
 
+                                transaction.setBudget(budget);
                                 ref.setValue(userInfo);
                                 Intent intent = new Intent(IncomePage.this, Transaction_Done.class);
                                 startActivity(intent);

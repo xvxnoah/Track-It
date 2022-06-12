@@ -9,6 +9,7 @@ public class Transaction {
     private String uniqueID;
     private String name;
     private String type;
+    private String budget;
     private double quantity;
     private String date;
     private int pic;
@@ -56,6 +57,8 @@ public class Transaction {
 
     public String getUniqueID() { return this.uniqueID; }
 
+    public String getBudget() { return this.budget; }
+
     //Setters
     public void setName(String name){
         this.name = name;
@@ -77,5 +80,7 @@ public class Transaction {
 
     public void setUri(Uri image) { this.selectedImageUri = image; }
 
-    private void setUniqueID(String uniqueID) { this.uniqueID = uniqueID; }
+    public void setUniqueID(String uniqueID) { this.uniqueID = uniqueID; }
+
+    public void setBudget(String budget) { this.budget = budget; }
 }

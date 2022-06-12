@@ -326,7 +326,7 @@ public class NewAccount extends AppCompatActivity {
                                     progressDialog.dismiss();
                                     Toast
                                             .makeText(NewAccount.this,
-                                                    "Image Uploaded!!",
+                                                    "Imatge de perfil pujada",
                                                     Toast.LENGTH_SHORT)
                                             .show();
                                 }
@@ -341,7 +341,7 @@ public class NewAccount extends AppCompatActivity {
                             progressDialog.dismiss();
                             Toast
                                     .makeText(NewAccount.this,
-                                            "Failed " + e.getMessage(),
+                                            "Error " + e.getMessage(),
                                             Toast.LENGTH_SHORT)
                                     .show();
                         }
@@ -360,7 +360,7 @@ public class NewAccount extends AppCompatActivity {
                                             * taskSnapshot.getBytesTransferred()
                                             / taskSnapshot.getTotalByteCount());
                                     progressDialog.setMessage(
-                                            "Uploaded "
+                                            "Pujat "
                                                     + (int)progress + "%");
                                 }
                             });

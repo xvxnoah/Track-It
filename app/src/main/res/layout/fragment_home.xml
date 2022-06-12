@@ -47,8 +47,8 @@
             app:layout_constraintTop_toBottomOf="@+id/balanceHome" />
 
         <androidx.cardview.widget.CardView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             app:cardCornerRadius="50dp"
             app:cardElevation="0dp"
             app:layout_constraintEnd_toStartOf="@+id/balanceHome"

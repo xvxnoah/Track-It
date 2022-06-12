@@ -125,7 +125,6 @@ public class NewAccount extends AppCompatActivity {
                 String email = preferences.getString(AuthActivity.USER, null);
                 email = email.replace('.', ',');
 
-                uploadImage(email);
                 String name = userName.getText().toString();
 
                 String quantity = userQuantity.getText().toString();
@@ -138,6 +137,8 @@ public class NewAccount extends AppCompatActivity {
 
                     // initializing our object class variable.
                     User = UserInfo.getInstance();
+
+                    uploadImage(email);
 
                     // below line is for checking weather the edittext fields are empty or not.
                     addDatatoFirebase(name, email, quantity);
@@ -305,13 +306,13 @@ public class NewAccount extends AppCompatActivity {
             progressDialog.show();
 
             String imageStr = email + UUID.randomUUID().toString();
-            User.setImageStr(email + UUID.randomUUID().toString()) ;
+            User.setImageStr(imageStr) ;
 
             // Defining the child of storageReference
             StorageReference ref
                     = storageReference
                     .child(
-                            "images/" + email + UUID.randomUUID().toString());
+                            "images/" + imageStr);
 
             // adding listeners on upload
             // or failure of image

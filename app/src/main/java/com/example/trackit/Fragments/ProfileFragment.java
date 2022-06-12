@@ -1,47 +1,44 @@
 package com.example.trackit.Fragments;
 
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
-import com.example.trackit.Adapters.AdapterTransactions;
 import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
 import com.example.trackit.ViewModel.AboutUs;
 import com.example.trackit.initActivities.Info_Welcome_Page;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-import java.awt.font.TextAttribute;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.net.URI;
-import java.text.ParseException;
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,6 +48,7 @@ import java.util.ArrayList;
 public class ProfileFragment extends Fragment {
 
     View view;
+    ImageView profilePic;
 
     com.example.trackit.Model.UserInfo userInfo;
     FirebaseDatabase firebaseDatabase;
@@ -106,6 +104,7 @@ public class ProfileFragment extends Fragment {
 
         Button logOut = (Button)view.findViewById(R.id.logOut);
         Button aboutUs = (Button)view.findViewById(R.id.about_us_btn);
+        profilePic = view.findViewById(R.id.profile_pic);
 
         mailID = view.findViewById(R.id.mail_id);
         userID = view.findViewById(R.id.profile_name);
@@ -142,6 +141,25 @@ public class ProfileFragment extends Fragment {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+
+        StorageReference mImageStorage = FirebaseStorage.getInstance("gs://track-it-86761.appspot.com").getReference();
+        if(userInfo.getImageStr().equals("null") == false){
+            StorageReference ref = mImageStorage.child("images/" + userInfo.getImageStr());
+
+            ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downUri = task.getResult();
+                        String imageUrl = downUri.toString();
+                        new DownloadImageTask((ImageView) view.findViewById(R.id.profile_pic)).execute(imageUrl);
+                        Toast.makeText(view.getContext(), imageUrl , Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(view.getContext(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,6 +212,30 @@ public class ProfileFragment extends Fragment {
             } else{
                 protection.setChecked(false);
             }
+        }
+    }
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
         }
     }
 

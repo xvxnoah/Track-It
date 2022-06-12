@@ -31,13 +31,17 @@ import androidx.core.content.ContextCompat;
 import com.example.trackit.HomePage;
 import com.example.trackit.R;
 import com.example.trackit.Model.UserInfo;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -95,16 +99,8 @@ public class NewAccount extends AppCompatActivity {
 
         sendDatabtn = findViewById(R.id.continueBtn);
 
-        ActionBar actionBar;
-        actionBar = getSupportActionBar();
-        ColorDrawable colorDrawable
-                = new ColorDrawable(
-                Color.parseColor("#0F9D58"));
-        actionBar.setBackgroundDrawable(colorDrawable);
-
         // initialise views
         btnSelect = findViewById(R.id.galleryProfile);
-        btnUpload = findViewById(R.id.btnUpload);
         imageView = findViewById(R.id.imageProfile);
 
         // get the Firebase  storage reference
@@ -129,6 +125,7 @@ public class NewAccount extends AppCompatActivity {
                 String email = preferences.getString(AuthActivity.USER, null);
                 email = email.replace('.', ',');
 
+                uploadImage(email);
                 String name = userName.getText().toString();
 
                 String quantity = userQuantity.getText().toString();
@@ -296,33 +293,8 @@ public class NewAccount extends AppCompatActivity {
         }
     }
 
-}
-
-public class MainActivity extends AppCompatActivity {
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-
-        // on pressing btnUpload uploadImage() is called
-        btnUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                uploadImage();
-            }
-        });
-    }
-
-
-
     // UploadImage method
-    private void uploadImage()
+    private void uploadImage(String email)
     {
         if (filePath != null) {
 
@@ -336,8 +308,7 @@ public class MainActivity extends AppCompatActivity {
             StorageReference ref
                     = storageReference
                     .child(
-                            "images/"
-                                    + UUID.randomUUID().toString());
+                            "images/" + email + UUID.randomUUID().toString());
 
             // adding listeners on upload
             // or failure of image
@@ -354,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
                                     // Dismiss dialog
                                     progressDialog.dismiss();
                                     Toast
-                                            .makeText(MainActivity.this,
+                                            .makeText(NewAccount.this,
                                                     "Image Uploaded!!",
                                                     Toast.LENGTH_SHORT)
                                             .show();
@@ -369,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
                             // Error, Image not uploaded
                             progressDialog.dismiss();
                             Toast
-                                    .makeText(MainActivity.this,
+                                    .makeText(NewAccount.this,
                                             "Failed " + e.getMessage(),
                                             Toast.LENGTH_SHORT)
                                     .show();
@@ -395,4 +366,5 @@ public class MainActivity extends AppCompatActivity {
                             });
         }
     }
+
 }

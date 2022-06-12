@@ -189,7 +189,7 @@ public class CreateBudget extends AppCompatActivity {
                     color = Color.GREEN;
                 }
 
-                if(!enterBudget.getText().toString().isEmpty() && !category.equals("Categoria") && !nameBudget.getText().toString().isEmpty()){
+                if(!enterBudget.getText().toString().isEmpty() && !category.equals("Categoria") && !nameBudget.getText().toString().isEmpty() && !StrColor.equals("Color")){
                     // Atributes of the Transaction's class
                     double quantity = Double.valueOf(enterBudget.getText().toString());
                     String name = nameBudget.getText().toString();
@@ -197,6 +197,8 @@ public class CreateBudget extends AppCompatActivity {
 
                     budget = new Budget(name, category, quantity, false, color);
                     userInfo.addBudget(budget);
+
+                    Toast.makeText(CreateBudget.this,"Pressupost afegit correctament!",Toast.LENGTH_LONG).show();
                     ref.setValue(userInfo);
                     finish();
 

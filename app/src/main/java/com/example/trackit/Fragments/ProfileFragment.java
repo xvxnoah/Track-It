@@ -29,6 +29,8 @@ import com.example.trackit.ViewModel.AboutUs;
 import com.example.trackit.initActivities.Info_Welcome_Page;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -195,6 +197,32 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), AboutUs.class);
                 startActivity(intent);
+            }
+        });
+
+        FloatingActionButton edit = view.findViewById(R.id.editProfile);
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext(), R.style.BottomSheetDialogTheme);
+                bottomSheetDialog.setContentView(R.layout.bottom_edit_profile);
+
+                bottomSheetDialog.show();
+
+                bottomSheetDialog.findViewById(R.id.optionCamera).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        bottomSheetDialog.dismiss();
+                    }
+                });
+
+                bottomSheetDialog.findViewById(R.id.optionGallery).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        bottomSheetDialog.dismiss();
+                    }
+                });
             }
         });
         return view;

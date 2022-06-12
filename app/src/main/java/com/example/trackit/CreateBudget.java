@@ -190,7 +190,7 @@ public class CreateBudget extends AppCompatActivity {
                 }
                 boolean alert = ((SwitchMaterial) findViewById(R.id.switchBudget)).isChecked();
 
-                if(!enterBudget.getText().toString().isEmpty() && !category.equals("Categoria")){
+                if(!enterBudget.getText().toString().isEmpty() && !category.equals("Categoria") && !nameBudget.getText().toString().isEmpty()){
                     // Atributes of the Transaction's class
                     double quantity = Double.valueOf(enterBudget.getText().toString());
                     String name = nameBudget.getText().toString();

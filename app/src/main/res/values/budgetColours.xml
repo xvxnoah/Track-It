@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="budget_colours">
+        <item>Color</item>
         <item>Vermell</item>
         <item>Blau</item>
         <item>Verd</item>

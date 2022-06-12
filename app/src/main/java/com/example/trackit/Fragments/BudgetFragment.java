@@ -121,10 +121,8 @@ public class BudgetFragment extends Fragment {
         recyclerViewBudgets.setLayoutManager(new LinearLayoutManager(getContext()));
 
         recyclerCompleted = vista.findViewById(R.id.recyclerViewBudgetsCompleted);
-        recyclerCompleted.setVisibility(View.INVISIBLE);
 
         completed = vista.findViewById(R.id.completedBudgets);
-        completed.setVisibility(View.INVISIBLE);
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
@@ -170,7 +168,7 @@ public class BudgetFragment extends Fragment {
         Budget budget;
 
         if(budgets != null){
-            recent.setText("Pressupostos recents");
+            recent.setText("Els teus pressupostos");
             for(int i = 0; i < budgets.size() && i < 10; i++){
                 budget = budgets.get(budgets.size() - i - 1);
                 String type = budget.getType();

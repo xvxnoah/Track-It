@@ -15,6 +15,7 @@ public class UserInfo extends Observable {
     private ArrayList<Budget> budgets;
     private boolean DriveLogin;
     private String imageStr;
+    private String transactionStr;
 
     public static UserInfo getInstance(){
         if(uniqueInstance == null){
@@ -49,8 +50,10 @@ public class UserInfo extends Observable {
         this.budgets = budgets;
         this.DriveLogin = DriveLogin;
         this.imageStr = null;
+        this.transactionStr = null;
     }
 
+    //Getters
     public String getEmail() {
         return email;
     }
@@ -59,8 +62,6 @@ public class UserInfo extends Observable {
         this.email = email;
     }
 
-
-    //Getters
     public String getName(){
         return this.name;
     }
@@ -85,9 +86,17 @@ public class UserInfo extends Observable {
         return budgets;
     }
 
+    public String getImageStr(){
+        return imageStr;
+    }
+
     //Setters
     public void setName(String name){
         this.name = name;
+    }
+
+    public void setImageStr(String imageStr) {
+        this.imageStr = imageStr;
     }
 
     public void setQuantity(double quantity){
@@ -298,12 +307,5 @@ public class UserInfo extends Observable {
             }
         }
         return false;
-    }
-
-    public String getImageStr(){
-        return imageStr;
-    }
-    public void setImageStr(String imageStr) {
-        this.imageStr = imageStr;
     }
 }

@@ -1,20 +1,28 @@
 package com.example.trackit.Account;
 
+import android.Manifest;
 import android.app.ActionBar;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.UUID;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -26,6 +34,7 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.trackit.HomePage;
@@ -59,6 +68,7 @@ public class NewAccount extends AppCompatActivity {
 
     // request code
     private final int PICK_IMAGE_REQUEST = 22;
+    private final int REQUEST_IMAGE_CAPTURE = 111;
 
     // instance for firebase storage and StorageReference
     FirebaseStorage storage;
@@ -79,9 +89,10 @@ public class NewAccount extends AppCompatActivity {
 
     // EditText and buttons.
     private EditText userName, userQuantity;
-    private Button sendDatabtn;
+    private Button sendDatabtn, camera;
     private SwitchCompat password;
-    private boolean enterWithPass = false;
+    private byte[] bb;
+    private boolean enterWithPass = false, cameraPic = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,11 +112,14 @@ public class NewAccount extends AppCompatActivity {
 
         // initialise views
         btnSelect = findViewById(R.id.galleryProfile);
+        camera = findViewById(R.id.cameraProfile);
         imageView = findViewById(R.id.imageProfile);
 
         // get the Firebase  storage reference
         storage = FirebaseStorage.getInstance("gs://track-it-86761.appspot.com");
         storageReference = storage.getReference();
+
+        setListenerCamera();
 
         // on pressing btnSelect SelectImage() is called
         btnSelect.setOnClickListener(new View.OnClickListener() {
@@ -288,6 +302,32 @@ public class NewAccount extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+            Button camera = findViewById(R.id.cameraProfile);
+            camera.setVisibility(View.INVISIBLE);
+
+            Button galllery = findViewById(R.id.galleryProfile);
+            galllery.setVisibility(View.INVISIBLE);
+
+            onCaptureImageResult(data);
+
+            filePath = data.getData();
+        }
+    }
+
+    private void onCaptureImageResult(Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        
+        bb = bytes.toByteArray();
+        imageView.setImageBitmap(thumbnail);
+        
+        cameraPic = true;
+    }
+
+    private void uploadToFirebase(byte[] bb) {
     }
 
     // UploadImage method
@@ -315,7 +355,6 @@ public class NewAccount extends AppCompatActivity {
             ref.putFile(filePath)
                     .addOnSuccessListener(
                             new OnSuccessListener<UploadTask.TaskSnapshot>() {
-
                                 @Override
                                 public void onSuccess(
                                         UploadTask.TaskSnapshot taskSnapshot)
@@ -365,6 +404,82 @@ public class NewAccount extends AppCompatActivity {
                                 }
                             });
         }
+        else if(cameraPic){
+            ProgressDialog progressDialog
+                    = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+            String imageStr = email + UUID.randomUUID().toString();
+            User.setImageStr(imageStr) ;
+
+            // Defining the child of storageReference
+            StorageReference ref
+                    = storageReference
+                    .child(
+                            "images/" + imageStr);
+            ref.putBytes(bb).addOnSuccessListener(
+                    new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(
+                                UploadTask.TaskSnapshot taskSnapshot)
+                        {
+
+                            // Image uploaded successfully
+                            // Dismiss dialog
+                            progressDialog.dismiss();
+                            Toast
+                                    .makeText(NewAccount.this,
+                                            "Imatge de perfil pujada",
+                                            Toast.LENGTH_SHORT)
+                                    .show();
+                        }
+                    })
+
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e)
+                        {
+
+                            // Error, Image not uploaded
+                            progressDialog.dismiss();
+                            Toast
+                                    .makeText(NewAccount.this,
+                                            "Error " + e.getMessage(),
+                                            Toast.LENGTH_SHORT)
+                                    .show();
+                        }
+                    })
+                    .addOnProgressListener(
+                            new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                                // Progress Listener for loading
+                                // percentage on the dialog box
+                                @Override
+                                public void onProgress(
+                                        UploadTask.TaskSnapshot taskSnapshot)
+                                {
+                                    double progress
+                                            = (100.0
+                                            * taskSnapshot.getBytesTransferred()
+                                            / taskSnapshot.getTotalByteCount());
+                                    progressDialog.setMessage(
+                                            "Pujat "
+                                                    + (int)progress + "%");
+                                }
+                            });
+
+        }
+    }
+
+    private void setListenerCamera() {
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+            }
+        });
     }
 
 }

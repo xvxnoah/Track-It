@@ -74,7 +74,7 @@ public class Budget {
         }else{
             this.quantity = this.quantity - quantity;
         }
-        if(quantity >= objective){
+        if(this.quantity >= objective){
             alert = true;
         }
     }

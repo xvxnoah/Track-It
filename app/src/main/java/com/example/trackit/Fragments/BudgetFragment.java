@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.example.trackit.Account.AuthActivity;
 import com.example.trackit.Adapters.AdapterBudgets;
-import com.example.trackit.Adapters.AdapterTransactions;
 import com.example.trackit.CreateBudget;
 import com.example.trackit.Model.Budget;
 import com.example.trackit.Model.UserInfo;
@@ -62,7 +61,7 @@ public class BudgetFragment extends Fragment {
 
     RecyclerView recyclerViewBudgets, recyclerCompleted;
     TextView recent, completed;
-    private ArrayList<Budget> budgetsVos;
+    private ArrayList<Budget> budgetsVos, budgetsCompleted;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -121,8 +120,10 @@ public class BudgetFragment extends Fragment {
         recyclerViewBudgets.setLayoutManager(new LinearLayoutManager(getContext()));
 
         recyclerCompleted = vista.findViewById(R.id.recyclerViewBudgetsCompleted);
+        recyclerCompleted.setLayoutManager(new LinearLayoutManager(getContext()));
 
         completed = vista.findViewById(R.id.completedBudgets);
+        completed.setVisibility(View.INVISIBLE);
 
         firebaseDatabase = FirebaseDatabase.getInstance("https://track-it-86761-default-rtdb.europe-west1.firebasedatabase.app/");
 
@@ -143,9 +144,13 @@ public class BudgetFragment extends Fragment {
                 userInfo = dataSnapshot.getValue(com.example.trackit.Model.UserInfo.class);
                 com.example.trackit.Model.UserInfo.setUniqueInstance(userInfo);
                 budgetsVos = new ArrayList<Budget>();
+                budgetsCompleted = new ArrayList<Budget>();
                 fillUpList();
                 AdapterBudgets adapter = new AdapterBudgets(budgetsVos, getContext());
                 recyclerViewBudgets.setAdapter(adapter);
+
+                AdapterBudgets adapterCompleted = new AdapterBudgets(budgetsCompleted, getContext());
+                recyclerCompleted.setAdapter(adapterCompleted);
             }
 
             @Override
@@ -172,8 +177,14 @@ public class BudgetFragment extends Fragment {
             for(int i = 0; i < budgets.size() && i < 10; i++){
                 budget = budgets.get(budgets.size() - i - 1);
                 String type = budget.getType();
-                budgetsVos.add(budget);
+
+                if(!budget.isAlert()){
+                    budgetsVos.add(budget);
+                } else{
+                    budgetsCompleted.add(budget);
+                }
             }
+            completed.setVisibility(View.VISIBLE);
         }else{
             recent.setText("No tens cap pressupost");
         }

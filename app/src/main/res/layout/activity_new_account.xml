@@ -84,16 +84,73 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="442dp">
+
+            <Button
+                android:id="@+id/cameraIncome2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/lila"
+                android:drawableTop="@drawable/camera"
+                android:fontFamily="@font/g_bold"
+                android:text="@string/camera"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toTopOf="@id/dateIncome"
+                app:layout_constraintEnd_toStartOf="@id/imageIncome"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dateEditText3" />
+
+            <Button
+                android:id="@+id/imageIncome2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="124dp"
+                android:layout_marginEnd="144dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/lila"
+                android:drawableTop="@drawable/imageicon"
+                android:fontFamily="@font/g_bold"
+                android:text="@string/imatge"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toTopOf="@id/dateIncome"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/cameraIncome2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dateEditText3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/g_bold"
+                android:text="Imatge de perfil"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userName"
+                app:layout_constraintVertical_bias="0.091"
+                tools:layout_editor_absoluteX="54dp" />
 
             <EditText
                 android:id="@+id/userName"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_gravity="top"
-                android:autofillHints=""
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
+                android:autofillHints=""
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/g_bold"
                 android:hint="Nom"
@@ -110,9 +167,10 @@
                 android:id="@+id/linearLayoutCompat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="160dp"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/continueBtn"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.507"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/userName">
 
@@ -146,8 +204,8 @@
                 android:layout_width="210dp"
                 android:layout_height="48dp"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/lila"
                 android:fontFamily="@font/g_bold"
                 android:text="@string/continua"
@@ -156,6 +214,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearLayoutCompat"
+                app:layout_constraintVertical_bias="0.789"
                 tools:ignore="TextContrastCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

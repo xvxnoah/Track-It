@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.trackit.Account.AuthActivity;
+import com.example.trackit.Account.NewAccount;
 import com.example.trackit.Model.UserInfo;
 import com.example.trackit.R;
 import com.example.trackit.ViewModel.AboutUs;
@@ -46,8 +47,10 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.UUID;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,7 +76,9 @@ public class ProfileFragment extends Fragment {
 
     // request code
     private final int PICK_IMAGE_REQUEST = 22;
-
+    private final int REQUEST_IMAGE_CAPTURE = 111;
+    private byte[] bb;
+    private boolean cameraPic = false;
 
     View view, view2;
     ImageView profilePic;
@@ -178,23 +183,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        StorageReference mImageStorage = FirebaseStorage.getInstance("gs://track-it-86761.appspot.com").getReference();
-        if(userInfo.getImageStr() != null){
-            StorageReference ref = mImageStorage.child("images/" + userInfo.getImageStr());
-
-            ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        Uri downUri = task.getResult();
-                        String imageUrl = downUri.toString();
-                        new DownloadImageTask((ImageView) view.findViewById(R.id.profile_pic)).execute(imageUrl);
-                    }else{
-                        Toast.makeText(view.getContext(), ""+task.getException(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
+        loadImage();
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,6 +236,9 @@ public class ProfileFragment extends Fragment {
                 bottomSheetDialog.findViewById(R.id.optionCamera).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+
                         bottomSheetDialog.dismiss();
                     }
                 });
@@ -254,21 +246,39 @@ public class ProfileFragment extends Fragment {
                 bottomSheetDialog.findViewById(R.id.optionGallery).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        SharedPreferences preferences = getActivity().getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
+                        String email = preferences.getString(AuthActivity.USER, null);
+                        email = email.replace('.', ',');
+
+                        SelectImage();
+                        uploadImage(email);
                         bottomSheetDialog.dismiss();
                     }
                 });
             }
         });
 
-        btnSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                SelectImage();
-                uploadImage(userInfo.getEmail());
-            }
-        });
         return view;
+    }
+
+    private void loadImage() {
+        StorageReference mImageStorage = FirebaseStorage.getInstance("gs://track-it-86761.appspot.com").getReference();
+        if(userInfo.getImageStr() != null){
+            StorageReference ref = mImageStorage.child("images/" + userInfo.getImageStr());
+
+            ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downUri = task.getResult();
+                        String imageUrl = downUri.toString();
+                        new DownloadImageTask((ImageView) view.findViewById(R.id.profile_pic)).execute(imageUrl);
+                    }else{
+                        Toast.makeText(view.getContext(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     private void checkForProtection() {
@@ -335,19 +345,11 @@ public class ProfileFragment extends Fragment {
                 resultCode,
                 data);
 
-        if(requestCode == 111 && resultCode == RESULT_OK){
-
-        }
         if (requestCode == PICK_IMAGE_REQUEST
                 && resultCode == RESULT_OK
                 && data != null
                 && data.getData() != null) {
 
-            Button camera = view.findViewById(R.id.cameraProfile);
-            camera.setVisibility(View.INVISIBLE);
-
-            Button galllery = view.findViewById(R.id.galleryProfile);
-            galllery.setVisibility(View.INVISIBLE);
             // Get the Uri of data
             filePath = data.getData();
             try {
@@ -358,28 +360,53 @@ public class ProfileFragment extends Fragment {
                         .Media
                         .getBitmap(getContext().getContentResolver(),
                                 filePath);
+                profilePic.setImageBitmap(bitmap);
             }
 
             catch (IOException e) {
                 // Log the exception
                 e.printStackTrace();
             }
+
+            SharedPreferences preferences = getActivity().getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
+            String email = preferences.getString(AuthActivity.USER, null);
+            email = email.replace('.', ',');
+            uploadImage(email);
         }
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+            onCaptureImageResult(data);
+        }
+    }
+
+    private void onCaptureImageResult(Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+
+        bb = bytes.toByteArray();
+        profilePic.setImageBitmap(thumbnail);
+
+        cameraPic = true;
+
+        SharedPreferences preferences = getActivity().getSharedPreferences(AuthActivity.CREDENTIALS, Context.MODE_PRIVATE);
+        String email = preferences.getString(AuthActivity.USER, null);
+        email = email.replace('.', ',');
+        uploadImage(email);
     }
 
     // UploadImage method
     private void uploadImage(String email)
     {
         if (filePath != null) {
-
             // Code for showing progressDialog while uploading
             ProgressDialog progressDialog
-                    = new ProgressDialog(view.getContext());
+                    = new ProgressDialog(getContext());
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            String imageStr = email;
-            User.setImageStr(imageStr) ;
+            String imageStr = UUID.randomUUID().toString();
+            userInfo.setImageStr(imageStr) ;
 
             // Defining the child of storageReference
             StorageReference ref
@@ -392,7 +419,6 @@ public class ProfileFragment extends Fragment {
             ref.putFile(filePath)
                     .addOnSuccessListener(
                             new OnSuccessListener<UploadTask.TaskSnapshot>() {
-
                                 @Override
                                 public void onSuccess(
                                         UploadTask.TaskSnapshot taskSnapshot)
@@ -402,10 +428,12 @@ public class ProfileFragment extends Fragment {
                                     // Dismiss dialog
                                     progressDialog.dismiss();
                                     Toast
-                                            .makeText(view.getContext(),
+                                            .makeText(getContext(),
                                                     "Imatge de perfil pujada",
                                                     Toast.LENGTH_SHORT)
                                             .show();
+                                    loadImage();
+                                    databaseReference.setValue(userInfo);
                                 }
                             })
 
@@ -417,7 +445,7 @@ public class ProfileFragment extends Fragment {
                             // Error, Image not uploaded
                             progressDialog.dismiss();
                             Toast
-                                    .makeText(view.getContext(),
+                                    .makeText(getContext(),
                                             "Error " + e.getMessage(),
                                             Toast.LENGTH_SHORT)
                                     .show();
@@ -441,6 +469,75 @@ public class ProfileFragment extends Fragment {
                                                     + (int)progress + "%");
                                 }
                             });
+
+        }
+        else if(cameraPic){
+            ProgressDialog progressDialog
+                    = new ProgressDialog(getContext());
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+            String imageStr = UUID.randomUUID().toString();
+            userInfo.setImageStr(imageStr);
+
+            // Defining the child of storageReference
+            StorageReference ref
+                    = storageReference
+                    .child(
+                            "images/" + imageStr);
+            ref.putBytes(bb).addOnSuccessListener(
+                    new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(
+                                UploadTask.TaskSnapshot taskSnapshot)
+                        {
+
+                            // Image uploaded successfully
+                            // Dismiss dialog
+                            progressDialog.dismiss();
+                            Toast
+                                    .makeText(getContext(),
+                                            "Imatge de perfil pujada",
+                                            Toast.LENGTH_SHORT)
+                                    .show();
+                            loadImage();
+                            databaseReference.setValue(userInfo);
+                        }
+                    })
+
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e)
+                        {
+
+                            // Error, Image not uploaded
+                            progressDialog.dismiss();
+                            Toast
+                                    .makeText(getContext(),
+                                            "Error " + e.getMessage(),
+                                            Toast.LENGTH_SHORT)
+                                    .show();
+                        }
+                    })
+                    .addOnProgressListener(
+                            new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                                // Progress Listener for loading
+                                // percentage on the dialog box
+                                @Override
+                                public void onProgress(
+                                        UploadTask.TaskSnapshot taskSnapshot)
+                                {
+                                    double progress
+                                            = (100.0
+                                            * taskSnapshot.getBytesTransferred()
+                                            / taskSnapshot.getTotalByteCount());
+                                    progressDialog.setMessage(
+                                            "Pujat "
+                                                    + (int)progress + "%");
+                                }
+                            });
+
         }
     }
 

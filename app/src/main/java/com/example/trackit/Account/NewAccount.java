@@ -77,8 +77,6 @@ public class NewAccount extends AppCompatActivity {
     public static final String SETUP_USER = "";
     public static final String SETUP_EMAIL = "";
 
-    private Spinner expenseCategories;
-
     FirebaseDatabase firebaseDatabase;
 
     // creating a variable for our Database Reference for Firebase.
